@@ -7,6 +7,7 @@ using System.Reflection;
 using Application.Models;
 using Application.Queries;
 using Scraper.Middleware;
+using Infrastructure.Scrapers;
 
 Log.Logger = new LoggerConfiguration()
     .WriteTo
@@ -26,6 +27,7 @@ try
     builder.Services.AddMediatR(typeof(GetHtml.Query).Assembly);
 
     builder.Services.Configure<AppOptions>(builder.Configuration);
+    builder.Services.AddScoped<ISeleniumDriverFactory, SeleniumDriverFactory>();
 
 
     builder.Services.AddControllers()

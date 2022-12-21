@@ -6,7 +6,7 @@ using Scraper.Models;
 namespace Scraper.Controllers;
 
 [ApiController]
-[Route("api/product/amazon")]
+[Route("api/v1/html")]
 public class HtmlController : ControllerBase
 {
     private readonly IMediator _mediator;
