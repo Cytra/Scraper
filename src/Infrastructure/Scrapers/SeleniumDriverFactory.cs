@@ -1,14 +1,10 @@
 ﻿using Application.Options;
+using Application.Ports;
 using Microsoft.Extensions.Options;
 using OpenQA.Selenium.Chrome;
 using OpenQA.Selenium.Remote;
 
 namespace Infrastructure.Scrapers;
-
-public interface ISeleniumDriverFactory
-{
-    RemoteWebDriver GetDriver();
-}
 
 public class SeleniumDriverFactory : ISeleniumDriverFactory
 {

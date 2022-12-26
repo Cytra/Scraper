@@ -5,9 +5,12 @@ using Microsoft.AspNetCore.Mvc;
 using MediatR;
 using System.Reflection;
 using Application.Models;
+using Application.Ports;
 using Application.Queries;
 using Scraper.Middleware;
 using Infrastructure.Scrapers;
+using Application.Services;
+using Swashbuckle.AspNetCore.Filters;
 
 Log.Logger = new LoggerConfiguration()
     .WriteTo
@@ -28,6 +31,8 @@ try
 
     builder.Services.Configure<AppOptions>(builder.Configuration);
     builder.Services.AddScoped<ISeleniumDriverFactory, SeleniumDriverFactory>();
+    builder.Services.AddScoped<ISeleniumService, SeleniumService>();
+    builder.Services.AddScoped<IJObjectService, JObjectService>();
 
 
     builder.Services.AddControllers()
@@ -48,7 +53,12 @@ try
         });
 
     builder.Services.AddEndpointsApiExplorer();
-    builder.Services.AddSwaggerGen();
+    builder.Services.AddSwaggerGen(c =>
+    {
+        c.ExampleFilters();
+    });
+    builder.Services.AddSwaggerExamplesFromAssemblyOf();
+
     builder.Services.AddHealthChecks();
 
     var app = builder.Build();

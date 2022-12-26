@@ -1,24 +1,33 @@
 ﻿using Application.Models;
+using Application.Services;
 using MediatR;
 
 namespace Application.Queries;
 
 public static class GetHtml
 {
-    public record Query(string Url) : IRequest<Response>
-    { }
+    public record Query(string Url) : IRequest<Response> { }
 
     public class Response : ErrorResponse
     {
-        public string Html { get; set; }
+        public string? Html { get; set; }
     }
 
-    public class Handler : IRequestHandler<Query, Response>
+    public class Handler : IRequestHandler<Query, Response> 
     {
+        private readonly ISeleniumService _seleniumService;
 
-        public async Task<Response> Handle(Query request, CancellationToken cancellationToken)
+        public Handler(ISeleniumService seleniumService)
         {
-            return new Response();
+            _seleniumService = seleniumService;
+        }
+
+        public Task<Response> Handle(Query request, CancellationToken cancellationToken)
+        {
+            return Task.FromResult(new Response()
+            {
+                Html = _seleniumService.GetHtml(request.Url)
+            });
         }
     }
 }
