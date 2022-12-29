@@ -1,6 +1,8 @@
-﻿using Newtonsoft.Json.Linq;
-using HtmlAgilityPack;
+﻿using HtmlAgilityPack;
 using System.Net;
+using System.Text.Json;
+using System.Text.Json.Serialization;
+
 
 namespace Application.Services;
 
@@ -8,6 +10,32 @@ public interface IJObjectService
 {
     Dictionary<string,object> GetDictionaryFromHtml(string html);
 }
+
+//public class HtmlNodeConverter : JsonConverter
+//{
+//    public override bool CanConvert(Type objectType)
+//    {
+//        return objectType == typeof(HtmlAgilityPack.HtmlNode);
+//    }
+
+//    public override object ReadJson(JsonReader reader, Type objectType, object existingValue, JsonSerializer serializer)
+//    {
+//        throw new NotImplementedException();
+//    }
+
+//    public override void WriteJson(JsonWriter writer, object value, JsonSerializer serializer)
+//    {
+//        HtmlAgilityPack.HtmlNode node = (HtmlAgilityPack.HtmlNode)value;
+
+//        writer.WriteStartObject();
+//        writer.WritePropertyName("Name");
+//        serializer.Serialize(writer, node.Name);
+//        writer.WritePropertyName("InnerHtml");
+//        serializer.Serialize(writer, node.InnerHtml);
+//        writer.WriteEndObject();
+//    }
+//}
+
 
 public class JObjectService : IJObjectService
 {
@@ -18,52 +46,58 @@ public class JObjectService : IJObjectService
         var htmlDoc = new HtmlDocument();
         htmlDoc.LoadHtml(html);
 
-        var body = htmlDoc.DocumentNode.SelectSingleNode("//body");
+        ParseInnerHtml(htmlDoc.DocumentNode, result, "");
 
-        if (body == null)
-        {
-            return result;
-        }
+        //JsonSerializerOptions options = new JsonSerializerOptions();
+        //options.ReferenceHandler = ReferenceHandler.Preserve;
 
-        ParseItems(body, result);
+        //// Serialize the dictionary to a JSON string using the serializer options
+        //string json = JsonSerializer.Serialize(result);
 
         return result;
     }
 
-    private void ParseItems(HtmlNode node, Dictionary<string,object> jObject)
+    static void ParseInnerHtml(HtmlNode node, Dictionary<string, object> htmlToJson, string xpath)
     {
-        if (node.HasChildNodes)
+        // Trim the leading and trailing white space characters from the inner HTML
+        var innerHtml = node.InnerHtml.Replace("\r\n", "").Trim();
+
+        // Skip adding the element if its InnerHtml is an empty string
+        if (string.IsNullOrEmpty(innerHtml))
         {
-            //var innerProperty = new JProperty(childNode.InnerStartIndex.ToString(), childNode.InnerText);
-            //var innerJObject = new JObject(innerProperty);
-            //if (childNode.HasChildNodes)
-            //{
-            //    ParseItems(childNode, innerJObject);
-            //}
+            return;
+        }
 
-            //var property = new JProperty(childNode.Line.ToString(), childNode.InnerText);
+        // Create a list to store the child elements
+        var children = new List<object>();
 
-            var innerJObject = new Dictionary<string, object>();
-            foreach (var childNode in node.ChildNodes)
+        // Recursively parse the inner HTML of each child element
+        int i = 1;
+        foreach (var child in node.ChildNodes)
+        {
+            var childNode = new Dictionary<string, object>();
+            ParseInnerHtml(child, childNode, xpath + "/" + child.Name + "[" + i + "]");
+            if (childNode.Count > 0)
             {
-                if (childNode.HasChildNodes)
-                {
-                    ParseItems(childNode, innerJObject);
-                }
-                else
-                {
-                    var htmlString = WebUtility.HtmlDecode(childNode
-                        .InnerText
-                        .Replace("\"", "")
-                        .Trim());
-                    if (!string.IsNullOrWhiteSpace(htmlString))
-                    {
-                        innerJObject.TryAdd(childNode.Line.ToString(), htmlString);
-                    }
-                }
+                children.Add(childNode);
             }
+            i++;
+        }
 
-            jObject.Add(node.InnerStartIndex.ToString(), innerJObject);
+        if (node.ChildNodes.Count == 0)
+        {
+            htmlToJson[xpath] = new Dictionary<string, object>()
+            {
+                { "innerHtml", innerHtml }
+            };
+        }
+        else
+        {
+            htmlToJson[xpath] = new Dictionary<string, object>()
+            {
+                //{ "innerHtml", innerHtml },
+                { "children", children }
+            };
         }
     }
 }

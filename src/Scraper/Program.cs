@@ -11,6 +11,8 @@ using Scraper.Middleware;
 using Infrastructure.Scrapers;
 using Application.Services;
 using Swashbuckle.AspNetCore.Filters;
+using System.Text.Json.Serialization;
+using Newtonsoft.Json;
 
 Log.Logger = new LoggerConfiguration()
     .WriteTo
@@ -45,11 +47,17 @@ try
                 {
                     foreach (var error in modelState.Value.Errors)
                     {
-                        apiResponse.Errors.Add(new Error() { ErrorCode = ErrorCodes.BadRequest, ErrorMessage = error.ErrorMessage });
+                        apiResponse.Errors.Add(new Error()
+                            { ErrorCode = ErrorCodes.BadRequest, ErrorMessage = error.ErrorMessage });
                     }
                 }
+
                 return new BadRequestObjectResult(apiResponse);
             };
+        })
+        .AddNewtonsoftJson(options =>
+        {
+            options.SerializerSettings.ReferenceLoopHandling = ReferenceLoopHandling.Ignore;
         });
 
     builder.Services.AddEndpointsApiExplorer();

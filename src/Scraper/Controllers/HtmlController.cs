@@ -36,6 +36,6 @@ public class HtmlController : ControllerBase
         var result = await _mediator
             .Send(new GetJObject.Query(input.Url),
                 cancellationToken);
-        return Ok(result.JObject);
+        return Ok(result.Json);
     }
 }

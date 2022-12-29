@@ -1,7 +1,9 @@
 ﻿using Application.Models;
 using Application.Services;
+using HtmlAgilityPack;
 using MediatR;
-using Newtonsoft.Json.Linq;
+using Newtonsoft.Json;
+
 
 namespace Application.Queries;
 
@@ -11,7 +13,7 @@ public static class GetJObject
 
     public class Response : ErrorResponse
     {
-        public Dictionary<string,object> JObject { get; set; }
+        public Dictionary<string,object> Json { get; set; }
     }
 
     public class Handler : IRequestHandler<Query, Response>
@@ -30,10 +32,11 @@ public static class GetJObject
         public async Task<Response> Handle(Query request, CancellationToken cancellationToken)
         {
             var html = _seleniumService.GetHtml(request.Url);
-            var jObject = _jObjectService.GetDictionaryFromHtml(html);
+
+            var json = _jObjectService.GetDictionaryFromHtml(html);
             return new Response()
             {
-                JObject = jObject
+                Json = json
             };
         }
     }
