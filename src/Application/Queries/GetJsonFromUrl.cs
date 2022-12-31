@@ -1,13 +1,10 @@
 ﻿using Application.Models;
 using Application.Services;
-using HtmlAgilityPack;
 using MediatR;
-using Newtonsoft.Json;
-
 
 namespace Application.Queries;
 
-public static class GetJObject
+public static class GetJsonFromUrl
 {
     public record Query(string Url) : IRequest<Response> { }
 
@@ -19,25 +16,25 @@ public static class GetJObject
     public class Handler : IRequestHandler<Query, Response>
     {
         private readonly ISeleniumService _seleniumService;
-        private readonly IJObjectService _jObjectService;
+        private readonly IHtmlToJsonService _htmlToJsonService;
 
         public Handler(
             ISeleniumService seleniumService,
-            IJObjectService jObjectService)
+            IHtmlToJsonService htmlToJsonService)
         {
             _seleniumService = seleniumService;
-            _jObjectService = jObjectService;
+            _htmlToJsonService = htmlToJsonService;
         }
 
-        public async Task<Response> Handle(Query request, CancellationToken cancellationToken)
+        public Task<Response> Handle(Query request, CancellationToken cancellationToken)
         {
             var html = _seleniumService.GetHtml(request.Url);
 
-            var json = _jObjectService.GetDictionaryFromHtml(html);
-            return new Response()
+            var json = _htmlToJsonService.GetDictionaryFromHtml(html);
+            return Task.FromResult(new Response()
             {
                 Json = json
-            };
+            });
         }
     }
 }

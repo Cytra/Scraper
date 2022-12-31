@@ -1,43 +1,13 @@
 ﻿using HtmlAgilityPack;
-using System.Net;
-using System.Text.Json;
-using System.Text.Json.Serialization;
-
 
 namespace Application.Services;
 
-public interface IJObjectService
+public interface IHtmlToJsonService
 {
     Dictionary<string,object> GetDictionaryFromHtml(string html);
 }
 
-//public class HtmlNodeConverter : JsonConverter
-//{
-//    public override bool CanConvert(Type objectType)
-//    {
-//        return objectType == typeof(HtmlAgilityPack.HtmlNode);
-//    }
-
-//    public override object ReadJson(JsonReader reader, Type objectType, object existingValue, JsonSerializer serializer)
-//    {
-//        throw new NotImplementedException();
-//    }
-
-//    public override void WriteJson(JsonWriter writer, object value, JsonSerializer serializer)
-//    {
-//        HtmlAgilityPack.HtmlNode node = (HtmlAgilityPack.HtmlNode)value;
-
-//        writer.WriteStartObject();
-//        writer.WritePropertyName("Name");
-//        serializer.Serialize(writer, node.Name);
-//        writer.WritePropertyName("InnerHtml");
-//        serializer.Serialize(writer, node.InnerHtml);
-//        writer.WriteEndObject();
-//    }
-//}
-
-
-public class JObjectService : IJObjectService
+public class HtmlToJsonService : IHtmlToJsonService
 {
     public Dictionary<string, object> GetDictionaryFromHtml(string html)
     {
@@ -68,36 +38,32 @@ public class JObjectService : IJObjectService
             return;
         }
 
-        // Create a list to store the child elements
-        var children = new List<object>();
-
-        // Recursively parse the inner HTML of each child element
-        int i = 1;
-        foreach (var child in node.ChildNodes)
-        {
-            var childNode = new Dictionary<string, object>();
-            ParseInnerHtml(child, childNode, xpath + "/" + child.Name + "[" + i + "]");
-            if (childNode.Count > 0)
-            {
-                children.Add(childNode);
-            }
-            i++;
-        }
-
         if (node.ChildNodes.Count == 0)
         {
             htmlToJson[xpath] = new Dictionary<string, object>()
             {
                 { "innerHtml", innerHtml }
             };
+            return;
         }
-        else
+
+        // Create a list to store the child elements
+        var children = new List<object>();
+
+        // Recursively parse the inner HTML of each child element
+
+        for (int i = 0; i < node.ChildNodes.Count; i++)
         {
-            htmlToJson[xpath] = new Dictionary<string, object>()
-            {
-                //{ "innerHtml", innerHtml },
-                { "children", children }
-            };
+            var child = node.ChildNodes[i];
+            var childNode = new Dictionary<string, object>();
+            ParseInnerHtml(child, childNode, xpath + "/" + child.Name + "[" + (i + 1) + "]");
+            children.Add(childNode);
         }
+
+        htmlToJson[xpath] = new Dictionary<string, object>()
+        {
+            //{ "innerHtml", innerHtml },
+            { "children", children }
+        };
     }
 }
