@@ -23,6 +23,7 @@ public class HtmlToJsonByXpathService : IHtmlToJsonByXpathService
 
         foreach (var extractRule in instructions.ExtractRules)
         {
+            //var test = htmlDoc.DocumentNode.
             var extractRuleString = extractRule.Value.ToString();
             var text = htmlDoc.DocumentNode.SelectSingleNode(extractRuleString);
         }

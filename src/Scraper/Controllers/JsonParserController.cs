@@ -1,8 +1,10 @@
 ﻿using Application.Queries;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
+using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using Scraper.Models;
+using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace Scraper.Controllers;
 
@@ -31,15 +33,16 @@ public class JsonParserController: ControllerBase
     [HttpGet("html-to-json")]
     public async Task<ActionResult<JObject>> Get(
         [FromQuery] string url,
-        [FromQuery] Dictionary<string, object> extractRules,
+        [FromQuery] string extractRules,
         CancellationToken cancellationToken)
     {
+        var extractRulesObject = JsonConvert.DeserializeObject<Dictionary<string,object>>(extractRules);
         var result = await _mediator
             .Send(new GetHtmlByXpath.Query()
                 {
                     Url = url,
-                    ExtractRules = extractRules
-                },
+                    ExtractRules = extractRulesObject
+            },
                 cancellationToken);
         return Ok(result.Json);
     }

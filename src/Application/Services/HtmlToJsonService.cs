@@ -42,6 +42,7 @@ public class HtmlToJsonService : IHtmlToJsonService
         {
             htmlToJson[xpath] = new Dictionary<string, object>()
             {
+                { "XPath", node.ParentNode.XPath },
                 { "innerHtml", innerHtml }
             };
             return;

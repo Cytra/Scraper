@@ -18,9 +18,11 @@ public static class GetHtmlByXpath
         private readonly IHtmlToJsonByXpathService _htmlToJsonByXpathService;
         private readonly ISeleniumService _seleniumService;
 
-        public Handler(IHtmlToJsonByXpathService htmlToJsonByXpathService)
+        public Handler(IHtmlToJsonByXpathService htmlToJsonByXpathService, 
+            ISeleniumService seleniumService)
         {
             _htmlToJsonByXpathService = htmlToJsonByXpathService;
+            _seleniumService = seleniumService;
         }
 
         public Task<Response> Handle(Query request, CancellationToken cancellationToken)
