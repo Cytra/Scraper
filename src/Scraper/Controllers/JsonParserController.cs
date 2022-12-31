@@ -17,13 +17,29 @@ public class JsonParserController: ControllerBase
         _mediator = mediator;
     }
 
-    [HttpGet("html-to-json")]
-    public async Task<ActionResult<JObject>> Get(
+    [HttpGet("raw")]
+    public async Task<ActionResult<JObject>> GetRaw(
         [FromQuery] HtmlGetParameters input,
         CancellationToken cancellationToken)
     {
         var result = await _mediator
             .Send(new GetJsonFromUrl.Query(input.Url),
+                cancellationToken);
+        return Ok(result.Json);
+    }
+
+    [HttpGet("html-to-json")]
+    public async Task<ActionResult<JObject>> Get(
+        [FromQuery] string url,
+        [FromQuery] Dictionary<string, object> extractRules,
+        CancellationToken cancellationToken)
+    {
+        var result = await _mediator
+            .Send(new GetHtmlByXpath.Query()
+                {
+                    Url = url,
+                    ExtractRules = extractRules
+                },
                 cancellationToken);
         return Ok(result.Json);
     }
