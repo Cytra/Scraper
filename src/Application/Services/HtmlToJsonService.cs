@@ -1,4 +1,5 @@
-﻿using HtmlAgilityPack;
+﻿using Application.Extensions;
+using HtmlAgilityPack;
 
 namespace Application.Services;
 
@@ -30,7 +31,7 @@ public class HtmlToJsonService : IHtmlToJsonService
     static void ParseInnerHtml(HtmlNode node, Dictionary<string, object> htmlToJson, string xpath)
     {
         // Trim the leading and trailing white space characters from the inner HTML
-        var innerHtml = node.InnerHtml.Replace("\r\n", "").Trim();
+        var innerHtml = node.InnerHtml.Cleanup();
 
         // Skip adding the element if its InnerHtml is an empty string
         if (string.IsNullOrEmpty(innerHtml))
@@ -40,9 +41,14 @@ public class HtmlToJsonService : IHtmlToJsonService
 
         if (node.ChildNodes.Count == 0)
         {
+            var xpathClass = node.ParentNode.GetAttributeValue("class", "");
+            var nodeType = node.ParentNode.Name;
+            var xpathWithClass = $"//{nodeType}[@class=\"{xpathClass}\"]";
+
             htmlToJson[xpath] = new Dictionary<string, object>()
             {
                 { "XPath", node.ParentNode.XPath },
+                { "XpathWithClass", xpathWithClass},
                 { "innerHtml", innerHtml }
             };
             return;

@@ -1,4 +1,5 @@
-﻿using Application.Queries;
+﻿using Application.Models;
+using Application.Queries;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
@@ -36,7 +37,7 @@ public class JsonParserController: ControllerBase
         [FromQuery] string extractRules,
         CancellationToken cancellationToken)
     {
-        var extractRulesObject = JsonConvert.DeserializeObject<Dictionary<string,object>>(extractRules);
+        var extractRulesObject = JsonConvert.DeserializeObject<Dictionary<string, ExtractRule>>(extractRules);
         var result = await _mediator
             .Send(new GetHtmlByXpath.Query()
                 {
