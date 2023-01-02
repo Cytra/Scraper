@@ -4,10 +4,9 @@ using Newtonsoft.Json.Converters;
 namespace Application.Models.Enums;
 
 [JsonConverter(typeof(StringEnumConverter))]
-public enum ItemType : byte
+public enum SelectorType : byte
 {
     None = 0,
-    Item = 1,
-    List = 2,
-    Table = 3,
+    Css = 1,
+    XPath = 2,
 }

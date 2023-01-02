@@ -11,8 +11,9 @@ using Scraper.Middleware;
 using Infrastructure.Scrapers;
 using Application.Services;
 using Swashbuckle.AspNetCore.Filters;
-using System.Text.Json.Serialization;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
+using System.Text.Json;
 
 Log.Logger = new LoggerConfiguration()
     .WriteTo
@@ -58,6 +59,7 @@ try
         })
         .AddNewtonsoftJson(options =>
         {
+            options.SerializerSettings.Converters.Add(new StringEnumConverter());
             options.SerializerSettings.ReferenceLoopHandling = ReferenceLoopHandling.Ignore;
         });
 

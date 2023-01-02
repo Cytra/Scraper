@@ -5,7 +5,6 @@ using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using Scraper.Models;
-using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace Scraper.Controllers;
 
