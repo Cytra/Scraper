@@ -9,7 +9,7 @@ namespace Application.Services;
 
 public interface IHtmlToJsonByXpathService
 {
-    Dictionary<string, object> GetJsonByXpath(HtmlToJsonByXpath instructions, string html);
+    Dictionary<string, object?> GetJsonByXpath(HtmlToJsonByXpath instructions, string html);
 }
 
 public class HtmlToJsonByXpathService : IHtmlToJsonByXpathService
@@ -19,11 +19,16 @@ public class HtmlToJsonByXpathService : IHtmlToJsonByXpathService
     {
         _logger = logger;
     }
-    public Dictionary<string, object> GetJsonByXpath(HtmlToJsonByXpath instructions, string html)
+    public Dictionary<string, object?> GetJsonByXpath(HtmlToJsonByXpath instructions, string html)
     {
-        var result = new Dictionary<string, object>();
+        var result = new Dictionary<string, object?>();
         var htmlDoc = new HtmlDocument();
         htmlDoc.LoadHtml(html);
+
+        if (instructions.ExtractRules == null)
+        {
+            return result;
+        }
 
         foreach (var (key, extractRule) in instructions.ExtractRules)
         {
@@ -35,102 +40,95 @@ public class HtmlToJsonByXpathService : IHtmlToJsonByXpathService
 
     private object? GetObjectToAdd(HtmlDocument document, ExtractRule extractRule)
     {
-        return extractRule.ItemType switch
-        {
-            ItemType.Item => GetSingleItem(document,extractRule),
-            ItemType.List => GetListItem(document, extractRule),
-            ItemType.Table => GetTable(document,extractRule),
-            _ => GetSingleItem(document, extractRule),
-        };
-    }
-
-    private object? GetSingleItem(HtmlDocument document, ExtractRule extractRule)
-    {
         try
         {
-            var selectorString = GetSelectorString(extractRule);
-            var node = document.DocumentNode.SelectSingleNode(selectorString);
-
-            return GetOutput(node, document, extractRule);
-        }
-        catch (Exception e)
-        {
-            _logger.LogWarning(e.ToString());
-        }
-        return null;
-    }
-
-    private object? GetListItem(HtmlDocument document, ExtractRule extractRule)
-    {
-        try
-        {
-            var selectorString = GetSelectorString(extractRule);
-            var nodes = document.DocumentNode.SelectNodes(selectorString);
-
-            var listItems = new List<object>();
-            foreach (var node in nodes)
+            return extractRule.ItemType switch
             {
-                listItems.Add(GetOutput(node,document, extractRule));
-            }
-
-            return listItems;
+                ItemType.Item => GetSingleItem(document, extractRule),
+                ItemType.List => GetListItem(document, extractRule),
+                ItemType.Table => GetTable(document, extractRule),
+                _ => GetSingleItem(document, extractRule),
+            };
         }
         catch (Exception e)
         {
             _logger.LogWarning(e.ToString());
         }
+
         return null;
+
     }
 
-    private object GetOutput(HtmlNode node, HtmlDocument document, ExtractRule extractRule)
+    private object GetSingleItem(HtmlDocument document, ExtractRule extractRule)
     {
-        return extractRule.OutputType switch
-        {
-            OutputType.Html => node.InnerHtml,
-            OutputType.Text => node.InnerText.Cleanup(),
-            //OutputType.Table => GetTable(document,extractRule),
-            _ => node.InnerText.Cleanup()
-        };
+        var selectorString = GetSelectorString(extractRule);
+        var node = document.DocumentNode.SelectSingleNode(selectorString);
+        return GetOutput(node, extractRule.OutputType);
     }
 
-    private object GetTable(HtmlDocument document, ExtractRule extractRules)
+    private List<object> GetListItem(HtmlDocument document, ExtractRule extractRule)
     {
-        try
+        var selectorString = GetSelectorString(extractRule);
+        var nodes = document.DocumentNode.SelectNodes(selectorString);
+
+        var listItems = new List<object>();
+
+        foreach (var node in nodes)
         {
-            var result = new List<Dictionary<string,object>>();
-            var extractRulesObject = JsonConvert
+            listItems.Add(GetOutput(node, extractRule.OutputType));
+        }
+
+        return listItems;
+    }
+
+    private List<Dictionary<string, object>> GetTable(
+        HtmlDocument document,
+        ExtractRule extractRules)
+    {
+        var result = new List<Dictionary<string, object>>();
+
+        Dictionary<string, ExtractRule>? extractRulesObject;
+        if (extractRules.Output is Dictionary<string, ExtractRule> rules)
+        {
+            extractRulesObject = rules;
+        }
+        else
+        {
+            extractRulesObject = JsonConvert
                 .DeserializeObject<Dictionary<string, ExtractRule>>(
-                extractRules.Output.ToString());
+                    extractRules.Output.ToString());
+        }
 
-            foreach (var (key, extractRule) in extractRulesObject)
-            {
-                var selectorString = GetSelectorString(extractRule);
-                var nodes = document.DocumentNode
-                    .SelectNodes(selectorString);
 
-                foreach (var node in nodes)
-                {
-                    var existingDict = result.ElementAtOrDefault(nodes[node]);
-                    if(existingDict == null)
-                    {
-                        result.Add(new Dictionary<string, object>()
-                        {
-                            {key, node.InnerText.Cleanup()}
-                        });
-                    }
-                    else
-                    {
-                        existingDict.Add(key, node.InnerText.Cleanup());
-                    }
-                }
-            }
+
+        if (extractRulesObject == null)
+        {
             return result;
         }
-        catch (Exception e)
+
+        foreach (var (key, extractRule) in extractRulesObject)
         {
-            _logger.LogWarning(e.ToString());
+            var selectorString = GetSelectorString(extractRule);
+            var nodes = document.DocumentNode
+                .SelectNodes(selectorString);
+
+            foreach (var node in nodes)
+            {
+                var existingDict = result.ElementAtOrDefault(nodes[node]);
+                if (existingDict == null)
+                {
+                    result.Add(new Dictionary<string, object>()
+                    {
+                        {key, node.InnerText.Cleanup()}
+                    });
+                }
+                else
+                {
+                    existingDict.Add(key, node.InnerText.Cleanup());
+                }
+            }
         }
-        return null;
+        return result;
     }
 
     private string? GetSelectorString(ExtractRule extractRule)
@@ -141,6 +139,16 @@ public class HtmlToJsonByXpathService : IHtmlToJsonByXpathService
             SelectorType.Css => extractRule.CssSelector,
             SelectorType.XPath => extractRule.XpathSelector,
             _ => extractRule.CssSelector
+        };
+    }
+
+    private object GetOutput(HtmlNode node, OutputType outputType)
+    {
+        return outputType switch
+        {
+            OutputType.Html => node.InnerHtml,
+            OutputType.Text => node.InnerText.Cleanup(),
+            _ => node.InnerText.Cleanup()
         };
     }
 }
