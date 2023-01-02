@@ -4,6 +4,7 @@ using Application.Models.Enums;
 using HtmlAgilityPack;
 using Microsoft.Extensions.Logging;
 using Newtonsoft.Json;
+using System.Reflection.Metadata;
 
 namespace Application.Services;
 
@@ -84,9 +85,16 @@ public class HtmlToJsonByXpathService : IHtmlToJsonByXpathService
             return GetOutput(node, extractRules.OutputType);
         }
 
+        return HandleNestedObject(document, extractRules);
+    }
+
+    private object HandleNestedObject(
+        HtmlDocument document,
+        ExtractRule extractRules)
+    {
         var result = new List<Dictionary<string, object>>();
 
-        var extractRulesObject = GetDictionary(extractRules.Output);
+        var extractRulesObject = GetDictionary(extractRules.Output!);
 
         if (extractRulesObject == null)
         {
