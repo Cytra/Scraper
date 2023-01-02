@@ -11,9 +11,7 @@ public class HtmlToJsonByXpath
 
 public class ExtractRule
 {
-    public string? XpathSelector { get; set; }
-
-    public string? CssSelector { get; set; }
+    public string? Selector { get; set; }
 
     public ItemType? ItemType { get; set; }
 

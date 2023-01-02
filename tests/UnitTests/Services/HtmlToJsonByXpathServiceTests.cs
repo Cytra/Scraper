@@ -31,9 +31,8 @@ public class HtmlToJsonByXpathServiceTests
                 {
                     "products", new ExtractRule
                     {
-                        XpathSelector = "/html[1]/body[1]/div[1]",
-                        CssSelector = "//div[@class=\"col-md-8\"]",
-                        ItemType = ItemType.Table,
+                        Selector = "//div[@class=\"col-md-8\"]",
+                        ItemType = ItemType.Item,
                         SelectorType = SelectorType.Css,
                         OutputType = OutputType.Text,
                         Output = new Dictionary<string, ExtractRule>
@@ -41,8 +40,7 @@ public class HtmlToJsonByXpathServiceTests
                             {
                                 "Quote", new ExtractRule
                                 {
-                                    XpathSelector = "/html[1]/body[1]/div[1]",
-                                    CssSelector = "//span[@class=\"text\"]",
+                                    Selector = "//span[@class=\"text\"]",
                                     ItemType = ItemType.Item,
                                     SelectorType = SelectorType.Css,
                                     OutputType = OutputType.Text
@@ -51,8 +49,7 @@ public class HtmlToJsonByXpathServiceTests
                             {
                                 "By", new ExtractRule
                                 {
-                                    XpathSelector = "/html[1]/body[1]/div[1]",
-                                    CssSelector = "//small[@class=\"author\"]",
+                                    Selector = "//small[@class=\"author\"]",
                                     ItemType = ItemType.Item,
                                     SelectorType = SelectorType.Css,
                                     OutputType = OutputType.Text
@@ -92,11 +89,36 @@ public class HtmlToJsonByXpathServiceTests
                 {
                     "title", new ExtractRule
                     {
-                        XpathSelector = "/html[1]/body[1]/div[1]",
-                        CssSelector = "//div[@class=\"col-md-8\"]",
+                        Selector = "//div[@class=\"col-md-8\"]",
                         ItemType = ItemType.Item,
                         SelectorType = SelectorType.Css,
                         OutputType = OutputType.Text,
+                    }
+                }
+            }
+        };
+
+        var sut = _fixture.Create<HtmlToJsonByXpathService>();
+
+        var result = sut.GetJsonByXpath(input, rawHtml);
+
+        var title = result as Dictionary<string, object>;
+        title["title"].Should().Be("Quotes to Scrape");
+    }
+
+    [Fact] public void QuotesToScrape_SingleObject_MinimalInput()
+    {
+        var rawHtml = GetHtml();
+
+        var input = new HtmlToJsonByXpath
+        {
+            Url = "url",
+            ExtractRules = new Dictionary<string, ExtractRule>
+            {
+                {
+                    "title", new ExtractRule
+                    {
+                        Selector = "//div[@class=\"col-md-8\"]",
                     }
                 }
             }

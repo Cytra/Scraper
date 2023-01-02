@@ -46,7 +46,7 @@ public class HtmlToJsonByXpathService : IHtmlToJsonByXpathService
             {
                 ItemType.Item => GetSingleItem(document, extractRule),
                 ItemType.List => GetListItem(document, extractRule),
-                ItemType.Table => GetTable(document, extractRule),
+                ItemType.Table => GetSingleItem(document, extractRule),
                 _ => GetSingleItem(document, extractRule),
             };
         }
@@ -59,17 +59,10 @@ public class HtmlToJsonByXpathService : IHtmlToJsonByXpathService
 
     }
 
-    private object GetSingleItem(HtmlDocument document, ExtractRule extractRule)
-    {
-        var selectorString = GetSelectorString(extractRule);
-        var node = document.DocumentNode.SelectSingleNode(selectorString);
-        return GetOutput(node, extractRule.OutputType);
-    }
-
     private List<object> GetListItem(HtmlDocument document, ExtractRule extractRule)
     {
-        var selectorString = GetSelectorString(extractRule);
-        var nodes = document.DocumentNode.SelectNodes(selectorString);
+        var nodes = document.DocumentNode
+            .SelectNodes(extractRule.Selector);
 
         var listItems = new List<object>();
 
@@ -81,25 +74,19 @@ public class HtmlToJsonByXpathService : IHtmlToJsonByXpathService
         return listItems;
     }
 
-    private List<Dictionary<string, object>> GetTable(
+    private object GetSingleItem(
         HtmlDocument document,
         ExtractRule extractRules)
     {
+        if (extractRules.Output == null)
+        {
+            var node = document.DocumentNode.SelectSingleNode(extractRules.Selector);
+            return GetOutput(node, extractRules.OutputType);
+        }
+
         var result = new List<Dictionary<string, object>>();
 
-        Dictionary<string, ExtractRule>? extractRulesObject;
-        if (extractRules.Output is Dictionary<string, ExtractRule> rules)
-        {
-            extractRulesObject = rules;
-        }
-        else
-        {
-            extractRulesObject = JsonConvert
-                .DeserializeObject<Dictionary<string, ExtractRule>>(
-                    extractRules.Output.ToString());
-        }
-
-
+        var extractRulesObject = GetDictionary(extractRules.Output);
 
         if (extractRulesObject == null)
         {
@@ -108,9 +95,8 @@ public class HtmlToJsonByXpathService : IHtmlToJsonByXpathService
 
         foreach (var (key, extractRule) in extractRulesObject)
         {
-            var selectorString = GetSelectorString(extractRule);
             var nodes = document.DocumentNode
-                .SelectNodes(selectorString);
+                .SelectNodes(extractRule.Selector);
 
             foreach (var node in nodes)
             {
@@ -131,17 +117,6 @@ public class HtmlToJsonByXpathService : IHtmlToJsonByXpathService
         return result;
     }
 
-    private string? GetSelectorString(ExtractRule extractRule)
-    {
-        return extractRule.SelectorType switch
-        {
-            SelectorType.None => extractRule.CssSelector,
-            SelectorType.Css => extractRule.CssSelector,
-            SelectorType.XPath => extractRule.XpathSelector,
-            _ => extractRule.CssSelector
-        };
-    }
-
     private object GetOutput(HtmlNode node, OutputType outputType)
     {
         return outputType switch
@@ -150,5 +125,22 @@ public class HtmlToJsonByXpathService : IHtmlToJsonByXpathService
             OutputType.Text => node.InnerText.Cleanup(),
             _ => node.InnerText.Cleanup()
         };
+    }
+
+    private Dictionary<string, ExtractRule>? GetDictionary(object extractRules)
+    {
+        Dictionary<string, ExtractRule>? extractRulesObject;
+        if (extractRules is Dictionary<string, ExtractRule> rules)
+        {
+            extractRulesObject = rules;
+        }
+        else
+        {
+            extractRulesObject = JsonConvert
+                .DeserializeObject<Dictionary<string, ExtractRule>>(
+                    extractRules.ToString());
+        }
+
+        return extractRulesObject;
     }
 }
