@@ -112,14 +112,12 @@ public class HtmlToJsonByXpathService : IHtmlToJsonByXpathService
                 {
                     result.Add(new Dictionary<string, object>()
                     {
-                        //node.InnerText.Cleanup()
-                        {key, GetObjectToAdd(document, extractRule)}
+                        {key, node.InnerText.Cleanup()}
                     });
                 }
                 else
                 {
-                    //existingDict.Add(key, node.InnerText.Cleanup());
-                    existingDict.Add(key, GetObjectToAdd(document,extractRule));
+                    existingDict.Add(key, node.InnerText.Cleanup());
                 }
             }
         }
