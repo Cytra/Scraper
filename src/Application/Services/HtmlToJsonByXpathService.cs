@@ -33,13 +33,13 @@ public class HtmlToJsonByXpathService : IHtmlToJsonByXpathService
 
         foreach (var (key, extractRule) in instructions.ExtractRules)
         {
-            result.Add(key, GetObjectToAdd(htmlDoc, extractRule));
+            result.Add(key, GetObjectToAdd(htmlDoc.DocumentNode, extractRule));
         }
 
         return result;
     }
 
-    private object? GetObjectToAdd(HtmlDocument document, ExtractRule extractRule)
+    private object? GetObjectToAdd(HtmlNode document, ExtractRule extractRule)
     {
         try
         {
@@ -59,10 +59,11 @@ public class HtmlToJsonByXpathService : IHtmlToJsonByXpathService
 
     }
 
-    private List<object> GetListItem(HtmlDocument document, ExtractRule extractRule)
+    private List<object> GetListItem(HtmlNode document, ExtractRule extractRule)
     {
-        var nodes = document.DocumentNode
+        var nodes = document
             .SelectNodes(extractRule.Selector);
+
 
         var listItems = new List<object>();
 
@@ -75,12 +76,12 @@ public class HtmlToJsonByXpathService : IHtmlToJsonByXpathService
     }
 
     private object GetSingleItem(
-        HtmlDocument document,
+        HtmlNode document,
         ExtractRule extractRules)
     {
         if (extractRules.Output == null)
         {
-            var node = document.DocumentNode.SelectSingleNode(extractRules.Selector);
+            var node = document.SelectSingleNode(extractRules.Selector);
             return GetOutput(node, extractRules.OutputType);
         }
 
@@ -88,7 +89,7 @@ public class HtmlToJsonByXpathService : IHtmlToJsonByXpathService
     }
 
     private object HandleNestedObject(
-        HtmlDocument document,
+        HtmlNode document,
         ExtractRule extractRules)
     {
         var result = new List<Dictionary<string, object>>();
@@ -102,7 +103,7 @@ public class HtmlToJsonByXpathService : IHtmlToJsonByXpathService
 
         foreach (var (key, extractRule) in extractRulesObject)
         {
-            var nodes = document.DocumentNode
+            var nodes = document
                 .SelectNodes(extractRule.Selector);
 
             foreach (var node in nodes)
@@ -112,12 +113,13 @@ public class HtmlToJsonByXpathService : IHtmlToJsonByXpathService
                 {
                     result.Add(new Dictionary<string, object>()
                     {
-                        {key, node.InnerText.Cleanup()}
+                        {key, node.InnerText.Cleanup() }
                     });
                 }
                 else
                 {
                     existingDict.Add(key, node.InnerText.Cleanup());
+                    //existingDict.Add(key, GetObjectToAdd(node, extractRule));
                 }
             }
         }
