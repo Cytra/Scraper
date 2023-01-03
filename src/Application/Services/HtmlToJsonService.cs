@@ -41,13 +41,18 @@ public class HtmlToJsonService : IHtmlToJsonService
 
         if (node.ChildNodes.Count == 0)
         {
-            var xpathClass = node.ParentNode.GetAttributeValue("class", "");
-            var nodeType = node.ParentNode.Name;
+            var xpathClass = node.ParentNode?.GetAttributeValue("class", "");
+            var nodeType = node.ParentNode?.Name;
+            if (string.IsNullOrEmpty(xpathClass))
+            {
+                xpathClass = node.ParentNode?.ParentNode?.GetAttributeValue("class", "");
+                nodeType = node.ParentNode?.ParentNode?.Name;
+            }
             var xpathWithClass = $"//{nodeType}[@class=\"{xpathClass}\"]";
 
             htmlToJson[xpath] = new Dictionary<string, object>()
             {
-                { "XPath", node.ParentNode.XPath },
+                { "XPath", node.ParentNode?.XPath },
                 { "XpathWithClass", xpathWithClass},
                 { "innerHtml", innerHtml }
             };

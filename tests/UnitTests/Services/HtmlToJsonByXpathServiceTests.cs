@@ -133,6 +133,39 @@ public class HtmlToJsonByXpathServiceTests
     }
 
     [Fact]
+    public void QuotesToScrape_List_10Items()
+    {
+        var rawHtml = GetHtml();
+
+        var input = new HtmlToJsonByXpath
+        {
+            Url = "url",
+            ExtractRules = new Dictionary<string, ExtractRule>
+            {
+                {
+                    "products", new ExtractRule
+                    {
+                        ItemType = ItemType.List,
+                        Selector = "//span[@class=\"text\"]",
+                    }
+                }
+            }
+        };
+
+        var sut = _fixture.Create<HtmlToJsonByXpathService>();
+
+        var result = sut.GetJsonByXpath(input, rawHtml);
+
+        var title = result as Dictionary<string, object>;
+        var products = title["products"];
+        var productsList = products as List<object>;
+        productsList[0].Should()
+            .Be(
+                "“The world as we have created it is a process of our thinking. It cannot be changed without changing our thinking.”");
+        productsList.Count.Should().Be(10);
+    }
+
+    [Fact]
     public void QuotesToScrape_NullExtractRules_EmptyList()
     {
         var rawHtml = GetHtml();

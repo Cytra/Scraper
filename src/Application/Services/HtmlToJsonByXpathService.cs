@@ -4,7 +4,7 @@ using Application.Models.Enums;
 using HtmlAgilityPack;
 using Microsoft.Extensions.Logging;
 using Newtonsoft.Json;
-using System.Reflection.Metadata;
+
 
 namespace Application.Services;
 
@@ -47,7 +47,6 @@ public class HtmlToJsonByXpathService : IHtmlToJsonByXpathService
             {
                 ItemType.Item => GetSingleItem(document, extractRule),
                 ItemType.List => GetListItem(document, extractRule),
-                ItemType.Table => GetSingleItem(document, extractRule),
                 _ => GetSingleItem(document, extractRule),
             };
         }
@@ -113,12 +112,14 @@ public class HtmlToJsonByXpathService : IHtmlToJsonByXpathService
                 {
                     result.Add(new Dictionary<string, object>()
                     {
-                        {key, node.InnerText.Cleanup()}
+                        //node.InnerText.Cleanup()
+                        {key, GetObjectToAdd(document, extractRule)}
                     });
                 }
                 else
                 {
-                    existingDict.Add(key, node.InnerText.Cleanup());
+                    //existingDict.Add(key, node.InnerText.Cleanup());
+                    existingDict.Add(key, GetObjectToAdd(document,extractRule));
                 }
             }
         }
