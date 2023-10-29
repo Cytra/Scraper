@@ -15,7 +15,7 @@ public class ExtractRule
 
     public ItemType? ItemType { get; set; }
 
-    public SelectorType? SelectorType { get; set; }
+    //public SelectorType? SelectorType { get; set; }
 
     public OutputType OutputType { get; set; }
 

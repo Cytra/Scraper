@@ -4,22 +4,22 @@ namespace Application.Services;
 
 public interface ISeleniumService
 {
-    string GetHtml(string url);
+    string GetStocks();
 }
 
-public class SeleniumService : ISeleniumService
+public class StockService : ISeleniumService
 {
     private readonly ISeleniumDriverFactory _seleniumDriverFactory;
 
-    public SeleniumService(ISeleniumDriverFactory seleniumDriverFactory)
+    public StockService(ISeleniumDriverFactory seleniumDriverFactory)
     {
         _seleniumDriverFactory = seleniumDriverFactory;
     }
 
-    public string GetHtml(string url)
+    public string GetStocks()
     {
         var driver = _seleniumDriverFactory.GetDriver();
-        driver.Url = url;
+        //driver.Url = url;
         driver.Navigate();
         var result = driver.PageSource;
         driver.Dispose();

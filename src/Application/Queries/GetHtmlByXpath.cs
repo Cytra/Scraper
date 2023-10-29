@@ -27,7 +27,7 @@ public static class GetHtmlByXpath
 
         public Task<Response> Handle(Query request, CancellationToken cancellationToken)
         {
-            var html = _seleniumService.GetHtml(request.Url);
+            var html = _seleniumService.GetStocks();
             var json = _htmlToJsonByXpathService.GetJsonByXpath(request, html);
             return Task.FromResult(new Response()
             {

@@ -7,6 +7,6 @@ namespace Application.Models.Enums;
 public enum SelectorType : byte
 {
     None = 0,
-    Css = 1,
-    XPath = 2,
+    XPath = 1,
+    //Css = 1,
 }

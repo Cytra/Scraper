@@ -28,7 +28,7 @@ public static class GetJsonFromUrl
 
         public Task<Response> Handle(Query request, CancellationToken cancellationToken)
         {
-            var html = _seleniumService.GetHtml(request.Url);
+            var html = _seleniumService.GetStocks();
 
             var json = _htmlToJsonService.GetDictionaryFromHtml(html);
             return Task.FromResult(new Response()

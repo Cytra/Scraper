@@ -34,7 +34,7 @@ try
 
     builder.Services.Configure<AppOptions>(builder.Configuration);
     builder.Services.AddScoped<ISeleniumDriverFactory, SeleniumDriverFactory>();
-    builder.Services.AddScoped<ISeleniumService, SeleniumService>();
+    builder.Services.AddScoped<ISeleniumService, StockService>();
     builder.Services.AddScoped<IHtmlToJsonService, HtmlToJsonService>();
     builder.Services.AddScoped<IHtmlToJsonByXpathService, HtmlToJsonByXpathService>();
 
@@ -71,6 +71,15 @@ try
     builder.Services.AddSwaggerExamplesFromAssemblyOf();
 
     builder.Services.AddHealthChecks();
+    builder.Services.AddCors(options =>
+    {
+        options.AddPolicy("Test",
+            policy =>
+            {
+                policy.AllowAnyOrigin()
+                    .AllowAnyMethod();
+            });
+    });
 
     var app = builder.Build();
 
@@ -90,6 +99,8 @@ try
     app.UseMiddleware<ExceptionMiddleware>();
 
     app.UseRouting();
+
+    app.UseCors("Test");
 
     app.UseAuthentication();
     app.UseAuthorization();

@@ -37,6 +37,13 @@
     <None Update="Data\QuotesToScrape.html">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
+    <None Update="Data\ScrapingBeeBlogs.html">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="ScrapingBeeData\" />
   </ItemGroup>
 
 </Project>

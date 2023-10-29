@@ -64,7 +64,6 @@ public class HtmlToJsonByXpathService : IHtmlToJsonByXpathService
         var nodes = document
             .SelectNodes(extractRule.Selector);
 
-
         var listItems = new List<object>();
 
         foreach (var node in nodes)
@@ -128,6 +127,11 @@ public class HtmlToJsonByXpathService : IHtmlToJsonByXpathService
 
     private object GetOutput(HtmlNode node, OutputType outputType)
     {
+        if (node == null)
+        {
+            return null;
+        }
+
         return outputType switch
         {
             OutputType.Html => node.InnerHtml,

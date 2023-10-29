@@ -1,0 +1,5889 @@
+﻿<html lang="en">
+<head>
+    <script async="" src="https://www.clarity.ms/eus-c/s/0.7.1/clarity.js"></script>
+    <script type="text/javascript" async="" src="https://www.google-analytics.com/analytics.js"></script>
+    <script type="text/javascript" async="" src="https://cdn.firstpromoter.com/fprom.js"></script>
+    <script type="text/javascript" async="" src="https://www.googletagmanager.com/gtag/js?id=G-4Y8DBCM1YW&amp;l=dataLayer&amp;cx=c"></script>
+    <script type="text/javascript" async="" src="https://www.googletagmanager.com/gtag/js?id=UA-123177514-4&amp;l=dataLayer&amp;cx=c"></script>
+    <script async="" src="https://www.clarity.ms/tag/4l5ookr75t"></script>
+    <script src="https://www.googleoptimize.com/optimize.js?id=OPT-MXVDJM6"></script>
+
+    <title>ScrapingBee's Blog | ScrapingBee </title>
+    <meta charset="utf-8">
+    <meta name="description" content="We help you get better at web-scraping: detailed tutorials, case studies and writings by industry experts.">
+    <meta name="viewport" content="width=device-width" initial-scale="1" maximum-scale="1">
+
+
+
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="ScrapingBee's Blog">
+    <meta property="og:description" content="We help you get better at web-scraping: detailed tutorials, case studies and writings by industry experts.">
+    <meta property="og:type" content="website">
+    <meta property="og:image" content="https://www.scrapingbee.com/blog/cover.png">
+    <meta property="og:url" content="https://www.scrapingbee.com/blog/">
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:creator" content="@scrapingbee">
+    <meta property="twitter:domain" content="https://www.scrapingbee.com">
+    <meta property="twitter:site" content="@scrapingbee">
+    <meta property="twitter:title" content="ScrapingBee's Blog | ScrapingBee ">
+    <meta property="twitter:description" content="We help you get better at web-scraping: detailed tutorials, case studies and writings by industry experts.">
+    <meta property="twitter:image" content="https://www.scrapingbee.com/blog/cover.png">
+
+    <link rel="alternate" type="application/rss+xml" title="The ScrapingBee Blog" href="https://www.scrapingbee.com/index.xml">
+    <link rel="icon" type="image/png" href="/images/favico.png">
+    <link rel="alternate icon" href="/images/favico.svg">
+
+
+    <link rel="canonical" href="https://www.scrapingbee.com/blog/">
+
+
+
+
+
+
+
+
+
+
+    <style>
+        *, ::before, ::after {
+            box-sizing: border-box;
+            border-width: 0;
+            border-style: solid;
+            border-color: initial
+        }
+
+        ::before, ::after {
+            --tw-content: ''
+        }
+
+        html {
+            line-height: 1.5;
+            -webkit-text-size-adjust: 100%;
+            -moz-tab-size: 4;
+            -o-tab-size: 4;
+            tab-size: 4;
+            font-family: Circular Std,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,segoe ui,Roboto,helvetica neue,Arial,noto sans,sans-serif,apple color emoji,segoe ui emoji,segoe ui symbol,noto color emoji
+        }
+
+        body {
+            margin: 0;
+            line-height: inherit
+        }
+
+        hr {
+            height: 0;
+            color: inherit;
+            border-top-width: 1px
+        }
+
+        abbr[title] {
+            -webkit-text-decoration: underline dotted;
+            text-decoration: underline dotted
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            font-size: inherit;
+            font-weight: inherit
+        }
+
+        a {
+            color: inherit;
+            text-decoration: inherit
+        }
+
+        b, strong {
+            font-weight: bolder
+        }
+
+        code, kbd, samp, pre {
+            font-family:;
+            font-size: 1em
+        }
+
+        small {
+            font-size: 80%
+        }
+
+        sub, sup {
+            font-size: 75%;
+            line-height: 0;
+            position: relative;
+            vertical-align: baseline
+        }
+
+        sub {
+            bottom: -.25em
+        }
+
+        sup {
+            top: -.5em
+        }
+
+        table {
+            text-indent: 0;
+            border-color: inherit;
+            border-collapse: collapse
+        }
+
+        button, input, optgroup, select, textarea {
+            font-family: inherit;
+            font-size: 100%;
+            line-height: inherit;
+            color: inherit;
+            margin: 0;
+            padding: 0
+        }
+
+        button, select {
+            text-transform: none
+        }
+
+        button, [type=button], [type=reset], [type=submit] {
+            -webkit-appearance: button;
+            background-color: transparent;
+            background-image: none
+        }
+
+        :-moz-focusring {
+            outline: auto
+        }
+
+        :-moz-ui-invalid {
+            box-shadow: none
+        }
+
+        progress {
+            vertical-align: baseline
+        }
+
+        ::-webkit-inner-spin-button, ::-webkit-outer-spin-button {
+            height: auto
+        }
+
+        [type=search] {
+            -webkit-appearance: textfield;
+            outline-offset: -2px
+        }
+
+        ::-webkit-search-decoration {
+            -webkit-appearance: none
+        }
+
+        ::-webkit-file-upload-button {
+            -webkit-appearance: button;
+            font: inherit
+        }
+
+        summary {
+            display: list-item
+        }
+
+        blockquote, dl, dd, h1, h2, h3, h4, h5, h6, hr, figure, p, pre {
+            margin: 0
+        }
+
+        fieldset {
+            margin: 0;
+            padding: 0
+        }
+
+        legend {
+            padding: 0
+        }
+
+        ol, ul, menu {
+            list-style: none;
+            margin: 0;
+            padding: 0
+        }
+
+        textarea {
+            resize: vertical
+        }
+
+            input::-moz-placeholder, textarea::-moz-placeholder {
+                opacity: 1;
+                color: #24292e
+            }
+
+            input::placeholder, textarea::placeholder {
+                opacity: 1;
+                color: #24292e
+            }
+
+        button, [role=button] {
+            cursor: pointer
+        }
+
+        :disabled {
+            cursor: default
+        }
+
+        img, svg, video, canvas, audio, iframe, embed, object {
+            display: block;
+            vertical-align: middle
+        }
+
+        img, video {
+            max-width: 100%;
+            height: auto
+        }
+
+        [hidden] {
+            display: none
+        }
+
+        .container {
+            margin-left: auto;
+            margin-right: auto;
+            max-width: 1204px;
+            padding-left: 20px;
+            padding-right: 20px
+        }
+
+        @media(min-width:1024px) {
+            .container {
+                padding-left: 30px;
+                padding-right: 30px
+            }
+        }
+
+        .btn {
+            display: inline-flex;
+            height: 48px;
+            align-items: center;
+            justify-content: center;
+            border-radius: 4px;
+            --tw-bg-opacity: 1;
+            background-color: rgb(15 15 14/var(--tw-bg-opacity));
+            padding-left: 25px;
+            padding-right: 25px;
+            font-size: 16px;
+            font-weight: 700;
+            --tw-text-opacity: 1;
+            color: rgb(255 255 255/var(--tw-text-opacity));
+            transition-property: opacity;
+            transition-timing-function: cubic-bezier(.4,0,.2,1);
+            transition-duration: 150ms
+        }
+
+            .btn:hover {
+                --tw-bg-opacity: 0.9
+            }
+
+        @media(min-width:1024px) {
+            .btn {
+                height: 56px;
+                font-size: 18px
+            }
+        }
+
+        .btn-sm {
+            height: 45px;
+            font-size: 16px
+        }
+
+        .btn-black-o {
+            border-width: 2px;
+            --tw-border-opacity: 1;
+            border-color: rgb(15 15 14/var(--tw-border-opacity));
+            background-color: transparent;
+            --tw-text-opacity: 1;
+            color: rgb(15 15 14/var(--tw-text-opacity))
+        }
+
+            .btn-black-o:hover {
+                --tw-bg-opacity: 1;
+                background-color: rgb(15 15 14/var(--tw-bg-opacity));
+                --tw-text-opacity: 1;
+                color: rgb(255 255 255/var(--tw-text-opacity))
+            }
+
+        .btn-yellow {
+            --tw-bg-opacity: 1;
+            background-color: rgb(255 201 31/var(--tw-bg-opacity));
+            --tw-text-opacity: 1;
+            color: rgb(15 15 14/var(--tw-text-opacity))
+        }
+
+        .link {
+            font-weight: 700;
+            text-decoration-line: underline
+        }
+
+            .link:hover {
+                text-decoration-line: none
+            }
+
+        body {
+            font-size: 18px;
+            line-height: 1.77;
+            --tw-text-opacity: 1;
+            color: rgb(15 15 14/var(--tw-text-opacity))
+        }
+
+        blockquote, q {
+            margin: 0;
+            padding: 0;
+            border: 0;
+            outline: 0;
+            font-size: 100%;
+            vertical-align: baseline;
+            background: 0 0
+        }
+
+            blockquote q:not(.quote):before, blockquote q:not(.quote):after {
+                content: '"'
+            }
+
+            blockquote > ol {
+                list-style: decimal;
+                margin-left: 30px
+            }
+
+        h1, h2, h3 {
+            font-weight: 700
+        }
+
+        h1 {
+            font-size: 40px;
+            line-height: 1.22
+        }
+
+        @media(min-width:1024px) {
+            h1 {
+                font-size: 56px
+            }
+        }
+
+        h2 {
+            font-size: 36px;
+            line-height: 1.26
+        }
+
+        @media(min-width:1024px) {
+            h2 {
+                font-size: 48px
+            }
+        }
+
+        h3 {
+            font-size: 30px;
+            line-height: 1.33
+        }
+
+        @media(min-width:1024px) {
+            h3 {
+                font-size: 36px
+            }
+        }
+
+        h4 {
+            font-size: 22px;
+            line-height: 1.33
+        }
+
+        @media(min-width:1024px) {
+            h4 {
+                font-size: 24px
+            }
+        }
+
+        h5 {
+            font-size: 20px;
+            line-height: 1.2
+        }
+
+        h6 {
+            font-size: 16px;
+            line-height: 1.25
+        }
+
+        *, ::before, ::after {
+            --tw-translate-x: 0;
+            --tw-translate-y: 0;
+            --tw-rotate: 0;
+            --tw-skew-x: 0;
+            --tw-skew-y: 0;
+            --tw-scale-x: 1;
+            --tw-scale-y: 1;
+            --tw-transform: translateX(var(--tw-translate-x)) translateY(var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
+            --tw-border-opacity: 1;
+            border-color: rgb(90 113 132/var(--tw-border-opacity));
+            --tw-ring-offset-shadow: 0 0 #0000;
+            --tw-ring-shadow: 0 0 #0000;
+            --tw-shadow: 0 0 #0000;
+            --tw-shadow-colored: 0 0 #0000;
+            --tw-blur: var(--tw-empty, /*!*/ /*!*/ );
+            --tw-brightness: var(--tw-empty, /*!*/ /*!*/ );
+            --tw-contrast: var(--tw-empty, /*!*/ /*!*/ );
+            --tw-grayscale: var(--tw-empty, /*!*/ /*!*/ );
+            --tw-hue-rotate: var(--tw-empty, /*!*/ /*!*/ );
+            --tw-invert: var(--tw-empty, /*!*/ /*!*/ );
+            --tw-saturate: var(--tw-empty, /*!*/ /*!*/ );
+            --tw-sepia: var(--tw-empty, /*!*/ /*!*/ );
+            --tw-drop-shadow: var(--tw-empty, /*!*/ /*!*/ );
+            --tw-filter: var(--tw-blur) var(--tw-brightness) var(--tw-contrast) var(--tw-grayscale) var(--tw-hue-rotate) var(--tw-invert) var(--tw-saturate) var(--tw-sepia) var(--tw-drop-shadow)
+        }
+
+        .visible {
+            visibility: visible
+        }
+
+        .static {
+            position: static
+        }
+
+        .fixed {
+            position: fixed
+        }
+
+        .absolute {
+            position: absolute
+        }
+
+        .relative {
+            position: relative
+        }
+
+        .sticky {
+            position: sticky
+        }
+
+        .left-0 {
+            left: 0
+        }
+
+        .right-0 {
+            right: 0
+        }
+
+        .top-0 {
+            top: 0
+        }
+
+        .top-80 {
+            top: 80px
+        }
+
+        .-top-3 {
+            top: -3px
+        }
+
+        .-right-3 {
+            right: -3px
+        }
+
+        .left-2 {
+            left: 2px
+        }
+
+        .top-2 {
+            top: 2px
+        }
+
+        .top-3 {
+            top: 3px
+        }
+
+        .z-9 {
+            z-index: 9
+        }
+
+        .z-101 {
+            z-index: 101
+        }
+
+        .z-100 {
+            z-index: 100
+        }
+
+        .z-1 {
+            z-index: 1
+        }
+
+        .order-2 {
+            order: 2
+        }
+
+        .order-1 {
+            order: 1
+        }
+
+        .float-right {
+            float: right
+        }
+
+        .m-0 {
+            margin: 0
+        }
+
+        .-m-10 {
+            margin: -10px
+        }
+
+        .m-auto {
+            margin: auto
+        }
+
+        .-mx-21 {
+            margin-left: -21px;
+            margin-right: -21px
+        }
+
+        .my-4 {
+            margin-top: 4px;
+            margin-bottom: 4px
+        }
+
+        .-mx-15 {
+            margin-left: -15px;
+            margin-right: -15px
+        }
+
+        .mx-auto {
+            margin-left: auto;
+            margin-right: auto
+        }
+
+        .my-2 {
+            margin-top: 2px;
+            margin-bottom: 2px
+        }
+
+        .mx-2 {
+            margin-left: 2px;
+            margin-right: 2px
+        }
+
+        .my-10 {
+            margin-top: 10px;
+            margin-bottom: 10px
+        }
+
+        .-mx-20 {
+            margin-left: -20px;
+            margin-right: -20px
+        }
+
+        .-mx-11 {
+            margin-left: -11px;
+            margin-right: -11px
+        }
+
+        .-mx-12 {
+            margin-left: -12px;
+            margin-right: -12px
+        }
+
+        .-mx-50 {
+            margin-left: -50px;
+            margin-right: -50px
+        }
+
+        .-mx-9 {
+            margin-left: -9px;
+            margin-right: -9px
+        }
+
+        .-mx-30 {
+            margin-left: -30px;
+            margin-right: -30px
+        }
+
+        .-mx-23 {
+            margin-left: -23px;
+            margin-right: -23px
+        }
+
+        .-mx-10 {
+            margin-left: -10px;
+            margin-right: -10px
+        }
+
+        .-my-2 {
+            margin-top: -2px;
+            margin-bottom: -2px
+        }
+
+        .-mx-16 {
+            margin-left: -16px;
+            margin-right: -16px
+        }
+
+        .-my-20 {
+            margin-top: -20px;
+            margin-bottom: -20px
+        }
+
+        .-my-19 {
+            margin-top: -19px;
+            margin-bottom: -19px
+        }
+
+        .mt-30 {
+            margin-top: 30px
+        }
+
+        .mb-12 {
+            margin-bottom: 12px
+        }
+
+        .mt-19 {
+            margin-top: 19px
+        }
+
+        .mr-20 {
+            margin-right: 20px
+        }
+
+        .mb-30 {
+            margin-bottom: 30px
+        }
+
+        .mb-21 {
+            margin-bottom: 21px
+        }
+
+        .mt-60 {
+            margin-top: 60px
+        }
+
+        .mb-20 {
+            margin-bottom: 20px
+        }
+
+        .mb-11 {
+            margin-bottom: 11px
+        }
+
+        .mb-33 {
+            margin-bottom: 33px
+        }
+
+        .mb-17 {
+            margin-bottom: 17px
+        }
+
+        .mb-100 {
+            margin-bottom: 100px
+        }
+
+        .mt-66 {
+            margin-top: 66px
+        }
+
+        .mt-70 {
+            margin-top: 70px
+        }
+
+        .mr-12 {
+            margin-right: 12px
+        }
+
+        .mt-20 {
+            margin-top: 20px
+        }
+
+        .ml-12 {
+            margin-left: 12px
+        }
+
+        .mb-40 {
+            margin-bottom: 40px
+        }
+
+        .mb-24 {
+            margin-bottom: 24px
+        }
+
+        .mb-8p {
+            margin-bottom: 8%
+        }
+
+        .mb-10 {
+            margin-bottom: 10px
+        }
+
+        .mb-2 {
+            margin-bottom: 2px
+        }
+
+        .mb-18 {
+            margin-bottom: 18px
+        }
+
+        .mb-6 {
+            margin-bottom: 6px
+        }
+
+        .mr-6 {
+            margin-right: 6px
+        }
+
+        .mt-100 {
+            margin-top: 100px
+        }
+
+        .mb-48 {
+            margin-bottom: 48px
+        }
+
+        .mb-5 {
+            margin-bottom: 5px
+        }
+
+        .mr-10 {
+            margin-right: 10px
+        }
+
+        .mt-10 {
+            margin-top: 10px
+        }
+
+        .-mt-25 {
+            margin-top: -25px
+        }
+
+        .-mt-1 {
+            margin-top: -1px
+        }
+
+        .mr-8 {
+            margin-right: 8px
+        }
+
+        .mb-19 {
+            margin-bottom: 19px
+        }
+
+        .mr-9 {
+            margin-right: 9px
+        }
+
+        .mr-5 {
+            margin-right: 5px
+        }
+
+        .ml-3 {
+            margin-left: 3px
+        }
+
+        .mr-1 {
+            margin-right: 1px
+        }
+
+        .ml-10 {
+            margin-left: 10px
+        }
+
+        .mb-25 {
+            margin-bottom: 25px
+        }
+
+        .mt-12 {
+            margin-top: 12px
+        }
+
+        .mt-32 {
+            margin-top: 32px
+        }
+
+        .mb-32 {
+            margin-bottom: 32px
+        }
+
+        .ml-8 {
+            margin-left: 8px
+        }
+
+        .mb-15 {
+            margin-bottom: 15px
+        }
+
+        .mb-60 {
+            margin-bottom: 60px
+        }
+
+        .mb-13 {
+            margin-bottom: 13px
+        }
+
+        .mb-3 {
+            margin-bottom: 3px
+        }
+
+        .mb-50 {
+            margin-bottom: 50px
+        }
+
+        .mb-70 {
+            margin-bottom: 70px
+        }
+
+        .mb-45 {
+            margin-bottom: 45px
+        }
+
+        .-ml-9 {
+            margin-left: -9px
+        }
+
+        .-ml-20 {
+            margin-left: -20px
+        }
+
+        .mb-80 {
+            margin-bottom: 80px
+        }
+
+        .mb-54 {
+            margin-bottom: 54px
+        }
+
+        .mb-27 {
+            margin-bottom: 27px
+        }
+
+        .mb-35 {
+            margin-bottom: 35px
+        }
+
+        .mb-4 {
+            margin-bottom: 4px
+        }
+
+        .mb-66 {
+            margin-bottom: 66px
+        }
+
+        .ml-5 {
+            margin-left: 5px
+        }
+
+        .mt-13 {
+            margin-top: 13px
+        }
+
+        .mb-8 {
+            margin-bottom: 8px
+        }
+
+        .mb-38 {
+            margin-bottom: 38px
+        }
+
+        .-mr-4 {
+            margin-right: -4px
+        }
+
+        .ml-4 {
+            margin-left: 4px
+        }
+
+        .mb-31 {
+            margin-bottom: 31px
+        }
+
+        .mb-14 {
+            margin-bottom: 14px
+        }
+
+        .-mb-px {
+            margin-bottom: -1px
+        }
+
+        .mb-34 {
+            margin-bottom: 34px
+        }
+
+        .mb-16 {
+            margin-bottom: 16px
+        }
+
+        .ml-20 {
+            margin-left: 20px
+        }
+
+        .mr-24 {
+            margin-right: 24px
+        }
+
+        .ml-6 {
+            margin-left: 6px
+        }
+
+        .mb-9 {
+            margin-bottom: 9px
+        }
+
+        .mt-9 {
+            margin-top: 9px
+        }
+
+        .mb-120 {
+            margin-bottom: 120px
+        }
+
+        .-mr-20 {
+            margin-right: -20px
+        }
+
+        .mt-80 {
+            margin-top: 80px
+        }
+
+        .mb-36 {
+            margin-bottom: 36px
+        }
+
+        .-mb-4 {
+            margin-bottom: -4px
+        }
+
+        .block {
+            display: block
+        }
+
+        .inline-block {
+            display: inline-block
+        }
+
+        .inline {
+            display: inline
+        }
+
+        .flex {
+            display: flex
+        }
+
+        .inline-flex {
+            display: inline-flex
+        }
+
+        .table {
+            display: table
+        }
+
+        .grid {
+            display: grid
+        }
+
+        .contents {
+            display: contents
+        }
+
+        .hidden {
+            display: none
+        }
+
+        .h-12 {
+            height: 12px
+        }
+
+        .h-40 {
+            height: 40px
+        }
+
+        .h-screen {
+            height: 100vh
+        }
+
+        .h-35 {
+            height: 35px
+        }
+
+        .h-204 {
+            height: 204px
+        }
+
+        .h-full {
+            height: 100%
+        }
+
+        .h-auto {
+            height: auto
+        }
+
+        .h-100 {
+            height: 100px
+        }
+
+        .h-32 {
+            height: 32px
+        }
+
+        .h-4 {
+            height: 4px
+        }
+
+        .h-56 {
+            height: 56px
+        }
+
+        .h-150 {
+            height: 150px
+        }
+
+        .h-58 {
+            height: 58px
+        }
+
+        .h-24 {
+            height: 24px
+        }
+
+        .h-80 {
+            height: 80px
+        }
+
+        .h-86 {
+            height: 86px
+        }
+
+        .h-30 {
+            height: 30px
+        }
+
+        .h-600 {
+            height: 600px
+        }
+
+        .max-h-832 {
+            max-height: 832px
+        }
+
+        .min-h-52 {
+            min-height: 52px
+        }
+
+        .w-full {
+            width: 100%
+        }
+
+        .w-160 {
+            width: 160px
+        }
+
+        .w-35 {
+            width: 35px
+        }
+
+        .w-40 {
+            width: 40px
+        }
+
+        .w-100 {
+            width: 100px
+        }
+
+        .w-5\/12 {
+            width: 41.666667%
+        }
+
+        .w-2\/12 {
+            width: 16.666667%
+        }
+
+        .w-182 {
+            width: 182px
+        }
+
+        .w-123 {
+            width: 123px
+        }
+
+        .w-61 {
+            width: 61px
+        }
+
+        .w-56 {
+            width: 56px
+        }
+
+        .w-195 {
+            width: 195px
+        }
+
+        .w-24 {
+            width: 24px
+        }
+
+        .w-25p {
+            width: 25%
+        }
+
+        .w-86 {
+            width: 86px
+        }
+
+        .w-36 {
+            width: 36px
+        }
+
+        .w-40p {
+            width: 40%
+        }
+
+        .w-30p {
+            width: 30%
+        }
+
+        .w-1\/2 {
+            width: 50%
+        }
+
+        .w-30 {
+            width: 30px
+        }
+
+        .w-auto {
+            width: auto
+        }
+
+        .w-600 {
+            width: 600px
+        }
+
+        .w-20 {
+            width: 20px
+        }
+
+        .min-w-120 {
+            min-width: 120px
+        }
+
+        .min-w-500 {
+            min-width: 500px
+        }
+
+        .min-w-900 {
+            min-width: 900px
+        }
+
+        .min-w-222 {
+            min-width: 222px
+        }
+
+        .min-w-full {
+            min-width: 100%
+        }
+
+        .max-w-screen-lg {
+            max-width: 1280px
+        }
+
+        .max-w-894 {
+            max-width: 894px
+        }
+
+        .max-w-620 {
+            max-width: 620px
+        }
+
+        .max-w-full {
+            max-width: 100%
+        }
+
+        .max-w-1276 {
+            max-width: 1276px
+        }
+
+        .max-w-970 {
+            max-width: 970px
+        }
+
+        .max-w-screen-xl {
+            max-width: 1440px
+        }
+
+        .max-w-508 {
+            max-width: 508px
+        }
+
+        .max-w-321 {
+            max-width: 321px
+        }
+
+        .max-w-none {
+            max-width: none
+        }
+
+        .max-w-1024 {
+            max-width: 1024px
+        }
+
+        .max-w-728 {
+            max-width: 728px
+        }
+
+        .max-w-1292 {
+            max-width: 1292px
+        }
+
+        .max-w-404 {
+            max-width: 404px
+        }
+
+        .max-w-1277 {
+            max-width: 1277px
+        }
+
+        .max-w-542 {
+            max-width: 542px
+        }
+
+        .max-w-1308 {
+            max-width: 1308px
+        }
+
+        .flex-auto {
+            flex: auto
+        }
+
+        .flex-1 {
+            flex: 1
+        }
+
+        .flex-shrink-0 {
+            flex-shrink: 0
+        }
+
+        .flex-grow {
+            flex-grow: 1
+        }
+
+        .grow {
+            flex-grow: 1
+        }
+
+        .basis-0 {
+            flex-basis: 0
+        }
+
+        .transform {
+            transform: var(--tw-transform)
+        }
+
+        .cursor-text {
+            cursor: text
+        }
+
+        .cursor-pointer {
+            cursor: pointer
+        }
+
+        .resize {
+            resize: both
+        }
+
+        .flex-row {
+            flex-direction: row
+        }
+
+        .flex-col {
+            flex-direction: column
+        }
+
+        .flex-col-reverse {
+            flex-direction: column-reverse
+        }
+
+        .flex-wrap {
+            flex-wrap: wrap
+        }
+
+        .items-start {
+            align-items: flex-start
+        }
+
+        .items-center {
+            align-items: center
+        }
+
+        .justify-end {
+            justify-content: flex-end
+        }
+
+        .justify-center {
+            justify-content: center
+        }
+
+        .justify-between {
+            justify-content: space-between
+        }
+
+        .justify-around {
+            justify-content: space-around
+        }
+
+        .gap-10 {
+            gap: 10px
+        }
+
+        .gap-20 {
+            gap: 20px
+        }
+
+        .divide-y > :not([hidden]) ~ :not([hidden]) {
+            --tw-divide-y-reverse: 0;
+            border-top-width: calc(1px * calc(1 - var(--tw-divide-y-reverse)));
+            border-bottom-width: calc(1px * var(--tw-divide-y-reverse))
+        }
+
+        .divide-gray-200 > :not([hidden]) ~ :not([hidden]) {
+            --tw-divide-opacity: 1;
+            border-color: rgb(90 113 132/var(--tw-divide-opacity))
+        }
+
+        .overflow-auto {
+            overflow: auto
+        }
+
+        .overflow-hidden {
+            overflow: hidden
+        }
+
+        .overflow-x-auto {
+            overflow-x: auto
+        }
+
+        .overflow-y-scroll {
+            overflow-y: scroll
+        }
+
+        .overscroll-x-auto {
+            overscroll-behavior-x: auto
+        }
+
+        .text-ellipsis {
+            text-overflow: ellipsis
+        }
+
+        .whitespace-nowrap {
+            white-space: nowrap
+        }
+
+        .rounded-sm {
+            border-radius: .125rem
+        }
+
+        .rounded-md {
+            border-radius: .375rem
+        }
+
+        .rounded-8 {
+            border-radius: 8px
+        }
+
+        .rounded-100p {
+            border-radius: 100%
+        }
+
+        .rounded-4 {
+            border-radius: 4px
+        }
+
+        .rounded {
+            border-radius: .25rem
+        }
+
+        .rounded-xl {
+            border-radius: .75rem
+        }
+
+        .rounded-2xl {
+            border-radius: 1rem
+        }
+
+        .rounded-full {
+            border-radius: 9999px
+        }
+
+        .rounded-5 {
+            border-radius: 5px
+        }
+
+        .rounded-t-md {
+            border-top-left-radius: .375rem;
+            border-top-right-radius: .375rem
+        }
+
+        .rounded-b-md {
+            border-bottom-right-radius: .375rem;
+            border-bottom-left-radius: .375rem
+        }
+
+        .rounded-t-4 {
+            border-top-left-radius: 4px;
+            border-top-right-radius: 4px
+        }
+
+        .rounded-l-xl {
+            border-top-left-radius: .75rem;
+            border-bottom-left-radius: .75rem
+        }
+
+        .rounded-r-xl {
+            border-top-right-radius: .75rem;
+            border-bottom-right-radius: .75rem
+        }
+
+        .border {
+            border-width: 1px
+        }
+
+        .border-2 {
+            border-width: 2px
+        }
+
+        .border-4 {
+            border-width: 4px
+        }
+
+        .border-b {
+            border-bottom-width: 1px
+        }
+
+        .border-t-2 {
+            border-top-width: 2px
+        }
+
+        .border-t {
+            border-top-width: 1px
+        }
+
+        .border-r {
+            border-right-width: 1px
+        }
+
+        .border-b-0 {
+            border-bottom-width: 0
+        }
+
+        .border-l-2 {
+            border-left-width: 2px
+        }
+
+        .border-b-2 {
+            border-bottom-width: 2px
+        }
+
+        .border-l {
+            border-left-width: 1px
+        }
+
+        .border-r-2 {
+            border-right-width: 2px
+        }
+
+        .border-solid {
+            border-style: solid
+        }
+
+        .border-gray-400 {
+            --tw-border-opacity: 1;
+            border-color: rgb(36 41 46/var(--tw-border-opacity))
+        }
+
+        .border-blue-200 {
+            --tw-border-opacity: 1;
+            border-color: rgb(66 84 102/var(--tw-border-opacity))
+        }
+
+        .border-white {
+            --tw-border-opacity: 1;
+            border-color: rgb(255 255 255/var(--tw-border-opacity))
+        }
+
+        .border-black-100 {
+            --tw-border-opacity: 1;
+            border-color: rgb(15 15 14/var(--tw-border-opacity))
+        }
+
+        .border-gray-700 {
+            --tw-border-opacity: 1;
+            border-color: rgb(228 231 236/var(--tw-border-opacity))
+        }
+
+        .border-gray-300 {
+            --tw-border-opacity: 1;
+            border-color: rgb(179 186 197/var(--tw-border-opacity))
+        }
+
+        .border-gray-600 {
+            --tw-border-opacity: 1;
+            border-color: rgb(204 204 204/var(--tw-border-opacity))
+        }
+
+        .border-gray-1200 {
+            --tw-border-opacity: 1;
+            border-color: rgb(208 213 221/var(--tw-border-opacity))
+        }
+
+        .border-gray-1400 {
+            --tw-border-opacity: 1;
+            border-color: rgb(217 218 219/var(--tw-border-opacity))
+        }
+
+        .border-green-700 {
+            --tw-border-opacity: 1;
+            border-color: rgb(21 128 61/var(--tw-border-opacity))
+        }
+
+        .border-yellow-100 {
+            --tw-border-opacity: 1;
+            border-color: rgb(255 201 31/var(--tw-border-opacity))
+        }
+
+        .border-yellow-400 {
+            --tw-border-opacity: 1;
+            border-color: rgb(250 173 19/var(--tw-border-opacity))
+        }
+
+        .border-transparent {
+            border-color: transparent
+        }
+
+        .border-gray-100 {
+            --tw-border-opacity: 1;
+            border-color: rgb(230 236 242/var(--tw-border-opacity))
+        }
+
+        .border-gray-200 {
+            --tw-border-opacity: 1;
+            border-color: rgb(90 113 132/var(--tw-border-opacity))
+        }
+
+        .border-green-500 {
+            --tw-border-opacity: 1;
+            border-color: rgb(34 197 94/var(--tw-border-opacity))
+        }
+
+        .border-opacity-20 {
+            --tw-border-opacity: 0.2
+        }
+
+        .bg-yellow-100 {
+            --tw-bg-opacity: 1;
+            background-color: rgb(255 201 31/var(--tw-bg-opacity))
+        }
+
+        .bg-black-100 {
+            --tw-bg-opacity: 1;
+            background-color: rgb(15 15 14/var(--tw-bg-opacity))
+        }
+
+        .bg-white {
+            --tw-bg-opacity: 1;
+            background-color: rgb(255 255 255/var(--tw-bg-opacity))
+        }
+
+        .bg-yellow-70 {
+            --tw-bg-opacity: 1;
+            background-color: rgb(255 201 62/var(--tw-bg-opacity))
+        }
+
+        .bg-red-500 {
+            --tw-bg-opacity: 1;
+            background-color: rgb(239 68 68/var(--tw-bg-opacity))
+        }
+
+        .bg-gray-100 {
+            --tw-bg-opacity: 1;
+            background-color: rgb(230 236 242/var(--tw-bg-opacity))
+        }
+
+        .bg-blue-100 {
+            --tw-bg-opacity: 1;
+            background-color: rgb(44 58 87/var(--tw-bg-opacity))
+        }
+
+        .bg-green-100 {
+            --tw-bg-opacity: 1;
+            background-color: rgb(220 252 231/var(--tw-bg-opacity))
+        }
+
+        .bg-yellow-200 {
+            --tw-bg-opacity: 1;
+            background-color: rgb(255 244 210/var(--tw-bg-opacity))
+        }
+
+        .bg-gray-900 {
+            --tw-bg-opacity: 1;
+            background-color: rgb(242 242 242/var(--tw-bg-opacity))
+        }
+
+        .bg-gray-1000 {
+            --tw-bg-opacity: 1;
+            background-color: rgb(197 197 196/var(--tw-bg-opacity))
+        }
+
+        .bg-blue-400 {
+            --tw-bg-opacity: 1;
+            background-color: rgb(27 37 56/var(--tw-bg-opacity))
+        }
+
+        .bg-none {
+            background-image: none
+        }
+
+        .object-cover {
+            -o-object-fit: cover;
+            object-fit: cover
+        }
+
+        .p-10 {
+            padding: 10px
+        }
+
+        .p-0 {
+            padding: 0
+        }
+
+        .p-1 {
+            padding: 1px
+        }
+
+        .p-20 {
+            padding: 20px
+        }
+
+        .p-60 {
+            padding: 60px
+        }
+
+        .p-3 {
+            padding: 3px
+        }
+
+        .p-5 {
+            padding: 5px
+        }
+
+        .p-38 {
+            padding: 38px
+        }
+
+        .p-15 {
+            padding: 15px
+        }
+
+        .p-40 {
+            padding: 40px
+        }
+
+        .px-37 {
+            padding-left: 37px;
+            padding-right: 37px
+        }
+
+        .px-4 {
+            padding-left: 4px;
+            padding-right: 4px
+        }
+
+        .py-20 {
+            padding-top: 20px;
+            padding-bottom: 20px
+        }
+
+        .px-20 {
+            padding-left: 20px;
+            padding-right: 20px
+        }
+
+        .px-15 {
+            padding-left: 15px;
+            padding-right: 15px
+        }
+
+        .px-21 {
+            padding-left: 21px;
+            padding-right: 21px
+        }
+
+        .py-6 {
+            padding-top: 6px;
+            padding-bottom: 6px
+        }
+
+        .px-10 {
+            padding-left: 10px;
+            padding-right: 10px
+        }
+
+        .py-50 {
+            padding-top: 50px;
+            padding-bottom: 50px
+        }
+
+        .py-5 {
+            padding-top: 5px;
+            padding-bottom: 5px
+        }
+
+        .py-8 {
+            padding-top: 8px;
+            padding-bottom: 8px
+        }
+
+        .px-16 {
+            padding-left: 16px;
+            padding-right: 16px
+        }
+
+        .px-6 {
+            padding-left: 6px;
+            padding-right: 6px
+        }
+
+        .px-11 {
+            padding-left: 11px;
+            padding-right: 11px
+        }
+
+        .px-31 {
+            padding-left: 31px;
+            padding-right: 31px
+        }
+
+        .py-10 {
+            padding-top: 10px;
+            padding-bottom: 10px
+        }
+
+        .px-12 {
+            padding-left: 12px;
+            padding-right: 12px
+        }
+
+        .px-55 {
+            padding-left: 55px;
+            padding-right: 55px
+        }
+
+        .px-50 {
+            padding-left: 50px;
+            padding-right: 50px
+        }
+
+        .px-9 {
+            padding-left: 9px;
+            padding-right: 9px
+        }
+
+        .px-39 {
+            padding-left: 39px;
+            padding-right: 39px
+        }
+
+        .px-30 {
+            padding-left: 30px;
+            padding-right: 30px
+        }
+
+        .py-70 {
+            padding-top: 70px;
+            padding-bottom: 70px
+        }
+
+        .py-40 {
+            padding-top: 40px;
+            padding-bottom: 40px
+        }
+
+        .px-23 {
+            padding-left: 23px;
+            padding-right: 23px
+        }
+
+        .py-15 {
+            padding-top: 15px;
+            padding-bottom: 15px
+        }
+
+        .py-100 {
+            padding-top: 100px;
+            padding-bottom: 100px
+        }
+
+        .py-4 {
+            padding-top: 4px;
+            padding-bottom: 4px
+        }
+
+        .px-1 {
+            padding-left: 1px;
+            padding-right: 1px
+        }
+
+        .py-2 {
+            padding-top: 2px;
+            padding-bottom: 2px
+        }
+
+        .px-24 {
+            padding-left: 24px;
+            padding-right: 24px
+        }
+
+        .py-3 {
+            padding-top: 3px;
+            padding-bottom: 3px
+        }
+
+        .py-16 {
+            padding-top: 16px;
+            padding-bottom: 16px
+        }
+
+        .px-17 {
+            padding-left: 17px;
+            padding-right: 17px
+        }
+
+        .px-14 {
+            padding-left: 14px;
+            padding-right: 14px
+        }
+
+        .py-19 {
+            padding-top: 19px;
+            padding-bottom: 19px
+        }
+
+        .pt-6 {
+            padding-top: 6px
+        }
+
+        .pb-0 {
+            padding-bottom: 0
+        }
+
+        .pb-20 {
+            padding-bottom: 20px
+        }
+
+        .pt-60 {
+            padding-top: 60px
+        }
+
+        .pb-2 {
+            padding-bottom: 2px
+        }
+
+        .pb-16 {
+            padding-bottom: 16px
+        }
+
+        .pt-50 {
+            padding-top: 50px
+        }
+
+        .pb-80 {
+            padding-bottom: 80px
+        }
+
+        .pt-20 {
+            padding-top: 20px
+        }
+
+        .pt-19 {
+            padding-top: 19px
+        }
+
+        .pr-16 {
+            padding-right: 16px
+        }
+
+        .pl-18 {
+            padding-left: 18px
+        }
+
+        .pb-30 {
+            padding-bottom: 30px
+        }
+
+        .pt-12 {
+            padding-top: 12px
+        }
+
+        .pb-10 {
+            padding-bottom: 10px
+        }
+
+        .pt-18 {
+            padding-top: 18px
+        }
+
+        .pt-15 {
+            padding-top: 15px
+        }
+
+        .pt-11 {
+            padding-top: 11px
+        }
+
+        .pb-48 {
+            padding-bottom: 48px
+        }
+
+        .pt-2 {
+            padding-top: 2px
+        }
+
+        .pt-47 {
+            padding-top: 47px
+        }
+
+        .pt-3 {
+            padding-top: 3px
+        }
+
+        .pl-12 {
+            padding-left: 12px
+        }
+
+        .pl-9 {
+            padding-left: 9px
+        }
+
+        .pr-2 {
+            padding-right: 2px
+        }
+
+        .pt-80 {
+            padding-top: 80px
+        }
+
+        .pb-50 {
+            padding-bottom: 50px
+        }
+
+        .pb-70 {
+            padding-bottom: 70px
+        }
+
+        .pr-20 {
+            padding-right: 20px
+        }
+
+        .pt-31 {
+            padding-top: 31px
+        }
+
+        .pb-38 {
+            padding-bottom: 38px
+        }
+
+        .pl-8 {
+            padding-left: 8px
+        }
+
+        .pr-15 {
+            padding-right: 15px
+        }
+
+        .pr-13 {
+            padding-right: 13px
+        }
+
+        .pt-100 {
+            padding-top: 100px
+        }
+
+        .pt-70 {
+            padding-top: 70px
+        }
+
+        .pt-17 {
+            padding-top: 17px
+        }
+
+        .pt-66 {
+            padding-top: 66px
+        }
+
+        .pb-100 {
+            padding-bottom: 100px
+        }
+
+        .pt-35 {
+            padding-top: 35px
+        }
+
+        .pl-24 {
+            padding-left: 24px
+        }
+
+        .pt-52 {
+            padding-top: 52px
+        }
+
+        .pt-7 {
+            padding-top: 7px
+        }
+
+        .pb-6 {
+            padding-bottom: 6px
+        }
+
+        .pr-10 {
+            padding-right: 10px
+        }
+
+        .pl-45 {
+            padding-left: 45px
+        }
+
+        .pt-16 {
+            padding-top: 16px
+        }
+
+        .pb-19 {
+            padding-bottom: 19px
+        }
+
+        .pt-28 {
+            padding-top: 28px
+        }
+
+        .pt-30 {
+            padding-top: 30px
+        }
+
+        .pb-60 {
+            padding-bottom: 60px
+        }
+
+        .pl-35 {
+            padding-left: 35px
+        }
+
+        .pr-12 {
+            padding-right: 12px
+        }
+
+        .pb-45 {
+            padding-bottom: 45px
+        }
+
+        .pl-43 {
+            padding-left: 43px
+        }
+
+        .text-left {
+            text-align: left
+        }
+
+        .text-center {
+            text-align: center
+        }
+
+        .text-right {
+            text-align: right
+        }
+
+        .align-middle {
+            vertical-align: middle
+        }
+
+        .font-menlo {
+            font-family: menlo
+        }
+
+        .font-sans {
+            font-family: Circular Std,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,segoe ui,Roboto,helvetica neue,Arial,noto sans,sans-serif,apple color emoji,segoe ui emoji,segoe ui symbol,noto color emoji
+        }
+
+        .text-20 {
+            font-size: 20px
+        }
+
+        .text-16 {
+            font-size: 16px
+        }
+
+        .text-36 {
+            font-size: 36px
+        }
+
+        .text-24 {
+            font-size: 24px
+        }
+
+        .text-15 {
+            font-size: 15px
+        }
+
+        .text-30 {
+            font-size: 30px
+        }
+
+        .text-14 {
+            font-size: 14px
+        }
+
+        .text-18 {
+            font-size: 18px
+        }
+
+        .text-28 {
+            font-size: 28px
+        }
+
+        .text-17 {
+            font-size: 17px
+        }
+
+        .text-12 {
+            font-size: 12px
+        }
+
+        .text-32 {
+            font-size: 32px
+        }
+
+        .text-130 {
+            font-size: 130px
+        }
+
+        .text-40 {
+            font-size: 40px
+        }
+
+        .text-48 {
+            font-size: 48px
+        }
+
+        .text-13 {
+            font-size: 13px
+        }
+
+        .text-10 {
+            font-size: 10px
+        }
+
+        .font-normal {
+            font-weight: 400
+        }
+
+        .font-bold {
+            font-weight: 700
+        }
+
+        .font-medium {
+            font-weight: 500
+        }
+
+        .uppercase {
+            text-transform: uppercase
+        }
+
+        .lowercase {
+            text-transform: lowercase
+        }
+
+        .capitalize {
+            text-transform: capitalize
+        }
+
+        .not-italic {
+            font-style: normal
+        }
+
+        .leading-a20 {
+            line-height: 1.2
+        }
+
+        .leading-a50 {
+            line-height: 1.5
+        }
+
+        .leading-a41 {
+            line-height: 1.41
+        }
+
+        .leading-a21 {
+            line-height: 1.21
+        }
+
+        .leading-none {
+            line-height: 1
+        }
+
+        .leading-a48 {
+            line-height: 1.1429
+        }
+
+        .leading-a77 {
+            line-height: 1.77
+        }
+
+        .leading-a33 {
+            line-height: 1.33
+        }
+
+        .leading-a4 {
+            line-height: 1.4
+        }
+
+        .leading-a26 {
+            line-height: 1.26
+        }
+
+        .leading-2 {
+            line-height: 2
+        }
+
+        .leading-a55 {
+            line-height: 1.55
+        }
+
+        .leading-a25 {
+            line-height: 1.25
+        }
+
+        .leading-a86 {
+            line-height: 1.86
+        }
+
+        .leading-a53 {
+            line-height: 1.54
+        }
+
+        .leading-a16 {
+            line-height: 1.16
+        }
+
+        .tracking-a2 {
+            letter-spacing: .2px
+        }
+
+        .tracking-tight {
+            letter-spacing: -.01em
+        }
+
+        .text-green-1000 {
+            --tw-text-opacity: 1;
+            color: rgb(54 179 126/var(--tw-text-opacity))
+        }
+
+        .text-yellow-400 {
+            --tw-text-opacity: 1;
+            color: rgb(250 173 19/var(--tw-text-opacity))
+        }
+
+        .text-red-100 {
+            --tw-text-opacity: 1;
+            color: rgb(249 38 114/var(--tw-text-opacity))
+        }
+
+        .text-gray-200 {
+            --tw-text-opacity: 1;
+            color: rgb(90 113 132/var(--tw-text-opacity))
+        }
+
+        .text-white {
+            --tw-text-opacity: 1;
+            color: rgb(255 255 255/var(--tw-text-opacity))
+        }
+
+        .text-blue-200 {
+            --tw-text-opacity: 1;
+            color: rgb(66 84 102/var(--tw-text-opacity))
+        }
+
+        .text-black-100 {
+            --tw-text-opacity: 1;
+            color: rgb(15 15 14/var(--tw-text-opacity))
+        }
+
+        .text-black-200 {
+            --tw-text-opacity: 1;
+            color: rgb(0 0 0/var(--tw-text-opacity))
+        }
+
+        .text-red-200 {
+            --tw-text-opacity: 1;
+            color: rgb(255 121 198/var(--tw-text-opacity))
+        }
+
+        .text-yellow-100 {
+            --tw-text-opacity: 1;
+            color: rgb(255 201 31/var(--tw-text-opacity))
+        }
+
+        .text-gray-400 {
+            --tw-text-opacity: 1;
+            color: rgb(36 41 46/var(--tw-text-opacity))
+        }
+
+        .text-gray-300 {
+            --tw-text-opacity: 1;
+            color: rgb(179 186 197/var(--tw-text-opacity))
+        }
+
+        .text-gray-500 {
+            --tw-text-opacity: 1;
+            color: rgb(232 232 232/var(--tw-text-opacity))
+        }
+
+        .text-red-300 {
+            --tw-text-opacity: 1;
+            color: rgb(233 84 50/var(--tw-text-opacity))
+        }
+
+        .text-green-600 {
+            --tw-text-opacity: 1;
+            color: rgb(22 163 74/var(--tw-text-opacity))
+        }
+
+        .text-gray-100 {
+            --tw-text-opacity: 1;
+            color: rgb(230 236 242/var(--tw-text-opacity))
+        }
+
+        .text-opacity-70 {
+            --tw-text-opacity: 0.7
+        }
+
+        .underline {
+            text-decoration-line: underline
+        }
+
+        .no-underline {
+            text-decoration-line: none
+        }
+
+        .shadow-card {
+            --tw-shadow: 0px 2px 20px rgba(169, 169, 169, 0.16), 0 32px 46px -27px rgba(117, 117, 117, 0.2);
+            --tw-shadow-colored: 0px 2px 20px var(--tw-shadow-color), 0 32px 46px -27px var(--tw-shadow-color);
+            box-shadow: var(--tw-ring-offset-shadow,0 0 #0000),var(--tw-ring-shadow,0 0 #0000),var(--tw-shadow)
+        }
+
+        .shadow-sm {
+            --tw-shadow: 0 2px 8px rgba(0, 0, 0, 0.16);
+            --tw-shadow-colored: 0 2px 8px var(--tw-shadow-color);
+            box-shadow: var(--tw-ring-offset-shadow,0 0 #0000),var(--tw-ring-shadow,0 0 #0000),var(--tw-shadow)
+        }
+
+        .shadow-xl {
+            --tw-shadow: 0 23.4255px 46.8511px rgba(0, 0, 0, 0.2);
+            --tw-shadow-colored: 0 23.4255px 46.8511px var(--tw-shadow-color);
+            box-shadow: var(--tw-ring-offset-shadow,0 0 #0000),var(--tw-ring-shadow,0 0 #0000),var(--tw-shadow)
+        }
+
+        .outline {
+            outline-style: solid
+        }
+
+        .drop-shadow-xl {
+            --tw-drop-shadow: drop-shadow(0 20px 13px rgb(0 0 0 / 0.03)) drop-shadow(0 8px 5px rgb(0 0 0 / 0.08));
+            filter: var(--tw-filter)
+        }
+
+        .filter {
+            filter: var(--tw-filter)
+        }
+
+        .transition-all {
+            transition-property: all;
+            transition-timing-function: cubic-bezier(.4,0,.2,1);
+            transition-duration: 150ms
+        }
+
+        .transition-opacity {
+            transition-property: opacity;
+            transition-timing-function: cubic-bezier(.4,0,.2,1);
+            transition-duration: 150ms
+        }
+
+        .transition-colors {
+            transition-property: background-color,border-color,color,fill,stroke;
+            transition-timing-function: cubic-bezier(.4,0,.2,1);
+            transition-duration: 150ms
+        }
+
+        @font-face {
+            font-family: menlo;
+            font-weight: 400;
+            font-style: normal;
+            src: local("Menlo Regular"),local("menlo"),url(/fonts/menlo/Menlo-Regular.woff?e2vwe8)format('woff');
+            font-display: swap
+        }
+
+        @font-face {
+            font-family: circular std;
+            font-weight: 400;
+            font-style: normal;
+            src: local("Circular Std Book"),local("Circular Std"),url(/fonts/circularStd/CircularStd-Book.woff?e2vwe8)format('woff'),url(/fonts/circularStd/CircularStd-Book.woff2?e2vwe8)format('woff');
+            font-display: swap
+        }
+
+        @font-face {
+            font-family: circular std;
+            font-weight: 500;
+            font-style: normal;
+            src: local("Circular Std Medium"),local("Circular Std"),url(/fonts/circularStd/CircularStd-Medium.woff?e2vwe8)format('woff'),url(/fonts/circularStd/CircularStd-Medium.woff2?e2vwe8)format('woff');
+            font-display: swap
+        }
+
+        @font-face {
+            font-family: circular std;
+            font-weight: 700;
+            font-style: normal;
+            src: local("Circular Std Bold"),local("Circular Std"),url(/fonts/circularStd/CircularStd-Bold.woff?e2vwe8)format('woff'),url(/fonts/circularStd/CircularStd-Bold.woff2?e2vwe8)format('woff');
+            font-display: swap
+        }
+
+        @font-face {
+            font-family: circular std;
+            font-weight: 900;
+            font-style: normal;
+            src: local("Circular Std Black"),local("Circular Std"),url(/fonts/circularStd/CircularStd-Black.woff?e2vwe8)format('woff'),url(/fonts/circularStd/CircularStd-Black.woff2?e2vwe8)format('woff');
+            font-display: swap
+        }
+
+        input:focus, textarea:focus, select:focus {
+            outline: none !important;
+            outline-offset: 0 !important;
+            box-shadow: none !important
+        }
+
+        select {
+            -webkit-appearance: none
+        }
+
+        .qa a {
+            font-weight: 700;
+            text-decoration-line: underline
+        }
+
+        .bg-skew-yellow-b {
+            background: #ffc91f
+        }
+
+        .bg-skew-white-b {
+            background: #fff
+        }
+
+        .bg-skew-black {
+            background: #0f0f0e
+        }
+
+        .bg-skew-black-t {
+            background: #0f0f0e
+        }
+
+        .bg-skew-black-alt {
+            background: #0f0f0e
+        }
+
+        .underline-yellow {
+            background: #ffc91f
+        }
+
+        @media(min-width:768px) {
+            .bg-skew-yellow-b::after {
+                content: '';
+                position: absolute;
+                bottom: 0;
+                left: -50%;
+                right: -50%;
+                top: -50%;
+                transform: rotate(-8deg)skew(-8deg);
+                background: #ffc91f;
+                z-index: -1
+            }
+
+            .bg-skew-white-b:after {
+                content: '';
+                position: absolute;
+                bottom: 61px;
+                left: -50%;
+                right: -50%;
+                top: -50%;
+                transform: rotate(-8deg)skew(-8deg);
+                background: #fff;
+                z-index: -1
+            }
+
+            .bg-skew-black::after {
+                content: '';
+                position: absolute;
+                bottom: 0;
+                left: -50%;
+                right: -50%;
+                top: 0;
+                transform: rotate(-8deg)skew(-8deg);
+                background: #0f0f0e;
+                z-index: -1
+            }
+
+            .bg-skew-black-t:after {
+                content: '';
+                position: absolute;
+                bottom: -50%;
+                left: -50%;
+                right: -50%;
+                top: 0;
+                transform: rotate(-8deg)skew(-8deg);
+                background: #0f0f0e;
+                z-index: -1
+            }
+
+            .bg-skew-black-alt::after {
+                content: '';
+                position: absolute;
+                bottom: 0;
+                left: -50%;
+                right: -50%;
+                top: 0;
+                transform: rotate(8deg)skew(8deg);
+                background: #0f0f0e;
+                z-index: -1
+            }
+
+            .underline-yellow::after {
+                content: '';
+                background: #ffc91f;
+                height: 6px;
+                left: 0;
+                right: 0;
+                bottom: 0;
+                position: absolute
+            }
+
+            .bg-skew-yellow-b, .bg-skew-white-b, .bg-skew-black, .bg-skew-black-t, .bg-skew-black-alt, .underline-yellow {
+                background: 0 0
+            }
+        }
+
+        .price-plan.recommended {
+            --tw-bg-opacity: 1;
+            background-color: rgb(15 15 14/var(--tw-bg-opacity));
+            --tw-text-opacity: 1;
+            color: rgb(255 255 255/var(--tw-text-opacity))
+        }
+
+            .price-plan.recommended .txt-hidden {
+                display: block
+            }
+
+            .price-plan.recommended .border-gray-600 {
+                border-color: transparent
+            }
+
+            .price-plan.recommended .btn-black-o {
+                --tw-border-opacity: 1;
+                border-color: rgb(255 201 31/var(--tw-border-opacity));
+                --tw-bg-opacity: 1;
+                background-color: rgb(255 201 31/var(--tw-bg-opacity));
+                transition-property: all;
+                transition-timing-function: cubic-bezier(.4,0,.2,1);
+                transition-duration: 150ms
+            }
+
+                .price-plan.recommended .btn-black-o:hover {
+                    --tw-text-opacity: 1;
+                    color: rgb(15 15 14/var(--tw-text-opacity));
+                    background-color: #ffd127;
+                    border-color: #ffd127
+                }
+
+        .fixed-position {
+            left: 0 !important;
+            width: 100% !important
+        }
+
+            .fixed-position .fixed-bar {
+                width: 100% !important;
+                left: 0 !important;
+                display: flex;
+                flex-wrap: wrap;
+                justify-content: space-between;
+                --tw-bg-opacity: 1;
+                background-color: rgb(255 255 255/var(--tw-bg-opacity));
+                padding-top: 12px;
+                padding-bottom: 12px;
+                padding-left: 12px;
+                padding-right: 12px;
+                --tw-shadow: 0 2px 8px rgba(0, 0, 0, 0.16);
+                --tw-shadow-colored: 0 2px 8px var(--tw-shadow-color);
+                box-shadow: var(--tw-ring-offset-shadow,0 0 #0000),var(--tw-ring-shadow,0 0 #0000),var(--tw-shadow)
+            }
+
+                .fixed-position .fixed-bar .btn {
+                    display: inline-block
+                }
+
+            .fixed-position h1 {
+                margin-top: 10px;
+                margin-bottom: 10px;
+                margin-right: 15px;
+                text-align: left;
+                font-size: 16px;
+                font-weight: 400
+            }
+
+        @media(min-width:1024px) {
+            .fixed-position h1 {
+                margin: 0;
+                font-size: 24px
+            }
+        }
+
+        .terms-content {
+            font-size: 16px;
+            line-height: 1.5
+        }
+
+        @media(min-width:1024px) {
+            .terms-content {
+                max-width: 720px
+            }
+        }
+
+        .terms-content h2 {
+            margin-bottom: 32px;
+            border-bottom-width: 1px;
+            --tw-border-opacity: 1;
+            border-color: rgb(15 15 14/var(--tw-border-opacity));
+            padding-top: 49px;
+            padding-bottom: 31px;
+            font-size: 30px;
+            line-height: 1.33
+        }
+
+        @media(min-width:1024px) {
+            .terms-content h2 {
+                font-size: 36px
+            }
+        }
+
+        .terms-content p {
+            margin-bottom: 24px
+        }
+
+            .terms-content p a:hover {
+                text-decoration-line: underline
+            }
+
+        .journey {
+            position: relative;
+            padding-left: 60px
+        }
+
+            .journey:before {
+                content: "";
+                width: 3px;
+                position: absolute;
+                top: 0;
+                bottom: 0;
+                left: 20px;
+                background: #0f0f0e
+            }
+
+            .journey .row + .row {
+                margin-top: 40px
+            }
+
+            .journey .row:after {
+                content: "";
+                width: 40px;
+                height: 40px;
+                background: #fff;
+                border-radius: 50%;
+                border: 3px solid #0f0f0e;
+                position: absolute;
+                top: 50%;
+                left: -58px;
+                transform: translateY(-50%);
+                z-index: 2
+            }
+
+            .journey time {
+                width: 100%;
+                display: flex;
+                flex-wrap: wrap
+            }
+
+        .box {
+            padding: 15px 34px 15px 77px;
+            position: relative;
+            min-height: 200px;
+            display: flex;
+            align-items: center;
+            border-radius: 8px;
+            overflow: hidden;
+            background: url(/assets/images/bg-triangle.svg)no-repeat 0/cover
+        }
+
+        .side-nav .active {
+            border-left-width: 2px;
+            --tw-border-opacity: 1;
+            border-color: rgb(250 173 19/var(--tw-border-opacity));
+            padding-left: 14px;
+            font-weight: 700
+        }
+
+        .nice-select {
+            position: relative;
+            outline: none
+        }
+
+        .custom-select .nice-select .current {
+            display: flex;
+            height: 56px;
+            width: 100%;
+            cursor: pointer;
+            align-items: center;
+            border-radius: 4px;
+            border-width: 1px;
+            --tw-border-opacity: 1;
+            border-color: rgb(179 186 197/var(--tw-border-opacity));
+            padding-top: 10px;
+            padding-bottom: 10px;
+            padding-left: 20px;
+            padding-right: 55px;
+            font-size: 16px;
+            font-weight: 400;
+            line-height: 1.5;
+            --tw-text-opacity: 1;
+            color: rgb(90 113 132/var(--tw-text-opacity))
+        }
+
+            .custom-select .nice-select .current::-moz-placeholder {
+                --tw-placeholder-opacity: 1;
+                color: rgb(179 186 197/var(--tw-placeholder-opacity))
+            }
+
+            .custom-select .nice-select .current::placeholder {
+                --tw-placeholder-opacity: 1;
+                color: rgb(179 186 197/var(--tw-placeholder-opacity))
+            }
+
+            .custom-select .nice-select .current:focus {
+                --tw-border-opacity: 1;
+                border-color: rgb(90 113 132/var(--tw-border-opacity))
+            }
+
+            .custom-select .nice-select .current:after {
+                content: "\e907";
+                font: 6px/1 icomoon;
+                position: absolute;
+                right: 23px;
+                top: 50%;
+                transform: translateY(-50%);
+                color: #5a7184;
+                transition: transform .15s linear
+            }
+
+        .custom-select .nice-select.open .current:after {
+            transform: translateY(-50%)rotate(180deg)
+        }
+
+        .custom-select .nice-select.open .list {
+            visibility: visible;
+            opacity: 1
+        }
+
+        .custom-select .nice-select .list {
+            visibility: hidden;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            right: 0;
+            margin-top: -1px;
+            height: 212px;
+            overflow: auto;
+            border-radius: 4px;
+            border-width: 1px;
+            --tw-border-opacity: 1;
+            border-color: rgb(179 186 197/var(--tw-border-opacity));
+            --tw-bg-opacity: 1;
+            background-color: rgb(255 255 255/var(--tw-bg-opacity));
+            padding-top: 10px;
+            padding-bottom: 10px;
+            padding-left: 20px;
+            padding-right: 20px;
+            font-size: 16px;
+            line-height: 1.5;
+            --tw-text-opacity: 1;
+            color: rgb(90 113 132/var(--tw-text-opacity));
+            opacity: 0;
+            transition-property: all;
+            transition-timing-function: cubic-bezier(.4,0,.2,1);
+            transition-duration: 150ms
+        }
+
+            .custom-select .nice-select .list li {
+                cursor: pointer;
+                padding-top: 4px;
+                padding-bottom: 4px
+            }
+
+        .nice-select.style-1 .current {
+            position: relative;
+            display: flex;
+            cursor: pointer;
+            align-items: center;
+            padding-right: 18px;
+            font-size: 16px
+        }
+
+            .nice-select.style-1 .current:hover {
+                --tw-text-opacity: 1;
+                color: rgb(255 201 31/var(--tw-text-opacity))
+            }
+
+            .nice-select.style-1 .current:after {
+                position: absolute;
+                right: 0;
+                margin-left: 8px;
+                margin-top: 1px;
+                overflow: hidden;
+                font-size: 6px;
+                line-height: 1;
+                top: 50%;
+                transform: translateY(-50%);
+                content: "\e906";
+                font-family: icomoon;
+                transition: transform .15s linear
+            }
+
+        .nice-select.style-1.open .current:after {
+            transform: translateY(-50%)rotate(180deg)
+        }
+
+        .nice-select.style-1.open .list {
+            visibility: visible;
+            opacity: 1
+        }
+
+        .nice-select.style-1 .list {
+            visibility: hidden;
+            position: absolute;
+            right: 0;
+            top: 100%;
+            z-index: 50;
+            width: 160px;
+            overflow: auto;
+            border-bottom-right-radius: 6px;
+            border-bottom-left-radius: 6px;
+            --tw-bg-opacity: 1;
+            background-color: rgb(27 37 56/var(--tw-bg-opacity));
+            padding: 10px;
+            opacity: 0
+        }
+
+            .nice-select.style-1 .list li {
+                cursor: pointer;
+                padding-top: 5px;
+                padding-bottom: 5px
+            }
+
+                .nice-select.style-1 .list li:hover {
+                    --tw-text-opacity: 1;
+                    color: rgb(255 201 31/var(--tw-text-opacity))
+                }
+
+        [data-more].active .icon-chevron03 {
+            transform: rotate(180deg)
+        }
+
+        .tabs li a.active {
+            font-weight: 700;
+            --tw-text-opacity: 1;
+            color: rgb(15 15 14/var(--tw-text-opacity))
+        }
+
+            .tabs li a.active:after {
+                content: "";
+                position: absolute;
+                bottom: -1px;
+                left: 0;
+                right: 0;
+                height: 2px;
+                background: #faad13
+            }
+
+        .tab-content .tab {
+            display: none
+        }
+
+            .tab-content .tab.active {
+                display: block
+            }
+
+        .filter a.active {
+            --tw-bg-opacity: 1;
+            background-color: rgb(255 255 255/var(--tw-bg-opacity));
+            --tw-text-opacity: 1;
+            color: rgb(15 15 14/var(--tw-text-opacity))
+        }
+
+        .filter label .bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: #e8e8e8;
+            z-index: 1;
+            transition: background .3s linear
+        }
+
+        .filter label .txt {
+            position: relative;
+            z-index: 2;
+            color: #0f0f0e
+        }
+
+        .filter input[type=checkbox] {
+            position: fixed;
+            left: 0;
+            top: 0;
+            opacity: 0;
+            z-index: -1
+        }
+
+            .filter input[type=checkbox]:checked ~ .bg {
+                background: #ffc91f
+            }
+
+        .paging li.active a {
+            --tw-bg-opacity: 1;
+            background-color: rgb(255 201 31/var(--tw-bg-opacity))
+        }
+
+        .select-opener:after {
+            position: absolute;
+            right: 16px;
+            top: 50%;
+            font-size: 10px;
+            transition-property: all;
+            transition-timing-function: cubic-bezier(.4,0,.2,1);
+            transition-duration: 150ms
+        }
+
+        @media(min-width:1024px) {
+            .select-opener:after {
+                display: none
+            }
+        }
+
+        .select-opener:after {
+            transform: translateY(-50%);
+            content: "\e906";
+            font: 8px/1 icomoon
+        }
+
+        .select-opener.active:after {
+            transform: translateY(-50%)rotate(180deg)
+        }
+
+        .toc {
+            z-index: 3
+        }
+
+        .testimonial-slider-wrap .slider-nav {
+            position: absolute;
+            right: 0;
+            bottom: 0;
+            display: flex;
+            height: 92px;
+            width: 80px;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: flex-end;
+            --tw-bg-opacity: 1;
+            background-color: rgb(15 15 14/var(--tw-bg-opacity))
+        }
+
+            .testimonial-slider-wrap .slider-nav .slick-next {
+                margin-left: 40px
+            }
+
+            .testimonial-slider-wrap .slider-nav .slick-arrow {
+                transition-property: all;
+                transition-timing-function: cubic-bezier(.4,0,.2,1);
+                transition-duration: 150ms
+            }
+
+                .testimonial-slider-wrap .slider-nav .slick-arrow:hover {
+                    --tw-text-opacity: 1;
+                    color: rgb(255 201 31/var(--tw-text-opacity))
+                }
+
+        .doc-nav li.active {
+            font-weight: 700;
+            text-decoration-line: underline
+        }
+
+        .bg-yellow-full {
+            position: relative
+        }
+
+            .bg-yellow-full:after {
+                content: "";
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                bottom: -9999px;
+                z-index: 1;
+                background: #ffc91f
+            }
+
+        .navbar .hasdrop .hasdrop-a.active, .navbar .hasdrop:hover .hasdrop-a {
+            text-decoration-line: underline
+        }
+
+        .navbar .hasdrop-a:after {
+            content: "\e908";
+            display: inline-block;
+            vertical-align: middle;
+            margin-left: 8px;
+            font: 6px/1 icomoon
+        }
+
+        .nav-drop {
+            padding-left: 18px;
+            padding-right: 18px;
+            padding-top: 18px
+        }
+
+        @media only screen and (min-width:1024px) {
+            .journey {
+                padding-left: 0
+            }
+
+                .journey time {
+                    justify-content: flex-end
+                }
+
+                .journey:before {
+                    top: 30px;
+                    bottom: 30px;
+                    left: 50%;
+                    transform: translateX(-50%)
+                }
+
+                .journey .row:after {
+                    left: 50%;
+                    transform: translate(-50%,-50%)
+                }
+
+                .journey .row + .row {
+                    margin-top: 101px
+                }
+
+                .journey .row:nth-child(even) {
+                    flex-direction: row-reverse
+                }
+
+                    .journey .row:nth-child(even) .box {
+                        padding: 15px 77px 15px 34px;
+                        background-image: url(/assets/images/bg-triangle-r.svg);
+                        background-position: 100% 0
+                    }
+
+                    .journey .row:nth-child(even) time {
+                        justify-content: flex-start
+                    }
+
+            .box {
+                min-height: 183px
+            }
+        }
+
+        @media only screen and (max-width:1023px) {
+            .navbar-wrap {
+                top: 100%;
+                pointer-events: none;
+                position: absolute;
+                left: 0;
+                right: 0
+            }
+
+            .nav-active .navbar-wrap {
+                pointer-events: auto
+            }
+
+            .navbar {
+                transform: translateY(-101%);
+                transition: transform .25s ease-in
+            }
+
+            .nav-active .navbar {
+                transform: translateY(0)
+            }
+
+            .nav-active .nav-opener .icon-menu:before {
+                content: "\e90c";
+                margin-right: 3px
+            }
+
+            .testimonial-slider-wrap .slider-nav {
+                position: static;
+                margin-top: 20px;
+                height: auto;
+                width: 100%
+            }
+
+            .sticky-aside.is-affixed .inner-wrapper-sticky h3 {
+                display: none
+            }
+        }
+
+        @media only screen and (max-width:767px) {
+            .journey .row:after {
+                top: -2px;
+                transform: none
+            }
+
+            .box {
+                background: #ffc91f;
+                padding: 15px
+            }
+        }
+
+        @media only screen and (min-width:1024px) {
+            .sub-navs {
+                display: block !important
+            }
+
+            .toc {
+                position: static !important
+            }
+
+            .navbar .hasdrop {
+                margin-left: -21px;
+                margin-right: -21px;
+                margin-top: -14px;
+                margin-bottom: -14px
+            }
+
+                .navbar .hasdrop:hover .nav-drop {
+                    visibility: visible;
+                    opacity: 1
+                }
+
+                .navbar .hasdrop:hover .hasdrop-a {
+                    color: rgba(0,0,0,.47);
+                    text-decoration-line: none
+                }
+
+                .navbar .hasdrop .hasdrop-a.active {
+                    text-decoration-line: none
+                }
+
+            .navbar .hasdrop-a {
+                position: relative;
+                padding-top: 14px;
+                padding-bottom: 14px;
+                padding-left: 21px;
+                padding-right: 21px;
+                transition-property: all;
+                transition-timing-function: cubic-bezier(.4,0,.2,1);
+                transition-duration: 150ms
+            }
+
+                .navbar .hasdrop-a:hover {
+                    color: rgba(0,0,0,.47);
+                    text-decoration-line: none
+                }
+
+            .nav-drop {
+                display: block !important;
+                height: auto !important;
+                visibility: hidden;
+                position: absolute;
+                top: 100%;
+                left: 15px;
+                min-width: 214px;
+                border-radius: .375rem;
+                --tw-bg-opacity: 1;
+                background-color: rgb(15 15 14/var(--tw-bg-opacity));
+                padding-top: 18px;
+                padding-bottom: 18px;
+                padding-left: 21px;
+                padding-right: 21px;
+                opacity: 0;
+                transition-property: all;
+                transition-timing-function: cubic-bezier(.4,0,.2,1);
+                transition-duration: 150ms
+            }
+
+                .nav-drop:after {
+                    content: " ";
+                    position: absolute;
+                    right: calc(50% - 15px);
+                    top: -10px;
+                    border-top: none;
+                    border-right: 15px solid transparent;
+                    border-left: 15px solid transparent;
+                    border-bottom: 15px solid #000
+                }
+        }
+
+        @media only screen and (min-width:1280px) {
+            .nav-drop {
+                left: 21px
+            }
+        }
+
+        @media only screen and (max-width:1023px) {
+            .toc .sub-navs {
+                overflow-y: auto;
+                max-height: calc( 100vh - 48px)
+            }
+        }
+
+        .range-slider__slider {
+            width: 100%;
+            margin: 39px 0 30px;
+            position: relative
+        }
+
+            .range-slider__slider:after {
+                content: "";
+                position: absolute;
+                top: 50%;
+                left: 0;
+                right: 0;
+                transform: translateY(-50%);
+                background: #e6ecf2;
+                height: 8px;
+                border-radius: 4px
+            }
+
+            .range-slider__slider .range-slider__slide {
+                position: absolute;
+                left: 0;
+                top: 4px;
+                z-index: 2;
+                height: 8px;
+                border-radius: 4px;
+                --tw-bg-opacity: 1;
+                background-color: rgb(255 201 31/var(--tw-bg-opacity))
+            }
+
+            .range-slider__slider .input-wrap {
+                position: relative;
+                z-index: 2
+            }
+
+            .range-slider__slider input {
+                -webkit-appearance: none;
+                -moz-appearance: none;
+                appearance: none;
+                width: 100%;
+                height: 8px;
+                border-radius: 4px;
+                background: 0 0
+            }
+
+                .range-slider__slider input::-moz-range-thumb {
+                    -webkit-appearance: none;
+                    -moz-appearance: none;
+                    appearance: none;
+                    width: 24px;
+                    height: 24px;
+                    background: #0f0f0e;
+                    cursor: pointer;
+                    border-radius: 50%;
+                    border: none
+                }
+
+                .range-slider__slider input::-webkit-slider-thumb {
+                    -webkit-appearance: none;
+                    appearance: none;
+                    width: 24px;
+                    height: 24px;
+                    background: #0f0f0e;
+                    cursor: pointer;
+                    border-radius: 50%;
+                    border: none
+                }
+
+        .custom-checkbox input {
+            position: fixed;
+            left: 0;
+            top: 0;
+            opacity: 0;
+            z-index: -1
+        }
+
+        .custom-checkbox {
+            position: relative;
+            display: inline-flex;
+            align-items: center;
+            margin: 0;
+            font-size: 16px;
+            line-height: 1.5;
+            color: #5a7184;
+            padding-left: 26px
+        }
+
+            .custom-checkbox .checkmark {
+                width: 16px;
+                height: 16px;
+                position: absolute;
+                left: 0;
+                top: 2px;
+                border: 1px solid #5a7184;
+                transition: border .3s linear,background .3s linear
+            }
+
+                .custom-checkbox .checkmark:after {
+                    content: "\e923";
+                    font: 8px/1 icomoon;
+                    position: absolute;
+                    color: #5a7184;
+                    top: 50%;
+                    left: 50%;
+                    transform: translate(-50%,-50%);
+                    opacity: 0;
+                    transition: opacity .3s linear
+                }
+
+            .custom-checkbox input:checked + .checkmark:after {
+                opacity: 1
+            }
+
+        .blog-post h1, .blog-post h2, .blog-post h3, .blog-post h4, .blog-post h5, .blog-post h6 {
+            margin-top: 50px;
+            margin-bottom: 25px;
+            --tw-text-opacity: 1;
+            color: rgb(15 15 14/var(--tw-text-opacity))
+        }
+
+        .blog-post h2, .blog-post h3, .blog-post h4, .blog-post h5, .blog-post h6 {
+            margin-top: -70px;
+            padding-top: 121px;
+            outline: 2px solid transparent;
+            outline-offset: 2px
+        }
+
+            .blog-post h2:first-of-type {
+                margin-bottom: 21px;
+                --tw-text-opacity: 1;
+                color: rgb(15 15 14/var(--tw-text-opacity))
+            }
+
+            .blog-post h2:first-child, .blog-post h3:first-child {
+                margin-top: 0;
+                padding-top: 0
+            }
+
+        .blog-post p:not(:last-child), .blog-post .highlight:not(:last-child), .blog-post blockquote:not(:last-child), .blog-post pre:not(:last-child), .blog-post > ul:not(:last-child), .blog-post > ol:not(:last-child), .blog-post > table:not(:last-child) {
+            margin-bottom: 20px
+        }
+
+        .blog-post code, .blog-post pre {
+            border-radius: .375rem;
+            font-size: .9em
+        }
+
+        .blog-post h1 > code, .blog-post h2 > code, .blog-post h3 > code {
+            font-size: inherit !important
+        }
+
+        .blog-post {
+            --tw-text-opacity: 1;
+            color: rgb(52 66 84/var(--tw-text-opacity))
+        }
+
+            .blog-post blockquote {
+                border-left-width: 4px;
+                border-style: solid;
+                --tw-border-opacity: 1;
+                border-left-color: rgb(255 201 31/var(--tw-border-opacity));
+                --tw-bg-opacity: 1;
+                background-color: rgb(255 236 199/var(--tw-bg-opacity));
+                padding: 20px
+            }
+
+            .blog-post code:not(.hljs) {
+                margin-bottom: 20px;
+                --tw-bg-opacity: 1;
+                background-color: rgb(230 236 242/var(--tw-bg-opacity));
+                padding-left: 4px;
+                padding-right: 4px;
+                font-family: Circular Std,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,segoe ui,Roboto,helvetica neue,Arial,noto sans,sans-serif,apple color emoji,segoe ui emoji,segoe ui symbol,noto color emoji;
+                font-size: 16px;
+                --tw-text-opacity: 1;
+                color: rgb(33 43 69/var(--tw-text-opacity))
+            }
+
+            .blog-post > ul {
+                list-style-type: disc;
+                padding-left: 28px
+            }
+
+            .blog-post a {
+                font-style: normal;
+                text-decoration-line: underline
+            }
+
+                .blog-post a:hover {
+                    font-weight: 700
+                }
+
+            .blog-post > ol {
+                list-style-type: decimal;
+                padding-left: 28px
+            }
+
+            .blog-post img {
+                vertical-align: middle;
+                border: 0
+            }
+
+            .blog-post .img svg, .blog-post .img img {
+                margin: 0;
+                width: 100%;
+                height: auto
+            }
+
+            .blog-post .img {
+                position: relative
+            }
+
+                .blog-post .img img {
+                    position: absolute;
+                    top: 0;
+                    left: 0
+                }
+
+            .blog-post table {
+                border-width: 1px;
+                --tw-border-opacity: 1;
+                border-color: rgb(15 15 14/var(--tw-border-opacity))
+            }
+
+            .blog-post th, .blog-post td {
+                border-width: 1px;
+                --tw-border-opacity: 1;
+                border-color: rgb(15 15 14/var(--tw-border-opacity));
+                padding: 10px
+            }
+
+        .toc {
+            overflow-y: auto;
+            font-size: 16px
+        }
+
+            .toc > .toc-list {
+                overflow: hidden;
+                position: relative
+            }
+
+                .toc > .toc-list li {
+                    list-style: none;
+                    margin-bottom: 10px
+                }
+
+        .toc-list {
+            margin: 0;
+            padding-left: 10px
+        }
+
+        a.toc-link {
+            --tw-text-opacity: 1;
+            color: rgb(90 113 132/var(--tw-text-opacity));
+            height: 100%
+        }
+
+        .is-collapsible {
+            max-height: 1000px;
+            overflow: hidden;
+            transition: all 300ms ease-in-out
+        }
+
+        .is-collapsed {
+            max-height: 0
+        }
+
+        .is-position-fixed {
+            position: fixed !important;
+            top: 0
+        }
+
+        .is-active-link {
+            --tw-text-opacity: 1 !important;
+            color: rgb(15 15 14/var(--tw-text-opacity)) !important
+        }
+
+        .toc-link::before {
+            background-color: #eee;
+            content: ' ';
+            display: inline-block;
+            height: inherit;
+            left: 0;
+            margin-top: -1px;
+            position: absolute;
+            width: 2px
+        }
+
+        .toc-link:hover::before {
+            background-color: #ffc91f
+        }
+
+        .is-active-link::before {
+            background-color: #ffc91f
+        }
+
+        .nice-tab-content {
+            display: none
+        }
+
+            .nice-tab-content.active {
+                display: block
+            }
+
+        .client-library {
+            border-radius: .375rem;
+            padding: 10px;
+            --tw-text-opacity: 1;
+            color: rgb(15 15 14/var(--tw-text-opacity))
+        }
+
+            .client-library:hover {
+                --tw-bg-opacity: 1;
+                background-color: rgb(255 236 199/var(--tw-bg-opacity))
+            }
+
+            .client-library.active {
+                --tw-bg-opacity: 1;
+                background-color: rgb(255 201 31/var(--tw-bg-opacity))
+            }
+
+        .doc-content {
+            font-size: 16px
+        }
+
+            .doc-content h2, .doc-content h3, .doc-content h4, .doc-content h5, .doc-content h6 {
+                font-weight: 700;
+                --tw-text-opacity: 1;
+                color: rgb(15 15 14/var(--tw-text-opacity));
+                outline: 2px solid transparent;
+                outline-offset: 2px
+            }
+
+            .doc-content > h2, .doc-content > h3 {
+                margin-top: 40px;
+                margin-bottom: 21px
+            }
+
+            .doc-content h2 {
+                font-size: 36px
+            }
+
+            .doc-content p {
+                margin-bottom: 10px
+            }
+
+            .doc-content code:not(.hljs), .doc-content pre:not(.hljs) {
+                margin-bottom: 10px;
+                border-radius: 4px;
+                font-size: 16px
+            }
+
+            .doc-content > pre > code {
+                --tw-bg-opacity: 1;
+                background-color: rgb(44 58 87/var(--tw-bg-opacity))
+            }
+
+        .doc-content {
+            --tw-text-opacity: 1;
+            color: rgb(52 66 84/var(--tw-text-opacity))
+        }
+
+            .doc-content blockquote {
+                margin-bottom: 10px;
+                border-left-width: 4px;
+                border-style: solid;
+                --tw-border-opacity: 1;
+                border-left-color: rgb(255 201 31/var(--tw-border-opacity));
+                --tw-bg-opacity: 1;
+                background-color: rgb(255 236 199/var(--tw-bg-opacity));
+                padding: 20px
+            }
+
+            .doc-content p > code:not(.hljs), .doc-content li > code:not(.hljs), .doc-content td > code:not(.hljs) {
+                --tw-bg-opacity: 1;
+                background-color: rgb(230 236 242/var(--tw-bg-opacity));
+                --tw-text-opacity: 1;
+                color: rgb(33 43 69/var(--tw-text-opacity));
+                padding-left: 4px;
+                padding-right: 4px;
+                font-family: Circular Std,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,segoe ui,Roboto,helvetica neue,Arial,noto sans,sans-serif,apple color emoji,segoe ui emoji,segoe ui symbol,noto color emoji
+            }
+
+        code.hljs {
+            --tw-bg-opacity: 1;
+            background-color: rgb(44 58 87/var(--tw-bg-opacity));
+            border-radius: 4px;
+            font-size: 14px
+        }
+
+        .doc-content > ul {
+            margin-bottom: 10px;
+            list-style-type: disc;
+            padding-left: 28px
+        }
+
+        .doc-content a {
+            font-style: normal;
+            text-decoration-line: underline
+        }
+
+            .doc-content a:hover {
+                font-weight: 700
+            }
+
+        .doc-content > ol {
+            margin-bottom: 10px;
+            list-style-type: decimal;
+            padding-left: 28px
+        }
+
+        .doc-content img {
+            vertical-align: middle;
+            border: 0
+        }
+
+        .doc-content .img svg, .doc-content .img img {
+            margin: 0;
+            width: 100%;
+            height: auto
+        }
+
+        .doc-content .img {
+            position: relative
+        }
+
+            .doc-content .img img {
+                position: absolute;
+                top: 0;
+                left: 0
+            }
+
+        .doc-content table {
+            margin-bottom: 10px;
+            border-width: 1px;
+            --tw-border-opacity: 1;
+            border-color: rgb(15 15 14/var(--tw-border-opacity))
+        }
+
+        .doc-content th, .doc-content td {
+            border-width: 1px;
+            --tw-border-opacity: 1;
+            border-color: rgb(15 15 14/var(--tw-border-opacity));
+            padding: 10px
+        }
+
+        .doc-row {
+            display: flex;
+            flex-wrap: wrap;
+            border-bottom-width: 1px;
+            --tw-border-opacity: 1;
+            border-color: rgb(217 218 219/var(--tw-border-opacity));
+            padding-bottom: 48px;
+            padding-top: 47px;
+            --tw-text-opacity: 1;
+            color: rgb(15 15 14/var(--tw-text-opacity))
+        }
+
+        .doc-left {
+            width: 100%;
+            font-size: 16px
+        }
+
+            .doc-left h2, .doc-left h3, .doc-left h4, .doc-left h5, .doc-left h6 {
+                font-weight: 700;
+                --tw-text-opacity: 1;
+                color: rgb(15 15 14/var(--tw-text-opacity));
+                outline: 2px solid transparent;
+                outline-offset: 2px
+            }
+
+            .doc-left > h2, .doc-left > h3 {
+                margin-top: 40px;
+                margin-bottom: 21px
+            }
+
+            .doc-left h2 {
+                font-size: 36px
+            }
+
+            .doc-left p {
+                margin-bottom: 10px
+            }
+
+            .doc-left code:not(.hljs), .doc-left pre:not(.hljs) {
+                margin-bottom: 10px;
+                border-radius: 4px;
+                font-size: 16px
+            }
+
+            .doc-left > pre > code {
+                --tw-bg-opacity: 1;
+                background-color: rgb(44 58 87/var(--tw-bg-opacity))
+            }
+
+        .doc-left {
+            --tw-text-opacity: 1;
+            color: rgb(52 66 84/var(--tw-text-opacity))
+        }
+
+            .doc-left blockquote {
+                margin-bottom: 10px;
+                border-left-width: 4px;
+                border-style: solid;
+                --tw-border-opacity: 1;
+                border-left-color: rgb(255 201 31/var(--tw-border-opacity));
+                --tw-bg-opacity: 1;
+                background-color: rgb(255 236 199/var(--tw-bg-opacity));
+                padding: 20px
+            }
+
+            .doc-left p > code:not(.hljs), .doc-left li > code:not(.hljs), .doc-left td > code:not(.hljs) {
+            }
+
+            .doc-left > ul {
+                margin-bottom: 10px;
+                list-style-type: disc;
+                padding-left: 28px
+            }
+
+            .doc-left a {
+                font-style: normal;
+                text-decoration-line: underline
+            }
+
+                .doc-left a:hover {
+                    font-weight: 700
+                }
+
+            .doc-left > ol {
+                margin-bottom: 10px;
+                list-style-type: decimal;
+                padding-left: 28px
+            }
+
+            .doc-left img {
+                vertical-align: middle;
+                border: 0
+            }
+
+            .doc-left .img svg, .doc-left .img img {
+                margin: 0;
+                width: 100%;
+                height: auto
+            }
+
+            .doc-left .img {
+                position: relative
+            }
+
+                .doc-left .img img {
+                    position: absolute;
+                    top: 0;
+                    left: 0
+                }
+
+            .doc-left table {
+                margin-bottom: 10px;
+                border-width: 1px;
+                --tw-border-opacity: 1;
+                border-color: rgb(15 15 14/var(--tw-border-opacity))
+            }
+
+            .doc-left th, .doc-left td {
+                border-width: 1px;
+                --tw-border-opacity: 1;
+                border-color: rgb(15 15 14/var(--tw-border-opacity));
+                padding: 10px
+            }
+
+        @media(min-width:1024px) {
+            .doc-left {
+                width: 50%
+            }
+        }
+
+        .doc-right {
+            width: 100%;
+            padding-top: 50px;
+            font-size: 16px
+        }
+
+            .doc-right h2, .doc-right h3, .doc-right h4, .doc-right h5, .doc-right h6 {
+                font-weight: 700;
+                --tw-text-opacity: 1;
+                color: rgb(15 15 14/var(--tw-text-opacity));
+                outline: 2px solid transparent;
+                outline-offset: 2px
+            }
+
+            .doc-right > h2, .doc-right > h3 {
+                margin-top: 40px;
+                margin-bottom: 21px
+            }
+
+            .doc-right h2 {
+                font-size: 36px
+            }
+
+            .doc-right p {
+                margin-bottom: 10px
+            }
+
+            .doc-right code:not(.hljs), .doc-right pre:not(.hljs) {
+                margin-bottom: 10px;
+                border-radius: 4px;
+                font-size: 16px
+            }
+
+            .doc-right > pre > code {
+                --tw-bg-opacity: 1;
+                background-color: rgb(44 58 87/var(--tw-bg-opacity))
+            }
+
+        .doc-right {
+            --tw-text-opacity: 1;
+            color: rgb(52 66 84/var(--tw-text-opacity))
+        }
+
+            .doc-right blockquote {
+                margin-bottom: 10px;
+                border-left-width: 4px;
+                border-style: solid;
+                --tw-border-opacity: 1;
+                border-left-color: rgb(255 201 31/var(--tw-border-opacity));
+                --tw-bg-opacity: 1;
+                background-color: rgb(255 236 199/var(--tw-bg-opacity));
+                padding: 20px
+            }
+
+            .doc-right p > code:not(.hljs), .doc-right li > code:not(.hljs), .doc-right td > code:not(.hljs) {
+            }
+
+            .doc-right > ul {
+                margin-bottom: 10px;
+                list-style-type: disc;
+                padding-left: 28px
+            }
+
+            .doc-right a {
+                font-style: normal;
+                text-decoration-line: underline
+            }
+
+                .doc-right a:hover {
+                    font-weight: 700
+                }
+
+            .doc-right > ol {
+                margin-bottom: 10px;
+                list-style-type: decimal;
+                padding-left: 28px
+            }
+
+            .doc-right img {
+                vertical-align: middle;
+                border: 0
+            }
+
+            .doc-right .img svg, .doc-right .img img {
+                margin: 0;
+                width: 100%;
+                height: auto
+            }
+
+            .doc-right .img {
+                position: relative
+            }
+
+                .doc-right .img img {
+                    position: absolute;
+                    top: 0;
+                    left: 0
+                }
+
+            .doc-right table {
+                margin-bottom: 10px;
+                border-width: 1px;
+                --tw-border-opacity: 1;
+                border-color: rgb(15 15 14/var(--tw-border-opacity))
+            }
+
+            .doc-right th, .doc-right td {
+                border-width: 1px;
+                --tw-border-opacity: 1;
+                border-color: rgb(15 15 14/var(--tw-border-opacity));
+                padding: 10px
+            }
+
+        @media(min-width:1024px) {
+            .doc-right {
+                width: 50%;
+                padding-left: 30px
+            }
+        }
+
+        @media(min-width:1440px) {
+            .doc-right {
+                padding-left: 32px
+            }
+        }
+
+        .doc-full {
+            width: 100%;
+            font-size: 16px
+        }
+
+            .doc-full h2, .doc-full h3, .doc-full h4, .doc-full h5, .doc-full h6 {
+                font-weight: 700;
+                --tw-text-opacity: 1;
+                color: rgb(15 15 14/var(--tw-text-opacity));
+                outline: 2px solid transparent;
+                outline-offset: 2px
+            }
+
+            .doc-full > h2, .doc-full > h3 {
+                margin-top: 40px;
+                margin-bottom: 21px
+            }
+
+            .doc-full h2 {
+                font-size: 36px
+            }
+
+            .doc-full p {
+                margin-bottom: 10px
+            }
+
+            .doc-full code:not(.hljs), .doc-full pre:not(.hljs) {
+                margin-bottom: 10px;
+                border-radius: 4px;
+                font-size: 16px
+            }
+
+            .doc-full > pre > code {
+                --tw-bg-opacity: 1;
+                background-color: rgb(44 58 87/var(--tw-bg-opacity))
+            }
+
+        .doc-full {
+            --tw-text-opacity: 1;
+            color: rgb(52 66 84/var(--tw-text-opacity))
+        }
+
+            .doc-full blockquote {
+                margin-bottom: 10px;
+                border-left-width: 4px;
+                border-style: solid;
+                --tw-border-opacity: 1;
+                border-left-color: rgb(255 201 31/var(--tw-border-opacity));
+                --tw-bg-opacity: 1;
+                background-color: rgb(255 236 199/var(--tw-bg-opacity));
+                padding: 20px
+            }
+
+            .doc-full p > code:not(.hljs), .doc-full li > code:not(.hljs), .doc-full td > code:not(.hljs) {
+            }
+
+            .doc-full > ul {
+                margin-bottom: 10px;
+                list-style-type: disc;
+                padding-left: 28px
+            }
+
+            .doc-full a {
+                font-style: normal;
+                text-decoration-line: underline
+            }
+
+                .doc-full a:hover {
+                    font-weight: 700
+                }
+
+            .doc-full > ol {
+                margin-bottom: 10px;
+                list-style-type: decimal;
+                padding-left: 28px
+            }
+
+            .doc-full img {
+                vertical-align: middle;
+                border: 0
+            }
+
+            .doc-full .img svg, .doc-full .img img {
+                margin: 0;
+                width: 100%;
+                height: auto
+            }
+
+            .doc-full .img {
+                position: relative
+            }
+
+                .doc-full .img img {
+                    position: absolute;
+                    top: 0;
+                    left: 0
+                }
+
+            .doc-full table {
+                margin-bottom: 10px;
+                border-width: 1px;
+                --tw-border-opacity: 1;
+                border-color: rgb(15 15 14/var(--tw-border-opacity))
+            }
+
+            .doc-full th, .doc-full td {
+                border-width: 1px;
+                --tw-border-opacity: 1;
+                border-color: rgb(15 15 14/var(--tw-border-opacity));
+                padding: 10px
+            }
+
+        .snippet-copy {
+            cursor: pointer
+        }
+
+            .snippet-copy > span:hover {
+                font-weight: 900
+            }
+
+        .doc-section-splitter {
+            margin-top: 50px
+        }
+
+        .toc-doc {
+            font-size: 16px
+        }
+
+            .toc-doc .toc-list li {
+                margin-bottom: 0;
+                padding-top: 4px;
+                padding-bottom: 4px
+            }
+
+            .toc-doc ol ol {
+                padding-left: 14px
+            }
+
+        .alternatives a:not([class]) {
+            font-weight: 700;
+            text-decoration-line: underline
+        }
+
+            .alternatives a:not([class]):hover {
+                text-decoration-line: none
+            }
+
+        .last-of-type\:border-0:last-of-type {
+            border-width: 0
+        }
+
+        .empty\:hidden:empty {
+            display: none
+        }
+
+        .hover\:border-2:hover {
+            border-width: 2px
+        }
+
+        .hover\:border-yellow-100:hover {
+            --tw-border-opacity: 1;
+            border-color: rgb(255 201 31/var(--tw-border-opacity))
+        }
+
+        .hover\:border-gray-300:hover {
+            --tw-border-opacity: 1;
+            border-color: rgb(179 186 197/var(--tw-border-opacity))
+        }
+
+        .hover\:bg-white:hover {
+            --tw-bg-opacity: 1;
+            background-color: rgb(255 255 255/var(--tw-bg-opacity))
+        }
+
+        .hover\:bg-yellow-100:hover {
+            --tw-bg-opacity: 1;
+            background-color: rgb(255 201 31/var(--tw-bg-opacity))
+        }
+
+        .hover\:bg-opacity-90:hover {
+            --tw-bg-opacity: 0.9
+        }
+
+        .hover\:font-bold:hover {
+            font-weight: 700
+        }
+
+        .hover\:text-black-100:hover {
+            --tw-text-opacity: 1;
+            color: rgb(15 15 14/var(--tw-text-opacity))
+        }
+
+        .hover\:text-yellow-100:hover {
+            --tw-text-opacity: 1;
+            color: rgb(255 201 31/var(--tw-text-opacity))
+        }
+
+        .hover\:text-gray-700:hover {
+            --tw-text-opacity: 1;
+            color: rgb(228 231 236/var(--tw-text-opacity))
+        }
+
+        .hover\:underline:hover {
+            text-decoration-line: underline
+        }
+
+        .hover\:no-underline:hover {
+            text-decoration-line: none
+        }
+
+        .hover\:shadow-2xl:hover {
+            --tw-shadow: 0 25px 50px -12px rgb(0 0 0 / 0.25);
+            --tw-shadow-colored: 0 25px 50px -12px var(--tw-shadow-color);
+            box-shadow: var(--tw-ring-offset-shadow,0 0 #0000),var(--tw-ring-shadow,0 0 #0000),var(--tw-shadow)
+        }
+
+        @media(min-width:375px) {
+            .xs\:text-18 {
+                font-size: 18px
+            }
+        }
+
+        @media(min-width:768px) {
+            .sm\:order-none {
+                order: 0
+            }
+
+            .sm\:-m-1 {
+                margin: -1px
+            }
+
+            .sm\:my-6 {
+                margin-top: 6px;
+                margin-bottom: 6px
+            }
+
+            .sm\:-mx-6 {
+                margin-left: -6px;
+                margin-right: -6px
+            }
+
+            .sm\:mb-0 {
+                margin-bottom: 0
+            }
+
+            .sm\:mb-40 {
+                margin-bottom: 40px
+            }
+
+            .sm\:mb-27 {
+                margin-bottom: 27px
+            }
+
+            .sm\:mb-22 {
+                margin-bottom: 22px
+            }
+
+            .sm\:mb-16 {
+                margin-bottom: 16px
+            }
+
+            .sm\:mb-32 {
+                margin-bottom: 32px
+            }
+
+            .sm\:mb-33 {
+                margin-bottom: 33px
+            }
+
+            .sm\:mb-20 {
+                margin-bottom: 20px
+            }
+
+            .sm\:mr-30 {
+                margin-right: 30px
+            }
+
+            .sm\:mt-50 {
+                margin-top: 50px
+            }
+
+            .sm\:block {
+                display: block
+            }
+
+            .sm\:flex {
+                display: flex
+            }
+
+            .sm\:h-40 {
+                height: 40px
+            }
+
+            .sm\:h-auto {
+                height: auto
+            }
+
+            .sm\:w-1\/2 {
+                width: 50%
+            }
+
+            .sm\:w-10\/12 {
+                width: 83.333333%
+            }
+
+            .sm\:w-auto {
+                width: auto
+            }
+
+            .sm\:w-40 {
+                width: 40px
+            }
+
+            .sm\:w-c28 {
+                width: calc(50% - 28px)
+            }
+
+            .sm\:w-1\/3 {
+                width: 33.333333%
+            }
+
+            .sm\:w-281 {
+                width: 281px
+            }
+
+            .sm\:w-100 {
+                width: 100px
+            }
+
+            .sm\:w-50 {
+                width: 50px
+            }
+
+            .sm\:max-w-490 {
+                max-width: 490px
+            }
+
+            .sm\:flex-1 {
+                flex: 1
+            }
+
+            .sm\:justify-start {
+                justify-content: flex-start
+            }
+
+            .sm\:p-32 {
+                padding: 32px
+            }
+
+            .sm\:py-60 {
+                padding-top: 60px;
+                padding-bottom: 60px
+            }
+
+            .sm\:px-24 {
+                padding-left: 24px;
+                padding-right: 24px
+            }
+
+            .sm\:py-70 {
+                padding-top: 70px;
+                padding-bottom: 70px
+            }
+
+            .sm\:pt-102 {
+                padding-top: 102px
+            }
+
+            .sm\:pb-80 {
+                padding-bottom: 80px
+            }
+
+            .sm\:pt-91 {
+                padding-top: 91px
+            }
+
+            .sm\:pb-71 {
+                padding-bottom: 71px
+            }
+
+            .sm\:pb-60 {
+                padding-bottom: 60px
+            }
+
+            .sm\:pt-41 {
+                padding-top: 41px
+            }
+
+            .sm\:pb-70 {
+                padding-bottom: 70px
+            }
+
+            .sm\:pr-12 {
+                padding-right: 12px
+            }
+
+            .sm\:pt-100 {
+                padding-top: 100px
+            }
+
+            .sm\:text-left {
+                text-align: left
+            }
+
+            .sm\:text-right {
+                text-align: right
+            }
+
+            .sm\:text-40 {
+                font-size: 40px
+            }
+
+            .sm\:text-24 {
+                font-size: 24px
+            }
+
+            .sm\:text-48 {
+                font-size: 48px
+            }
+
+            .sm\:text-20 {
+                font-size: 20px
+            }
+
+            .sm\:text-18 {
+                font-size: 18px
+            }
+
+            .sm\:text-16 {
+                font-size: 16px
+            }
+
+            .sm\:text-60 {
+                font-size: 60px
+            }
+        }
+
+        @media(min-width:1024px) {
+            .md\:order-1 {
+                order: 1
+            }
+
+            .md\:order-3 {
+                order: 3
+            }
+
+            .md\:order-first {
+                order: -9999
+            }
+
+            .md\:-m-28 {
+                margin: -28px
+            }
+
+            .md\:m-0 {
+                margin: 0
+            }
+
+            .md\:mx-0 {
+                margin-left: 0;
+                margin-right: 0
+            }
+
+            .md\:-mx-21 {
+                margin-left: -21px;
+                margin-right: -21px
+            }
+
+            .md\:-mx-60 {
+                margin-left: -60px;
+                margin-right: -60px
+            }
+
+            .md\:-mx-36 {
+                margin-left: -36px;
+                margin-right: -36px
+            }
+
+            .md\:mr-60 {
+                margin-right: 60px
+            }
+
+            .md\:mb-0 {
+                margin-bottom: 0
+            }
+
+            .md\:mt-120 {
+                margin-top: 120px
+            }
+
+            .md\:mb-80 {
+                margin-bottom: 80px
+            }
+
+            .md\:mr-40 {
+                margin-right: 40px
+            }
+
+            .md\:mb-67 {
+                margin-bottom: 67px
+            }
+
+            .md\:mb-42 {
+                margin-bottom: 42px
+            }
+
+            .md\:mb-66 {
+                margin-bottom: 66px
+            }
+
+            .md\:mb-170 {
+                margin-bottom: 170px
+            }
+
+            .md\:-mr-60 {
+                margin-right: -60px
+            }
+
+            .md\:mb-196 {
+                margin-bottom: 196px
+            }
+
+            .md\:mb-115 {
+                margin-bottom: 115px
+            }
+
+            .md\:mb-75 {
+                margin-bottom: 75px
+            }
+
+            .md\:mb-74 {
+                margin-bottom: 74px
+            }
+
+            .md\:mb-54 {
+                margin-bottom: 54px
+            }
+
+            .md\:mb-45 {
+                margin-bottom: 45px
+            }
+
+            .md\:mt-0 {
+                margin-top: 0
+            }
+
+            .md\:block {
+                display: block
+            }
+
+            .md\:inline-block {
+                display: inline-block
+            }
+
+            .md\:flex {
+                display: flex
+            }
+
+            .md\:hidden {
+                display: none
+            }
+
+            .md\:h-48 {
+                height: 48px
+            }
+
+            .md\:w-22\.3p {
+                width: 22.3%
+            }
+
+            .md\:w-22 {
+                width: 22px
+            }
+
+            .md\:w-53\.3p {
+                width: 53.3%
+            }
+
+            .md\:w-53 {
+                width: 53px
+            }
+
+            .md\:w-3\/12 {
+                width: 25%
+            }
+
+            .md\:w-9\/12 {
+                width: 75%
+            }
+
+            .md\:w-6\/12 {
+                width: 50%
+            }
+
+            .md\:w-1\/4 {
+                width: 25%
+            }
+
+            .md\:w-1\/2 {
+                width: 50%
+            }
+
+            .md\:w-500 {
+                width: 500px
+            }
+
+            .md\:w-full {
+                width: 100%
+            }
+
+            .md\:w-auto {
+                width: auto
+            }
+
+            .md\:min-w-0 {
+                min-width: 0
+            }
+
+            .md\:max-w-none {
+                max-width: none
+            }
+
+            .md\:max-w-380 {
+                max-width: 380px
+            }
+
+            .md\:max-w-434 {
+                max-width: 434px
+            }
+
+            .md\:flex-1 {
+                flex: 1
+            }
+
+            .md\:flex-row {
+                flex-direction: row
+            }
+
+            .md\:items-center {
+                align-items: center
+            }
+
+            .md\:justify-start {
+                justify-content: flex-start
+            }
+
+            .md\:justify-between {
+                justify-content: space-between
+            }
+
+            .md\:overflow-visible {
+                overflow: visible
+            }
+
+            .md\:border-transparent {
+                border-color: transparent
+            }
+
+            .md\:border-black-100 {
+                --tw-border-opacity: 1;
+                border-color: rgb(15 15 14/var(--tw-border-opacity))
+            }
+
+            .md\:bg-transparent {
+                background-color: transparent
+            }
+
+            .md\:p-28 {
+                padding: 28px
+            }
+
+            .md\:p-0 {
+                padding: 0
+            }
+
+            .md\:py-38 {
+                padding-top: 38px;
+                padding-bottom: 38px
+            }
+
+            .md\:px-41 {
+                padding-left: 41px;
+                padding-right: 41px
+            }
+
+            .md\:px-15 {
+                padding-left: 15px;
+                padding-right: 15px
+            }
+
+            .md\:py-22 {
+                padding-top: 22px;
+                padding-bottom: 22px
+            }
+
+            .md\:px-8 {
+                padding-left: 8px;
+                padding-right: 8px
+            }
+
+            .md\:px-60 {
+                padding-left: 60px;
+                padding-right: 60px
+            }
+
+            .md\:py-100 {
+                padding-top: 100px;
+                padding-bottom: 100px
+            }
+
+            .md\:px-48 {
+                padding-left: 48px;
+                padding-right: 48px
+            }
+
+            .md\:py-80 {
+                padding-top: 80px;
+                padding-bottom: 80px
+            }
+
+            .md\:px-0 {
+                padding-left: 0;
+                padding-right: 0
+            }
+
+            .md\:py-91 {
+                padding-top: 91px;
+                padding-bottom: 91px
+            }
+
+            .md\:px-36 {
+                padding-left: 36px;
+                padding-right: 36px
+            }
+
+            .md\:pb-0 {
+                padding-bottom: 0
+            }
+
+            .md\:pt-111 {
+                padding-top: 111px
+            }
+
+            .md\:pb-3 {
+                padding-bottom: 3px
+            }
+
+            .md\:pb-30 {
+                padding-bottom: 30px
+            }
+
+            .md\:pl-30 {
+                padding-left: 30px
+            }
+
+            .md\:pt-180 {
+                padding-top: 180px
+            }
+
+            .md\:pb-113 {
+                padding-bottom: 113px
+            }
+
+            .md\:pt-210 {
+                padding-top: 210px
+            }
+
+            .md\:pt-156 {
+                padding-top: 156px
+            }
+
+            .md\:pb-127 {
+                padding-bottom: 127px
+            }
+
+            .md\:pt-220 {
+                padding-top: 220px
+            }
+
+            .md\:pb-220 {
+                padding-bottom: 220px
+            }
+
+            .md\:pt-162 {
+                padding-top: 162px
+            }
+
+            .md\:pb-200 {
+                padding-bottom: 200px
+            }
+
+            .md\:pl-64 {
+                padding-left: 64px
+            }
+
+            .md\:pb-20 {
+                padding-bottom: 20px
+            }
+
+            .md\:pb-82 {
+                padding-bottom: 82px
+            }
+
+            .md\:pb-100 {
+                padding-bottom: 100px
+            }
+
+            .md\:text-left {
+                text-align: left
+            }
+
+            .md\:text-center {
+                text-align: center
+            }
+
+            .md\:text-right {
+                text-align: right
+            }
+
+            .md\:text-18 {
+                font-size: 18px
+            }
+
+            .md\:text-42 {
+                font-size: 42px
+            }
+
+            .md\:text-56 {
+                font-size: 56px
+            }
+
+            .md\:text-62 {
+                font-size: 62px
+            }
+
+            .md\:text-14 {
+                font-size: 14px
+            }
+
+            .md\:text-24 {
+                font-size: 24px
+            }
+
+            .md\:text-36 {
+                font-size: 36px
+            }
+
+            .md\:text-black-100 {
+                --tw-text-opacity: 1;
+                color: rgb(15 15 14/var(--tw-text-opacity))
+            }
+
+            .md\:hover\:bg-black-100:hover {
+                --tw-bg-opacity: 1;
+                background-color: rgb(15 15 14/var(--tw-bg-opacity))
+            }
+
+            .md\:hover\:text-white:hover {
+                --tw-text-opacity: 1;
+                color: rgb(255 255 255/var(--tw-text-opacity))
+            }
+        }
+
+        @media(min-width:1280px) {
+            .lg\:-mx-23 {
+                margin-left: -23px;
+                margin-right: -23px
+            }
+
+            .lg\:-mx-8 {
+                margin-left: -8px;
+                margin-right: -8px
+            }
+
+            .lg\:mr-90 {
+                margin-right: 90px
+            }
+
+            .lg\:mr-86 {
+                margin-right: 86px
+            }
+
+            .lg\:mr-83 {
+                margin-right: 83px
+            }
+
+            .lg\:w-8\/12 {
+                width: 66.666667%
+            }
+
+            .lg\:w-9\/12 {
+                width: 75%
+            }
+
+            .lg\:w-608 {
+                width: 608px
+            }
+
+            .lg\:w-52p {
+                width: 52%
+            }
+
+            .lg\:w-26p {
+                width: 26%
+            }
+
+            .lg\:w-22p {
+                width: 22%
+            }
+
+            .lg\:max-w-434 {
+                max-width: 434px
+            }
+
+            .lg\:flex-nowrap {
+                flex-wrap: nowrap
+            }
+
+            .lg\:justify-between {
+                justify-content: space-between
+            }
+
+            .lg\:px-21 {
+                padding-left: 21px;
+                padding-right: 21px
+            }
+
+            .lg\:px-23 {
+                padding-left: 23px;
+                padding-right: 23px
+            }
+
+            .lg\:px-36 {
+                padding-left: 36px;
+                padding-right: 36px
+            }
+
+            .lg\:px-12 {
+                padding-left: 12px;
+                padding-right: 12px
+            }
+
+            .lg\:px-8 {
+                padding-left: 8px;
+                padding-right: 8px
+            }
+
+            .lg\:pt-80 {
+                padding-top: 80px
+            }
+
+            .lg\:text-56 {
+                font-size: 56px
+            }
+
+            .lg\:text-16 {
+                font-size: 16px
+            }
+
+            .lg\:text-24 {
+                font-size: 24px
+            }
+        }
+
+        @media(min-width:1440px) {
+            .xl\:w-2\/12 {
+                width: 16.666667%
+            }
+
+            .xl\:w-10\/12 {
+                width: 83.333333%
+            }
+
+            .xl\:pl-29 {
+                padding-left: 29px
+            }
+
+            .xl\:pr-105 {
+                padding-right: 105px
+            }
+
+            .xl\:pl-32 {
+                padding-left: 32px
+            }
+
+            .xl\:pr-34 {
+                padding-right: 34px
+            }
+
+            .xl\:text-16 {
+                font-size: 16px
+            }
+        }
+    </style>
+    <link rel="stylesheet" href="/main.min.a09f1f7d5c32eba3a323bc3c39fca98dc62a83bad52faf6e0c62e7c5285cab6a.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="/main.min.a09f1f7d5c32eba3a323bc3c39fca98dc62a83bad52faf6e0c62e7c5285cab6a.css"></noscript>
+
+
+
+</head>
+<body>
+    <div id="wrapper">
+        <header class="bg-yellow-100 py-20 md:py-38 absolute left-0 right-0 top-0 z-9">
+            <div class="container">
+                <div class="flex items-center">
+                    <div class="w-160 md:mr-60 lg:mr-90">
+                        <a href="/">
+                            <img src="/images/logo.svg" alt="ScrapingBee logo" height="26" width="160">
+                        </a>
+                    </div>
+                    <span class="nav-opener md:hidden cursor-pointer absolute top-0 right-0 mt-19 mr-20"><i class="icon-menu"></i></span>
+                    <div class="navbar-wrap overflow-hidden md:overflow-visible md:flex-1">
+                        <nav class="navbar px-20 py-20 md:p-0 md:flex md:items-center md:justify-between text-16 leading-a20 bg-black-100 md:bg-transparent text-white md:text-black-100">
+                            <ul class="flex items-center -mx-21 justify-between md:justify-start border-b border-blue-200 md:border-transparent pb-20 md:pb-0 mb-30 md:mb-0">
+                                <li class="px-15 lg:px-21"><a href="https://app.scrapingbee.com/account/login" class="block hover:underline">Login</a></li>
+                                <li class="px-15 lg:px-21"><a href="https://app.scrapingbee.com/account/register" class="btn btn-black-o text-16 px-21 h-40 md:h-48 border-white md:border-black-100 text-white md:text-black-100 hover:bg-white md:hover:bg-black-100 hover:text-black-100 md:hover:text-white transition-all">Sign Up</a></li>
+                            </ul>
+                            <ul class="md:flex md:order-first md:items-center md:-mx-21">
+                                <li class="relative md:px-15 lg:px-21 mb-20 md:mb-0"><a href="/#pricing" class="block hover:underline">Pricing</a></li>
+                                <li class="relative md:px-15 lg:px-21 mb-20 md:mb-0"><a href="/#faq" class="block hover:underline">FAQ</a></li>
+                                <li class="relative md:px-15 lg:px-21 mb-20 md:mb-0"><a href="/blog/" class="block hover:underline">Blog</a></li>
+                                <li class="relative md:px-15 lg:px-21 mb-20 md:mb-0 hasdrop">
+                                    <a href="#" class="block hover:underline hasdrop-a" data-more="" data-outside="">Other Features</a>
+                                    <ul class="nav-drop" style="display: none;">
+                                        <li><a href="/features/screenshot/" class="text-white hover:underline">Screenshots</a></li>
+                                        <li class="mt-12"><a href="/features/google/" class="text-white hover:underline">Google search API</a></li>
+                                        <li class="mt-12"><a href="/features/data-extraction/" class="text-white hover:underline">Data extraction</a></li>
+                                        <li class="mt-12"><a href="/features/javascript-scenario/" class="text-white hover:underline">JavaScript scenario</a></li>
+                                        <li class="mt-12"><a href="/features/make/" class="text-white hover:underline">No code web scraping</a></li>
+                                    </ul>
+                                </li>
+                                <li class="relative md:px-15 lg:px-21 mb-20 md:mb-0 hasdrop">
+                                    <a href="#" class="block hover:underline hasdrop-a" data-more="" data-outside="">Developers</a>
+                                    <ul class="nav-drop" style="display: none;">
+                                        <li><a href="/tutorials" class="text-white hover:underline">Tutorials</a></li>
+                                        <li class="mt-12"><a href="/documentation" class="text-white hover:underline">Documentation</a></li>
+                                        <li class="mt-12"><a href="https://help.scrapingbee.com/en/" target="_blank" class="text-white hover:underline">Knowledge Base</a></li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </header>
+        <div id="content">
+
+            <section class="bg-yellow-100 mt-66 md:mt-120 pt-50 sm:pt-102 pb-80 sm:pb-80 text-center">
+                <div class="container max-w-1504">
+                    <div class="max-w-894 mx-auto">
+                        <h1 class="mb-21">The ScrapingBee Blog</h1>
+                        <p class="text-30">We help you get better at web-scraping: detailed tutorials, case studies and writings by industry experts.</p>
+                    </div>
+                    <div class="max-w-620 mx-auto mt-60 border-t-2 border-black-100 pt-20">
+                        <h4 class="mb-21">Don't know where to begin?</h4>
+                        <p> Check out our most popular articles.</p>
+                    </div>
+                    <div class="max-w-full mx-auto mt-30 flex flex-wrap justify-center bg-none gap-10">
+
+                        <a href="/blog/web-scraping-without-getting-blocked/" class="flex flex-col justify-between bg-white rounded-md text-center py-6 px-10 shadow-sm hover:shadow-2xl">
+                            <img src="/images/icons/icon-web.svg" alt="Python" style="margin: auto" width="32" height="32">
+                            <span>
+                                Web scraping without getting blocked
+                            </span>
+                        </a>
+
+                        <a href="/blog/web-scraping-101-with-python/" class="flex flex-col justify-between bg-white rounded-md text-center py-6 px-10 shadow-sm hover:shadow-2xl">
+                            <img src="/images/icons/icon-python.svg" alt="Python" style="margin: auto" width="32" height="32">
+                            <span>
+                                Web scraping in Python
+                            </span>
+                        </a>
+
+                        <a href="/blog/web-scraping-javascript/" class="flex flex-col justify-between bg-white rounded-md text-center py-6 px-10 shadow-sm hover:shadow-2xl">
+                            <img src="/images/icons/icon-node.svg" alt="Python" style="margin: auto" width="32" height="32">
+                            <span>
+                                Web scraping in NodeJS
+                            </span>
+                        </a>
+
+                        <a href="/blog/web-scraping-r/" class="flex flex-col justify-between bg-white rounded-md text-center py-6 px-10 shadow-sm hover:shadow-2xl">
+                            <img src="/images/icons/icon-r.svg" alt="Python" style="margin: auto" width="32" height="32">
+                            <span>
+                                Web scraping in R
+                            </span>
+                        </a>
+
+                        <a href="/blog/web-scraping-c++/" class="flex flex-col justify-between bg-white rounded-md text-center py-6 px-10 shadow-sm hover:shadow-2xl">
+                            <img src="/images/icons/icon-cpp.svg" alt="Python" style="margin: auto" width="32" height="32">
+                            <span>
+                                Web scraping in C++
+                            </span>
+                        </a>
+
+                        <a href="/blog/web-scraping-csharp/" class="flex flex-col justify-between bg-white rounded-md text-center py-6 px-10 shadow-sm hover:shadow-2xl">
+                            <img src="/images/icons/icon-c-sharp.svg" alt="Python" style="margin: auto" width="32" height="32">
+                            <span>
+                                Web scraping in C#
+                            </span>
+                        </a>
+
+                        <a href="/blog/web-scraping-php/" class="flex flex-col justify-between bg-white rounded-md text-center py-6 px-10 shadow-sm hover:shadow-2xl">
+                            <img src="/images/icons/icon-php.svg" alt="Python" style="margin: auto" width="32" height="32">
+                            <span>
+                                Web scraping in Php
+                            </span>
+                        </a>
+
+                        <a href="/java-webscraping-book/" class="flex flex-col justify-between bg-white rounded-md text-center py-6 px-10 shadow-sm hover:shadow-2xl">
+                            <img src="/images/icons/icon-java.svg" alt="Python" style="margin: auto" width="32" height="32">
+                            <span>
+                                Java web scraping Book
+                            </span>
+                        </a>
+
+                        <a href="/blog/web-scraping-ruby/" class="flex flex-col justify-between bg-white rounded-md text-center py-6 px-10 shadow-sm hover:shadow-2xl">
+                            <img src="/images/icons/icon-ruby.svg" alt="Python" style="margin: auto" width="32" height="32">
+                            <span>
+                                Web scraping in Ruby
+                            </span>
+                        </a>
+
+                        <a href="/blog/web-scraping-go/" class="flex flex-col justify-between bg-white rounded-md text-center py-6 px-10 shadow-sm hover:shadow-2xl">
+                            <img src="/images/icons/icon-go.svg" alt="Python" style="margin: auto" width="32" height="32">
+                            <span>
+                                Web scraping in Go
+                            </span>
+                        </a>
+
+                        <a href="/blog/web-scraping-elixir/" class="flex flex-col justify-between bg-white rounded-md text-center py-6 px-10 shadow-sm hover:shadow-2xl">
+                            <img src="/images/icons/icon-elixir.svg" alt="Python" style="margin: auto" width="32" height="32">
+                            <span>
+                                Web scraping in Elixir
+                            </span>
+                        </a>
+
+                        <a href="/blog/web-scraping-rust/" class="flex flex-col justify-between bg-white rounded-md text-center py-6 px-10 shadow-sm hover:shadow-2xl">
+                            <img src="/images/icons/icon-rust.svg" alt="Python" style="margin: auto" width="32" height="32">
+                            <span>
+                                Web scraping in Rust
+                            </span>
+                        </a>
+
+                        <a href="/blog/web-scraping-perl/" class="flex flex-col justify-between bg-white rounded-md text-center py-6 px-10 shadow-sm hover:shadow-2xl">
+                            <img src="/images/icons/icon-perl.svg" alt="Python" style="margin: auto" width="32" height="32">
+                            <span>
+                                Web scraping in Perl
+                            </span>
+                        </a>
+
+                        <a href="/blog/no-code-web-scraping/" class="flex flex-col justify-between bg-white rounded-md text-center py-6 px-10 shadow-sm hover:shadow-2xl">
+                            <img src="/images/icons/icon-web.svg" alt="Python" style="margin: auto" width="32" height="32">
+                            <span>
+                                No code web scraping
+                            </span>
+                        </a>
+
+                        <a href="/blog/no-code-competitor-monitoring/" class="flex flex-col justify-between bg-white rounded-md text-center py-6 px-10 shadow-sm hover:shadow-2xl">
+                            <img src="/images/icons/binoculars.svg" alt="Python" style="margin: auto" width="32" height="32">
+                            <span>
+                                No code competitor monitoring
+                            </span>
+                        </a>
+
+                    </div>
+                </div>
+            </section>
+            <div class="py-50 sm:pt-91 sm:pb-71">
+                <div class="container max-w-1276">
+                    <div class="max-w-970 mx-auto">
+                        <div class="flex flex-wrap -m-10 md:-m-28">
+
+
+
+
+
+                            <div class="p-10 md:p-28 flex">
+                                <a href="/blog/parse-html-regex/" class="shadow-card hover:shadow-2xl rounded-8 overflow-hidden flex flex-wrap text-16 leading-a50">
+                                    <div class="bg-white w-full sm:w-c28 flex items-center justify-center h-204 sm:h-auto">
+                                        <img src="/blog/parse-html-regex/cover.png" class="w-full h-auto object-cover" alt="How to Parse HTML with Regex">
+                                    </div>
+                                    <div class="bg-white p-20 sm:p-32 flex-1 flex flex-col">
+                                        <div class="flex-1 mb-24">
+                                            <div class="flex flex-wrap items-center mb-24">
+                                                <span class="text-16">12 min read</span>
+                                            </div>
+                                            <h4 class="font-bold mb-12 capitalize">How to Parse HTML with Regex</h4>
+                                            <div class="text-gray-200">
+                                                <p>Web scraping has a number of applications in the modern day software industry. This tutorial shows you how to parse HTML and extract data from the content using regular expressions (regex).</p>
+                                            </div>
+                                        </div>
+                                        <div class="flex flex-wrap items-center">
+                                            <div class="w-40 rounded-100p overflow-hidden mr-12">
+                                                <img src="/images/authors/anonymous.jpg" class="block" alt="">
+                                            </div>
+                                            <div class="flex-1 text-16 leading-a50">
+                                                <strong class="block">Rajkumar&nbsp;Venkatasamy</strong>
+                                                <time class="block text-gray-200" datetime="2021-09-27">05 January 2023</time>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </a>
+                            </div>
+
+
+
+
+
+
+                            <div class="w-full sm:w-1/2 p-10 md:p-28 flex">
+                                <a href="/blog/crawling-python/" class="shadow-card hover:shadow-2xl rounded-8 overflow-hidden flex flex-col text-16 leading-a50">
+                                    <div class="bg-yellow-100 h-204 flex items-center justify-center">
+                                        <img src="/blog/crawling-python/cover.png" class="w-full h-full object-cover" alt="">
+                                    </div>
+                                    <div class="bg-white p-20 sm:p-32 flex-1 flex flex-col">
+                                        <div class="flex-1 mb-40">
+                                            <div class="flex flex-wrap items-center mb-24">
+                                                <span class="text-16">14 min read</span>
+                                            </div>
+                                            <h4 class="font-bold mb-12 capitalize">Web crawling with Python</h4>
+                                            <div class="text-gray-200">
+                                                <p>This post will show you how to crawl the web using Python. Web crawling is a powerful technique to collect data from the web by finding all the URLs for one or multiple domains</p>
+                                            </div>
+                                        </div>
+                                        <div class="flex flex-wrap items-center">
+                                            <div class="w-40 rounded-100p overflow-hidden mr-12">
+                                                <img src="/images/authors/ari.png" class="block" alt="">
+                                            </div>
+                                            <div class="flex-1 text-16 leading-a50">
+                                                <strong class="block">Ari Bajo</strong>
+                                                <time class="block text-gray-200" datetime="2021-09-27">05 January 2023</time>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </a>
+                            </div>
+
+
+
+
+                            <div class="w-full sm:w-1/2 p-10 md:p-28 flex">
+                                <a href="/blog/web-scraping-youtube/" class="shadow-card hover:shadow-2xl rounded-8 overflow-hidden flex flex-col text-16 leading-a50">
+                                    <div class="bg-yellow-100 h-204 flex items-center justify-center">
+                                        <img src="/blog/web-scraping-youtube/cover.png" class="w-full h-full object-cover" alt="">
+                                    </div>
+                                    <div class="bg-white p-20 sm:p-32 flex-1 flex flex-col">
+                                        <div class="flex-1 mb-40">
+                                            <div class="flex flex-wrap items-center mb-24">
+                                                <span class="text-16">14 min read</span>
+                                            </div>
+                                            <h4 class="font-bold mb-12 capitalize">How to scrape channel data from YouTube</h4>
+                                            <div class="text-gray-200">
+                                                <p>Learn how to easily scrape channel data from youtube.com.</p>
+                                            </div>
+                                        </div>
+                                        <div class="flex flex-wrap items-center">
+                                            <div class="w-40 rounded-100p overflow-hidden mr-12">
+                                                <img src="/images/authors/yasoob.png" class="block" alt="">
+                                            </div>
+                                            <div class="flex-1 text-16 leading-a50">
+                                                <strong class="block">Yasoob Khalid</strong>
+                                                <time class="block text-gray-200" datetime="2021-09-27">27 December 2022</time>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </a>
+                            </div>
+
+
+
+
+                            <div class="w-full sm:w-1/2 p-10 md:p-28 flex">
+                                <a href="/blog/ruby-html-parser/" class="shadow-card hover:shadow-2xl rounded-8 overflow-hidden flex flex-col text-16 leading-a50">
+                                    <div class="bg-yellow-100 h-204 flex items-center justify-center">
+                                        <img src="/blog/ruby-html-parser/cover.png" class="w-full h-full object-cover" alt="">
+                                    </div>
+                                    <div class="bg-white p-20 sm:p-32 flex-1 flex flex-col">
+                                        <div class="flex-1 mb-40">
+                                            <div class="flex flex-wrap items-center mb-24">
+                                                <span class="text-16">7 min read</span>
+                                            </div>
+                                            <h4 class="font-bold mb-12 capitalize">Ruby HTML and XML Parsers</h4>
+                                            <div class="text-gray-200">
+                                                <p>Web scraping comes in handy when collecting large amounts of data from the internet. This roundup shares a list of popular Ruby HTML and XML parsers that you can use to simplify web scraping.</p>
+                                            </div>
+                                        </div>
+                                        <div class="flex flex-wrap items-center">
+                                            <div class="w-40 rounded-100p overflow-hidden mr-12">
+                                                <img src="/images/authors/Tahanima-Chowdhury.jpg" class="block" alt="">
+                                            </div>
+                                            <div class="flex-1 text-16 leading-a50">
+                                                <strong class="block">Tahanima Chowdhury</strong>
+                                                <time class="block text-gray-200" datetime="2021-09-27">16 December 2022</time>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </a>
+                            </div>
+
+
+
+
+                            <div class="w-full sm:w-1/2 p-10 md:p-28 flex">
+                                <a href="/blog/web-scraping-with-scrapy/" class="shadow-card hover:shadow-2xl rounded-8 overflow-hidden flex flex-col text-16 leading-a50">
+                                    <div class="bg-yellow-100 h-204 flex items-center justify-center">
+                                        <img src="/blog/web-scraping-with-scrapy/cover.png" class="w-full h-full object-cover" alt="">
+                                    </div>
+                                    <div class="bg-white p-20 sm:p-32 flex-1 flex flex-col">
+                                        <div class="flex-1 mb-40">
+                                            <div class="flex flex-wrap items-center mb-24">
+                                                <span class="text-16">17 min read</span>
+                                            </div>
+                                            <h4 class="font-bold mb-12 capitalize">Easy web scraping with Scrapy</h4>
+                                            <div class="text-gray-200">
+                                                <p>Scrapy is the most popular Python web scraping framework. In this tutorial we will see how to scrape an E-commerce website with Scrapy from scratch.</p>
+                                            </div>
+                                        </div>
+                                        <div class="flex flex-wrap items-center">
+                                            <div class="w-40 rounded-100p overflow-hidden mr-12">
+                                                <img src="/images/authors/kevin.png" class="block" alt="">
+                                            </div>
+                                            <div class="flex-1 text-16 leading-a50">
+                                                <strong class="block">Kevin Sahin</strong>
+                                                <time class="block text-gray-200" datetime="2021-09-27">13 December 2022</time>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </a>
+                            </div>
+
+
+
+
+                            <div class="w-full sm:w-1/2 p-10 md:p-28 flex">
+                                <a href="/blog/xpath-vs-css-selector/" class="shadow-card hover:shadow-2xl rounded-8 overflow-hidden flex flex-col text-16 leading-a50">
+                                    <div class="bg-yellow-100 h-204 flex items-center justify-center">
+                                        <img src="/blog/xpath-vs-css-selector/cover.png" class="w-full h-full object-cover" alt="">
+                                    </div>
+                                    <div class="bg-white p-20 sm:p-32 flex-1 flex flex-col">
+                                        <div class="flex-1 mb-40">
+                                            <div class="flex flex-wrap items-center mb-24">
+                                                <span class="text-16">12 min read</span>
+                                            </div>
+                                            <h4 class="font-bold mb-12 capitalize">XPath vs CSS selectors</h4>
+                                            <div class="text-gray-200">
+                                                <p>Looking at the differences between XPath expressions and CSS selectors. When it is best to use an XPath expression and when a CSS selector. Advantages and drawbacks of each.</p>
+                                            </div>
+                                        </div>
+                                        <div class="flex flex-wrap items-center">
+                                            <div class="w-40 rounded-100p overflow-hidden mr-12">
+                                                <img src="/images/authors/alexander.jpg" class="block" alt="">
+                                            </div>
+                                            <div class="flex-1 text-16 leading-a50">
+                                                <strong class="block">Alexander M</strong>
+                                                <time class="block text-gray-200" datetime="2021-09-27">06 December 2022</time>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </a>
+                            </div>
+
+
+
+
+                            <div class="w-full sm:w-1/2 p-10 md:p-28 flex">
+                                <a href="/blog/ruby-faraday-proxy/" class="shadow-card hover:shadow-2xl rounded-8 overflow-hidden flex flex-col text-16 leading-a50">
+                                    <div class="bg-yellow-100 h-204 flex items-center justify-center">
+                                        <img src="/blog/ruby-faraday-proxy/cover.png" class="w-full h-full object-cover" alt="">
+                                    </div>
+                                    <div class="bg-white p-20 sm:p-32 flex-1 flex flex-col">
+                                        <div class="flex-1 mb-40">
+                                            <div class="flex flex-wrap items-center mb-24">
+                                                <span class="text-16">6 min read</span>
+                                            </div>
+                                            <h4 class="font-bold mb-12 capitalize">How to use a Proxy with Ruby and Faraday</h4>
+                                            <div class="text-gray-200">
+                                                <p>Learn how to use a proxy with Ruby and Faraday and prevent your IP from being blacklisted.</p>
+                                            </div>
+                                        </div>
+                                        <div class="flex flex-wrap items-center">
+                                            <div class="w-40 rounded-100p overflow-hidden mr-12">
+                                                <img src="/images/authors/yasoob.png" class="block" alt="">
+                                            </div>
+                                            <div class="flex-1 text-16 leading-a50">
+                                                <strong class="block">Yasoob Khalid</strong>
+                                                <time class="block text-gray-200" datetime="2021-09-27">24 November 2022</time>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </a>
+                            </div>
+
+
+
+
+                            <div class="w-full sm:w-1/2 p-10 md:p-28 flex">
+                                <a href="/blog/web-scraping-realtor/" class="shadow-card hover:shadow-2xl rounded-8 overflow-hidden flex flex-col text-16 leading-a50">
+                                    <div class="bg-yellow-100 h-204 flex items-center justify-center">
+                                        <img src="/blog/web-scraping-realtor/cover.png" class="w-full h-full object-cover" alt="">
+                                    </div>
+                                    <div class="bg-white p-20 sm:p-32 flex-1 flex flex-col">
+                                        <div class="flex-1 mb-40">
+                                            <div class="flex flex-wrap items-center mb-24">
+                                                <span class="text-16">10 min read</span>
+                                            </div>
+                                            <h4 class="font-bold mb-12 capitalize">How to scrape data from realtor.com</h4>
+                                            <div class="text-gray-200">
+                                                <p>Learn how to use selenium to scrape data from realtor.com and evade bot detection.</p>
+                                            </div>
+                                        </div>
+                                        <div class="flex flex-wrap items-center">
+                                            <div class="w-40 rounded-100p overflow-hidden mr-12">
+                                                <img src="/images/authors/yasoob.png" class="block" alt="">
+                                            </div>
+                                            <div class="flex-1 text-16 leading-a50">
+                                                <strong class="block">Yasoob Khalid</strong>
+                                                <time class="block text-gray-200" datetime="2021-09-27">23 November 2022</time>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </a>
+                            </div>
+
+
+
+
+                            <div class="w-full sm:w-1/2 p-10 md:p-28 flex">
+                                <a href="/blog/using-css-selectors-for-web-scraping/" class="shadow-card hover:shadow-2xl rounded-8 overflow-hidden flex flex-col text-16 leading-a50">
+                                    <div class="bg-yellow-100 h-204 flex items-center justify-center">
+                                        <img src="/blog/using-css-selectors-for-web-scraping/cover.png" class="w-full h-full object-cover" alt="">
+                                    </div>
+                                    <div class="bg-white p-20 sm:p-32 flex-1 flex flex-col">
+                                        <div class="flex-1 mb-40">
+                                            <div class="flex flex-wrap items-center mb-24">
+                                                <span class="text-16">15 min read</span>
+                                            </div>
+                                            <h4 class="font-bold mb-12 capitalize">Using CSS Selectors for Web Scraping</h4>
+                                            <div class="text-gray-200">
+                                                <p>We are taking a look at how CSS selectors can help us in web scraping, what their syntax is, how we build an ideal selector string, and how they are supported in mainstream languages.</p>
+                                            </div>
+                                        </div>
+                                        <div class="flex flex-wrap items-center">
+                                            <div class="w-40 rounded-100p overflow-hidden mr-12">
+                                                <img src="/images/authors/alexander.jpg" class="block" alt="">
+                                            </div>
+                                            <div class="flex-1 text-16 leading-a50">
+                                                <strong class="block">Alexander M</strong>
+                                                <time class="block text-gray-200" datetime="2021-09-27">21 November 2022</time>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </a>
+                            </div>
+
+
+
+
+                            <div class="w-full sm:w-1/2 p-10 md:p-28 flex">
+                                <a href="/blog/web-scraping-idealista/" class="shadow-card hover:shadow-2xl rounded-8 overflow-hidden flex flex-col text-16 leading-a50">
+                                    <div class="bg-yellow-100 h-204 flex items-center justify-center">
+                                        <img src="/blog/web-scraping-idealista/cover.png" class="w-full h-full object-cover" alt="">
+                                    </div>
+                                    <div class="bg-white p-20 sm:p-32 flex-1 flex flex-col">
+                                        <div class="flex-1 mb-40">
+                                            <div class="flex flex-wrap items-center mb-24">
+                                                <span class="text-16">13 min read</span>
+                                            </div>
+                                            <h4 class="font-bold mb-12 capitalize">How to scrape data from idealista</h4>
+                                            <div class="text-gray-200">
+                                                <p>Learn how to use selenium to scrape data from Idealista and evade bot detection.</p>
+                                            </div>
+                                        </div>
+                                        <div class="flex flex-wrap items-center">
+                                            <div class="w-40 rounded-100p overflow-hidden mr-12">
+                                                <img src="/images/authors/yasoob.png" class="block" alt="">
+                                            </div>
+                                            <div class="flex-1 text-16 leading-a50">
+                                                <strong class="block">Yasoob Khalid</strong>
+                                                <time class="block text-gray-200" datetime="2021-09-27">19 November 2022</time>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </a>
+                            </div>
+
+
+
+
+                            <div class="w-full sm:w-1/2 p-10 md:p-28 flex">
+                                <a href="/blog/best-mobile-4g-proxy-provider-webscraping/" class="shadow-card hover:shadow-2xl rounded-8 overflow-hidden flex flex-col text-16 leading-a50">
+                                    <div class="bg-yellow-100 h-204 flex items-center justify-center">
+                                        <img src="/blog/best-mobile-4g-proxy-provider-webscraping/cover.png" class="w-full h-full object-cover" alt="">
+                                    </div>
+                                    <div class="bg-white p-20 sm:p-32 flex-1 flex flex-col">
+                                        <div class="flex-1 mb-40">
+                                            <div class="flex flex-wrap items-center mb-24">
+                                                <span class="text-16">11 min read</span>
+                                            </div>
+                                            <h4 class="font-bold mb-12 capitalize">The 6 Best mobile and 4G proxy providers for web scraping</h4>
+                                            <div class="text-gray-200">
+                                                <p>This post will show you the top 6 mobile and 4g proxy provider for web scraping like ScrapingBee and Airproxy.</p>
+                                            </div>
+                                        </div>
+                                        <div class="flex flex-wrap items-center">
+                                            <div class="w-40 rounded-100p overflow-hidden mr-12">
+                                                <img src="/images/authors/kevin.png" class="block" alt="">
+                                            </div>
+                                            <div class="flex-1 text-16 leading-a50">
+                                                <strong class="block">Kevin Sahin</strong>
+                                                <time class="block text-gray-200" datetime="2021-09-27">08 November 2022</time>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </a>
+                            </div>
+
+
+
+
+                            <div class="w-full sm:w-1/2 p-10 md:p-28 flex">
+                                <a href="/blog/parse-html-nokogiri/" class="shadow-card hover:shadow-2xl rounded-8 overflow-hidden flex flex-col text-16 leading-a50">
+                                    <div class="bg-yellow-100 h-204 flex items-center justify-center">
+                                        <img src="/blog/parse-html-nokogiri/cover.png" class="w-full h-full object-cover" alt="">
+                                    </div>
+                                    <div class="bg-white p-20 sm:p-32 flex-1 flex flex-col">
+                                        <div class="flex-1 mb-40">
+                                            <div class="flex flex-wrap items-center mb-24">
+                                                <span class="text-16">8 min read</span>
+                                            </div>
+                                            <h4 class="font-bold mb-12 capitalize">How to Parse HTML in Ruby with Nokogiri?</h4>
+                                            <div class="text-gray-200">
+                                                <p>Learn to parse HTML with Ruby and Nokogiri with this step-by-step tutorial. We will see the different ways to scrape the web in Ruby through lots of example with the Nokogiri library.</p>
+                                            </div>
+                                        </div>
+                                        <div class="flex flex-wrap items-center">
+                                            <div class="w-40 rounded-100p overflow-hidden mr-12">
+                                                <img src="/images/authors/aniket.jpg" class="block" alt="">
+                                            </div>
+                                            <div class="flex-1 text-16 leading-a50">
+                                                <strong class="block">Aniket Bhattacharyea</strong>
+                                                <time class="block text-gray-200" datetime="2021-09-27">08 November 2022</time>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </a>
+                            </div>
+
+
+
+
+                            <div class="w-full sm:w-1/2 p-10 md:p-28 flex">
+                                <a href="/blog/web-scraping-booking/" class="shadow-card hover:shadow-2xl rounded-8 overflow-hidden flex flex-col text-16 leading-a50">
+                                    <div class="bg-yellow-100 h-204 flex items-center justify-center">
+                                        <img src="/blog/web-scraping-booking/cover.png" class="w-full h-full object-cover" alt="">
+                                    </div>
+                                    <div class="bg-white p-20 sm:p-32 flex-1 flex flex-col">
+                                        <div class="flex-1 mb-40">
+                                            <div class="flex flex-wrap items-center mb-24">
+                                                <span class="text-16">9 min read</span>
+                                            </div>
+                                            <h4 class="font-bold mb-12 capitalize">Web Scraping Booking.com</h4>
+                                            <div class="text-gray-200">
+                                                <p>Learn how to easily scrape search listings from booking.com.</p>
+                                            </div>
+                                        </div>
+                                        <div class="flex flex-wrap items-center">
+                                            <div class="w-40 rounded-100p overflow-hidden mr-12">
+                                                <img src="/images/authors/yasoob.png" class="block" alt="">
+                                            </div>
+                                            <div class="flex-1 text-16 leading-a50">
+                                                <strong class="block">Yasoob Khalid</strong>
+                                                <time class="block text-gray-200" datetime="2021-09-27">03 November 2022</time>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </a>
+                            </div>
+
+
+
+
+                            <div class="w-full sm:w-1/2 p-10 md:p-28 flex">
+                                <a href="/blog/web-scraping-twitter/" class="shadow-card hover:shadow-2xl rounded-8 overflow-hidden flex flex-col text-16 leading-a50">
+                                    <div class="bg-yellow-100 h-204 flex items-center justify-center">
+                                        <img src="/blog/web-scraping-twitter/cover.png" class="w-full h-full object-cover" alt="">
+                                    </div>
+                                    <div class="bg-white p-20 sm:p-32 flex-1 flex flex-col">
+                                        <div class="flex-1 mb-40">
+                                            <div class="flex flex-wrap items-center mb-24">
+                                                <span class="text-16">11 min read</span>
+                                            </div>
+                                            <h4 class="font-bold mb-12 capitalize">How to scrape data from Twitter.com</h4>
+                                            <div class="text-gray-200">
+                                                <p>Learn how to use selenium to scrape data from Twitter.</p>
+                                            </div>
+                                        </div>
+                                        <div class="flex flex-wrap items-center">
+                                            <div class="w-40 rounded-100p overflow-hidden mr-12">
+                                                <img src="/images/authors/yasoob.png" class="block" alt="">
+                                            </div>
+                                            <div class="flex-1 text-16 leading-a50">
+                                                <strong class="block">Yasoob Khalid</strong>
+                                                <time class="block text-gray-200" datetime="2021-09-27">26 October 2022</time>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </a>
+                            </div>
+
+
+
+
+                            <div class="w-full sm:w-1/2 p-10 md:p-28 flex">
+                                <a href="/blog/scraping-watir-ruby/" class="shadow-card hover:shadow-2xl rounded-8 overflow-hidden flex flex-col text-16 leading-a50">
+                                    <div class="bg-yellow-100 h-204 flex items-center justify-center">
+                                        <img src="/blog/scraping-watir-ruby/cover.png" class="w-full h-full object-cover" alt="">
+                                    </div>
+                                    <div class="bg-white p-20 sm:p-32 flex-1 flex flex-col">
+                                        <div class="flex-1 mb-40">
+                                            <div class="flex flex-wrap items-center mb-24">
+                                                <span class="text-16">9 min read</span>
+                                            </div>
+                                            <h4 class="font-bold mb-12 capitalize">Using Watir to automate web browsers with Ruby</h4>
+                                            <div class="text-gray-200">
+                                                <p>In this tutorial, you will learn about browser automation and how to do it using Watir and Ruby.</p>
+                                            </div>
+                                        </div>
+                                        <div class="flex flex-wrap items-center">
+                                            <div class="w-40 rounded-100p overflow-hidden mr-12">
+                                                <img src="/images/authors/jude.png" class="block" alt="">
+                                            </div>
+                                            <div class="flex-1 text-16 leading-a50">
+                                                <strong class="block">Jude Ero</strong>
+                                                <time class="block text-gray-200" datetime="2021-09-27">21 October 2022</time>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </a>
+                            </div>
+
+
+                        </div>
+                    </div>
+
+
+
+                    <div class="mt-70 md:mt-120 pt-19 border-t border-gray-700 flex flex-wrap items-center justify-between">
+                        <div class="min-w-120">
+
+                        </div>
+                        <ul class="paging order-1 sm:order-none flex flex-wrap justify-center items-center w-full sm:w-auto mt-20 sm:my-6 sm:-m-1 text-14">
+
+
+
+
+
+
+                            <li class="active p-1">
+                                <a href="/blog/" class="w-35 sm:w-40 h-35 sm:h-40 flex items-center justify-center hover:bg-yellow-100 rounded-8 transition-all">1</a>
+                            </li>
+
+
+
+
+
+
+                            <li class="p-1">
+                                <a href="/blog/page/2/" class="w-35 sm:w-40 h-35 sm:h-40 flex items-center justify-center hover:bg-yellow-100 rounded-8 transition-all">2</a>
+                            </li>
+
+
+
+
+
+
+                            <li class="p-1">
+                                <a href="/blog/page/3/" class="w-35 sm:w-40 h-35 sm:h-40 flex items-center justify-center hover:bg-yellow-100 rounded-8 transition-all">3</a>
+                            </li>
+
+
+
+
+
+
+                            <li class="p-1">
+                                <a href="/blog/page/4/" class="w-35 sm:w-40 h-35 sm:h-40 flex items-center justify-center hover:bg-yellow-100 rounded-8 transition-all">4</a>
+                            </li>
+
+
+
+
+
+
+                            <li class="p-1">
+                                <a href="/blog/page/5/" class="w-35 sm:w-40 h-35 sm:h-40 flex items-center justify-center hover:bg-yellow-100 rounded-8 transition-all">5</a>
+                            </li>
+
+
+
+
+
+
+                            <li class="p-1">
+                                <a href="/blog/page/6/" class="w-35 sm:w-40 h-35 sm:h-40 flex items-center justify-center hover:bg-yellow-100 rounded-8 transition-all">6</a>
+                            </li>
+
+
+                        </ul>
+                        <div class="min-w-120 sm:text-right">
+
+                            <a href="/blog/page/2/" class="w-full sm:w-auto inline-flex justify-center items-center py-5 pr-16 pl-18 border text-14 border-gray-300 hover:bg-yellow-100 hover:border-yellow-100 rounded-8 transition-all">
+                                Next
+                                <i class="icon-arrow-right ml-12"></i>
+                            </a>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <footer class="bg-black-100 relative text-white pt-80 md:pt-180 lg:pt-80 pb-50 z-100 text-center sm:text-left">
+            <div class="container">
+                <div class="flex flex-wrap items-center pb-70 md:pb-113 mb-48 border-b border-white border-opacity-20">
+                    <div class="w-full sm:flex-1 mb-40 sm:mb-0 pr-20">
+
+                        <h2 class="text-white font-bold text-2xl md:text-3xl mb-6">Tired of getting blocked while scraping the web?</h2>
+                        <p class="mb-5">ScrapingBee API handles headless browsers and rotates proxies for you.</p>
+                        <p>Get access to 1,000 free API credits, no credit card required!</p>
+
+                    </div>
+                    <div class="w-full sm:w-281 sm:text-right lg:mr-86">
+                        <a href="https://app.scrapingbee.com/account/register" class="btn btn-yellow px-37">Try ScrapingBee for Free</a>
+                    </div>
+                </div>
+                <div class="flex flex-wrap -mx-20">
+                    <div class="w-full md:w-1/4 px-20 mb-30 md:mb-0">
+                        <div class="logo mb-25">
+                            <a href="/"><img src="/images/logo-white.svg" width="164" height="28" class="inline-block" alt="ScrapingBee"></a>
+                        </div>
+                        <p class="mb-18">ScrapingBee API handles headless browsers and rotates proxies for you.</p>
+                        <ul class="flex flex-wrap justify-center sm:justify-start -mx-11">
+                            <li class="px-11"><a href="https://twitter.com/ScrapingBee" class="text-white hover:text-yellow-100"><i class="icon-twitter text-15"></i></a></li>
+                            <li class="px-11"><a href="https://www.linkedin.com/company/scrapingbee" class="text-white hover:text-yellow-100"><i class="icon-linkedin text-15"></i></a></li>
+                        </ul>
+                    </div>
+                    <div class="w-full sm:w-1/3 md:w-1/4 px-20">
+                        <div class="mb-30 sm:mb-40">
+                            <h4 class="text-18 text-yellow-100 font-bold leading-a77 mb-10 sm:mb-27">Company</h4>
+                            <ul class="text-16 md:text-18 leading-a33">
+                                <li class="mb-10 sm:mb-22"><a href="/#about-us" class="hover:underline">Team</a></li>
+                                <li class="mb-10 sm:mb-22"><a href="/journey-to-one-million-arr/" class="hover:underline">Company's journey</a></li>
+                                <li class="mb-10 sm:mb-22"><a href="/blog/" class="hover:underline">Blog</a></li>
+                                <li class="mb-10 sm:mb-22"><a href="/rebranding/" class="hover:underline">Rebranding</a></li>
+                                <li class="mb-10 sm:mb-22"><a href="/affiliates/" class="hover:underline">Affiliate Program</a></li>
+                            </ul>
+                        </div>
+                        <div class="mb-30 sm:mb-40">
+                            <h4 class="text-18 text-yellow-100 font-bold leading-a77 mb-10 sm:mb-27">Tools</h4>
+                            <ul class="text-16 md:text-18 leading-a33">
+                                <li class="mb-10 sm:mb-22"><a href="/curl-converter" class="hover:underline">Curl converter</a></li>
+                            </ul>
+                        </div>
+                        <div class="mb-30 sm:mb-40">
+                            <h4 class="text-18 text-yellow-100 font-bold leading-a77 mb-10 sm:mb-27">Legal</h4>
+                            <ul class="text-16 md:text-18 leading-a33">
+                                <li class="mb-10 sm:mb-22"><a href="/terms-and-conditions/" class="hover:underline">Terms of Service</a></li>
+                                <li class="mb-10 sm:mb-22"><a href="/privacy-policy/" class="hover:underline">Privacy Policy</a></li>
+                                <li class="mb-10 sm:mb-22"><a href="/gdpr/" class="hover:underline">GDPR Compliance</a></li>
+                                <li class="mb-10 sm:mb-22"><a href="/data-processing-agreement/" class="hover:underline">Data Processing Agreement</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="w-full sm:w-1/3 md:w-1/4 px-20">
+                        <div class="mb-30 sm:mb-40">
+                            <h4 class="text-18 text-yellow-100 font-bold leading-a77 mb-10 sm:mb-27">Product</h4>
+                            <ul class="text-16 md:text-18 leading-a33">
+                                <li class="mb-10 sm:mb-22"><a href="/#features" class="hover:underline">Features</a></li>
+                                <li class="mb-10 sm:mb-22"><a href="/#pricing" class="hover:underline">Pricing</a></li>
+                                <li class="mb-10 sm:mb-22"><a href="https://status.scrapingbee.com" target="_blank" class="hover:underline">Status</a></li>
+                            </ul>
+                        </div>
+                        <div class="mb-30 sm:mb-40">
+                            <h4 class="text-18 text-yellow-100 font-bold leading-a77 mb-10 sm:mb-27">How we compare</h4>
+                            <ul class="text-16 md:text-18 leading-a33">
+                                <li class="mb-10 sm:mb-22"><a href="/crawlera-alternative/" class="hover:underline">Alternative to Crawlera</a></li>
+                                <li class="mb-10 sm:mb-22"><a href="/luminati-alternative/" class="hover:underline">Alternative to Luminati</a></li>
+                                <li class="mb-10 sm:mb-22"><a href="/smartproxy-alternative/" class="hover:underline">Alternative to Smartproxy</a></li>
+                                <li class="mb-10 sm:mb-22"><a href="/oxylabs-alternative/" class="hover:underline">Alternative to Oxylabs</a></li>
+                                <li class="mb-10 sm:mb-22"><a href="/netnut-alternative/" class="hover:underline">Alternative to NetNut</a></li>
+                                <li class="mb-10 sm:mb-22"><a href="/scraperapi-alternative/" class="hover:underline">Alternative to ScraperAPI</a></li>
+                                <li class="mb-10 sm:mb-22"><a href="/scrapingbee-alternative/" class="hover:underline">Alternatives to ScrapingBee</a></li>
+                            </ul>
+                        </div>
+                        <div class="mb-30 sm:mb-40">
+                            <h4 class="text-18 text-yellow-100 font-bold leading-a77 mb-10 sm:mb-27">No code web scraping</h4>
+                            <ul class="text-16 md:text-18 leading-a33">
+                                <li class="mb-10 sm:mb-22"><a href="/blog/no-code-web-scraping/" class="hover:underline">No code web scraping</a></li>
+                                <li class="mb-10 sm:mb-22"><a href="/blog/no-code-competitor-monitoring/" class="hover:underline">No code competitor monitoring</a></li>
+                                <li class="mb-10 sm:mb-22"><a href="/blog/scrape-content-google-sheet/" class="hover:underline">How to put scraped website data into Google Sheets</a></li>
+                                <li class="mb-10 sm:mb-22"><a href="/blog/no-code-stock-price-slack/" class="hover:underline">Send stock prices update to Slack</a></li>
+                                <li class="mb-10 sm:mb-22"><a href="/blog/nocode-amazon/" class="hover:underline">Scrape Amazon products' price with no code</a></li>
+                                <li class="mb-10 sm:mb-22"><a href="/blog/nocode-amazon/" class="hover:underline">Scrape Amazon products' price with no code</a></li>
+                                <li class="mb-10 sm:mb-22"><a href="/blog/no-code-job-data-extraction/" class="hover:underline">Extract job listings, details and salaries</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="w-full sm:w-1/3 md:w-1/4 px-20">
+                        <div class="mb-30 sm:mb-40">
+                            <h4 class="text-18 text-yellow-100 font-bold leading-a77 mb-10 sm:mb-27">Learning Web Scraping</h4>
+                            <ul class="text-16 md:text-18 leading-a33">
+                                <li class="mb-10 sm:mb-22"><a href="/webscraping-questions/" class="hover:underline">Web scraping questions</a></li>
+                                <li class="mb-10 sm:mb-22"><a href="/blog/web-scraping-without-getting-blocked/" class="hover:underline">A guide to Web Scraping without getting blocked</a></li>
+                                <li class="mb-10 sm:mb-22"><a href="/blog/web-scraping-tools/" class="hover:underline">Web Scraping Tools</a></li>
+                                <li class="mb-10 sm:mb-22"><a href="/blog/best-free-proxy-list-web-scraping/" class="hover:underline">Best Free Proxies</a></li>
+                                <li class="mb-10 sm:mb-22"><a href="/blog/best-mobile-4g-proxy-provider-webscraping/" class="hover:underline">Best Mobile proxies</a></li>
+                                <li class="mb-10 sm:mb-22"><a href="/blog/scraping-vs-crawling/" class="hover:underline">Web Scraping vs Web Crawling</a></li>
+                                <li class="mb-10 sm:mb-22"><a href="/blog/rotating-proxies/" class="hover:underline">Rotating and residential proxies</a></li>
+                                <li class="mb-10 sm:mb-22"><a href="/blog/web-scraping-101-with-python/" class="hover:underline">Web Scraping with Python</a></li>
+                                <li class="mb-10 sm:mb-22"><a href="/blog/web-scraping-php/" class="hover:underline">Web Scraping with PHP</a></li>
+                                <li class="mb-10 sm:mb-22"><a href="/blog/introduction-to-web-scraping-with-java/" class="hover:underline">Web Scraping with Java</a></li>
+                                <li class="mb-10 sm:mb-22"><a href="/blog/web-scraping-ruby/" class="hover:underline">Web Scraping with Ruby</a></li>
+                                <li class="mb-10 sm:mb-22"><a href="/blog/web-scraping-javascript/" class="hover:underline">Web Scraping with NodeJS</a></li>
+                                <li class="mb-10 sm:mb-22"><a href="/blog/web-scraping-r/" class="hover:underline">Web Scraping with R</a></li>
+                                <li class="mb-10 sm:mb-22"><a href="/blog/web-scraping-csharp/" class="hover:underline">Web Scraping with C#</a></li>
+                                <li class="mb-10 sm:mb-22"><a href="/blog/web-scraping-c++/" class="hover:underline">Web Scraping with C++</a></li>
+                                <li class="mb-10 sm:mb-22"><a href="/blog/web-scraping-elixir/" class="hover:underline">Web Scraping with Elixir</a></li>
+                                <li class="mb-10 sm:mb-22"><a href="/blog/web-scraping-perl/" class="hover:underline">Web Scraping with Perl</a></li>
+                                <li class="mb-10 sm:mb-22"><a href="/blog/web-scraping-rust/" class="hover:underline">Web Scraping with Rust</a></li>
+                                <li class="mb-10 sm:mb-22"><a href="/blog/web-scraping-go/" class="hover:underline">Web Scraping with Go</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="pt-20 sm:pt-41 text-center">
+                    <div class="sm:mb-16 text-36 md:text-62 leading-none" style="height: 60px">
+                        <i class="icon-heart02 text-yellow-100"></i>
+                    </div>
+                    <p>Copyright © 2023</p>
+                    <p>Made in France</p>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+
+
+    <script onload="hljs.highlightAll();" src="/scripts/hljs.min.js" type="text/javascript" charset="UTF-8"></script>
+
+
+    <script src="/scripts/app-blog.min.js" type="text/javascript" charset="UTF-8" defer=""></script>
+
+
+
+
+
+
+    <script type="text/javascript" defer="">
+    (function(c,l,a,r,i,t,y){
+        c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+        t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+        y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+    })(window, document, "clarity", "script", "4l5ookr75t");
+    </script>
+
+    <script async="" src="https://www.googletagmanager.com/gtag/js?id=UA-123177514-4"></script>
+    <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'UA-123177514-4');
+    gtag('config', 'G-4Y8DBCM1YW');
+    </script>
+
+    <script defer="">
+    function getParameterByName(name) {
+        name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
+        var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
+            results = regex.exec(location.search);
+        return results === null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
+    }
+
+    var utm_source = getParameterByName('utm_source');
+    var utm_medium = getParameterByName('utm_medium');
+    var utm_campaign = getParameterByName('utm_campaign');
+    var utm_term = getParameterByName('utm_term');
+    var now = new Date();
+    now.setMonth( now.getMonth() + 1 );
+
+    function getCookie(cname) {
+        var name = cname + "=";
+        var decodedCookie = decodeURIComponent(document.cookie);
+        var ca = decodedCookie.split(';');
+        for(var i = 0; i <ca.length; i++) {
+            var c = ca[i];
+            while (c.charAt(0) == ' ') {
+                c = c.substring(1);
+            }
+            if (c.indexOf(name) == 0) {
+                return c.substring(name.length, c.length);
+            }
+        }
+        return "";
+    }
+
+
+    if(utm_source != "" && getCookie("utm_source") == "") {
+        document.cookie = `utm_source=${utm_source}; domain=scrapingbee.com; path=/; expires="${now.toUTCString()}"`
+    }
+    if(utm_medium != "" && getCookie("utm_medium") == "") {
+        document.cookie = `utm_medium=${utm_medium}; domain=scrapingbee.com; path=/; expires="${now.toUTCString()}"`
+    }
+    if(utm_campaign != "" && getCookie("utm_campaign") == "") {
+        document.cookie = `utm_campaign=${utm_campaign}; domain=scrapingbee.com; path=/; expires="${now.toUTCString()}"`
+    }
+    if(utm_term != "" && getCookie("utm_term") == "") {
+        document.cookie = `utm_term=${utm_term}; domain=scrapingbee.com; path=/; expires="${now.toUTCString()}"`
+    }
+    if(document.referrer != "" && getCookie("referrer") ==  "") {
+        document.cookie = `referrer=${document.referrer}; domain=scrapingbee.com; path=/; expires="${now.toUTCString()}"`
+    }
+    // Set the cookies
+    var utm_journey = getCookie("utm_journey");
+    var current_relative_path = location.href.replace(location.origin,'');
+    if (utm_journey != "") {
+        old_journey = atob(utm_journey)
+        new_journey = `${old_journey} - ${current_relative_path}`
+        document.cookie = `utm_journey=${btoa(new_journey)}; domain=scrapingbee.com; path=/;`
+    } else {
+        document.cookie = `utm_journey=${btoa(current_relative_path)}; domain=scrapingbee.com; expires="${now.toUTCString()}; path=/;`
+    }
+    </script>
+
+    <script type="text/javascript">
+    (function(){var t=document.createElement("script");t.type="text/javascript",t.async=!0,t.src='https://cdn.firstpromoter.com/fprom.js',t.onload=t.onreadystatechange=function(){var t=this.readyState;if(!t||"complete"==t||"loaded"==t)try{$FPROM.init("ih0s10ti",".scrapingbee.com")}catch(t){}};var e=document.getElementsByTagName("script")[0];e.parentNode.insertBefore(t,e)})();
+    </script>
+
+    <!-- Cloudflare Pages Analytics -->
+    <script defer="" src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon="{&quot;token&quot;: &quot;79198e73bed44288a74b7b70b34934d7&quot;}"></script><!-- Cloudflare Pages Analytics -->
+
+</body>
+</html>

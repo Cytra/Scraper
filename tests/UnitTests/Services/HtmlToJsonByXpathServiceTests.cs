@@ -33,7 +33,7 @@ public class HtmlToJsonByXpathServiceTests
                     {
                         Selector = "//div[@class=\"col-md-8\"]",
                         ItemType = ItemType.Item,
-                        SelectorType = SelectorType.Css,
+                        //SelectorType = SelectorType.Css,
                         OutputType = OutputType.Text,
                         Output = new Dictionary<string, ExtractRule>
                         {
@@ -42,7 +42,7 @@ public class HtmlToJsonByXpathServiceTests
                                 {
                                     Selector = "//span[@class=\"text\"]",
                                     ItemType = ItemType.Item,
-                                    SelectorType = SelectorType.Css,
+                                    //SelectorType = SelectorType.Css,
                                     OutputType = OutputType.Text
                                 }
                             },
@@ -51,7 +51,7 @@ public class HtmlToJsonByXpathServiceTests
                                 {
                                     Selector = "//small[@class=\"author\"]",
                                     ItemType = ItemType.Item,
-                                    SelectorType = SelectorType.Css,
+                                    //SelectorType = SelectorType.Css,
                                     OutputType = OutputType.Text
                                 }
                             }
@@ -91,7 +91,7 @@ public class HtmlToJsonByXpathServiceTests
                     {
                         Selector = "//div[@class=\"col-md-8\"]",
                         ItemType = ItemType.Item,
-                        SelectorType = SelectorType.Css,
+                        //SelectorType = SelectorType.Css,
                         OutputType = OutputType.Text,
                     }
                 }
