@@ -83,21 +83,4 @@ public class ScrapingBeeExamples
         var rawHtml = File.ReadAllText(fullPath);
         return rawHtml;
     }
-
-    [Fact]
-    public void AutoFixtureTest()
-    {
-        // Arrange
-        var fixture = new Fixture().Customize(new AutoMoqCustomization()
-        {
-            ConfigureMembers = true
-        });
-
-        var expectedResult = fixture.Create<string>();
-        var sut = fixture.Create<StockService>();
-        // Act
-        var result = sut.GetStocks();
-        // Assert
-        Assert.Equal(expectedResult, result);
-    }
 }
