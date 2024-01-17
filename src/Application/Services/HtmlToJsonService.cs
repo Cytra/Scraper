@@ -19,12 +19,6 @@ public class HtmlToJsonService : IHtmlToJsonService
 
         ParseInnerHtml(htmlDoc.DocumentNode, result, "");
 
-        //JsonSerializerOptions options = new JsonSerializerOptions();
-        //options.ReferenceHandler = ReferenceHandler.Preserve;
-
-        //// Serialize the dictionary to a JSON string using the serializer options
-        //string json = JsonSerializer.Serialize(result);
-
         return result;
     }
 
@@ -74,7 +68,6 @@ public class HtmlToJsonService : IHtmlToJsonService
 
         htmlToJson[xpath] = new Dictionary<string, object>()
         {
-            //{ "innerHtml", innerHtml },
             { "children", children }
         };
     }

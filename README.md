@@ -1,5 +1,4 @@
 
-```bash
 # install aws cli
 choco install awscli
 

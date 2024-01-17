@@ -118,7 +118,6 @@ public class HtmlToJsonByXpathService : IHtmlToJsonByXpathService
                 else
                 {
                     existingDict.Add(key, node.InnerText.Cleanup());
-                    //existingDict.Add(key, GetObjectToAdd(node, extractRule));
                 }
             }
         }
