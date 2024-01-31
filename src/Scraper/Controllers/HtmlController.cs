@@ -41,20 +41,35 @@ public class HtmlController : ControllerBase
         return Ok(result.Json);
     }
 
-    [HttpGet("json")]
-    public async Task<ActionResult<JObject>> Get(
-        [FromQuery] string url,
-        [FromQuery] string extractRules,
-        CancellationToken cancellationToken)
-    {
-        var extractRulesObject = JsonConvert.DeserializeObject<Dictionary<string, ExtractRule>>(extractRules);
-        var result = await _mediator
-            .Send(new GetHtmlByXpath.Query()
-                {
-                    Url = url,
-                    ExtractRules = extractRulesObject
-                },
-                cancellationToken);
-        return Ok(result.Json);
-    }
+    //[HttpGet("json")]
+    //public async Task<ActionResult<JObject>> Get(
+    //    [FromQuery] string url,
+    //    [FromQuery] string extractRules,
+    //    CancellationToken cancellationToken)
+    //{
+    //    var extractRulesObject = JsonConvert.DeserializeObject<Dictionary<string, ExtractRule>>(extractRules);
+    //    var result = await _mediator
+    //        .Send(new GetHtmlByXpath.Query()
+    //            {
+    //                Url = url,
+    //                ExtractRules = extractRulesObject
+    //            },
+    //            cancellationToken);
+    //    return Ok(result.Json);
+    //}
+
+    //[HttpPost("json")]
+    //public async Task<ActionResult<JObject>> Post(
+    //    CancellationToken cancellationToken)
+    //{
+    //    var extractRulesObject = JsonConvert.DeserializeObject<Dictionary<string, ExtractRule>>(extractRules);
+    //    var result = await _mediator
+    //        .Send(new GetHtmlByXpath.Query()
+    //            {
+    //                Url = url,
+    //                ExtractRules = extractRulesObject
+    //            },
+    //            cancellationToken);
+    //    return Ok(result.Json);
+    //}
 }

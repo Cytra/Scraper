@@ -1,4 +1,5 @@
 ﻿using Application.Models;
+using Application.Ports;
 using Application.Services;
 using MediatR;
 
@@ -15,20 +16,20 @@ public static class GetHtmlByXpath
 
     public class Handler : IRequestHandler<Query, Response>
     {
-        private readonly IHtmlToJsonByXpathService _htmlToJsonByXpathService;
+        private readonly IXpathService _xpathService;
         private readonly ISeleniumService _seleniumService;
 
-        public Handler(IHtmlToJsonByXpathService htmlToJsonByXpathService, 
+        public Handler(IXpathService xpathService, 
             ISeleniumService seleniumService)
         {
-            _htmlToJsonByXpathService = htmlToJsonByXpathService;
+            _xpathService = xpathService;
             _seleniumService = seleniumService;
         }
 
         public Task<Response> Handle(Query request, CancellationToken cancellationToken)
         {
             var html = _seleniumService.GetData(request.Url);
-            var json = _htmlToJsonByXpathService.GetJsonByXpath(request, html);
+            var json = _xpathService.GetJsonByXpath(request, html);
             return Task.FromResult(new Response()
             {
                 Json = json,

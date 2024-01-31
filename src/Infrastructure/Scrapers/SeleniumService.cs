@@ -1,11 +1,6 @@
 ﻿using Application.Ports;
 
-namespace Application.Services;
-
-public interface ISeleniumService
-{
-    string GetData(string url);
-}
+namespace Infrastructure.Scrapers;
 
 public class SeleniumService : ISeleniumService
 {

@@ -8,15 +8,15 @@ using Newtonsoft.Json;
 
 namespace Application.Services;
 
-public interface IHtmlToJsonByXpathService
+public interface IXpathService
 {
     Dictionary<string, object?> GetJsonByXpath(HtmlToJsonByXpath instructions, string html);
 }
 
-public class HtmlToJsonByXpathService : IHtmlToJsonByXpathService
+public class XpathService : IXpathService
 {
-    private readonly ILogger<HtmlToJsonByXpathService> _logger;
-    public HtmlToJsonByXpathService(ILogger<HtmlToJsonByXpathService> logger)
+    private readonly ILogger<XpathService> _logger;
+    public XpathService(ILogger<XpathService> logger)
     {
         _logger = logger;
     }

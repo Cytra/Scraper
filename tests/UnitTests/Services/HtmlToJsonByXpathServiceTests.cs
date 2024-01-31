@@ -61,7 +61,7 @@ public class HtmlToJsonByXpathServiceTests
             }
         };
 
-        var sut = _fixture.Create<HtmlToJsonByXpathService>();
+        var sut = _fixture.Create<XpathService>();
 
         var result = sut.GetJsonByXpath(input, rawHtml);
 
@@ -91,14 +91,13 @@ public class HtmlToJsonByXpathServiceTests
                     {
                         Selector = "//div[@class=\"col-md-8\"]",
                         ItemType = ItemType.Item,
-                        //SelectorType = SelectorType.Css,
                         OutputType = OutputType.Text,
                     }
                 }
             }
         };
 
-        var sut = _fixture.Create<HtmlToJsonByXpathService>();
+        var sut = _fixture.Create<XpathService>();
 
         var result = sut.GetJsonByXpath(input, rawHtml);
 
@@ -124,7 +123,7 @@ public class HtmlToJsonByXpathServiceTests
             }
         };
 
-        var sut = _fixture.Create<HtmlToJsonByXpathService>();
+        var sut = _fixture.Create<XpathService>();
 
         var result = sut.GetJsonByXpath(input, rawHtml);
 
@@ -152,7 +151,7 @@ public class HtmlToJsonByXpathServiceTests
             }
         };
 
-        var sut = _fixture.Create<HtmlToJsonByXpathService>();
+        var sut = _fixture.Create<XpathService>();
 
         var result = sut.GetJsonByXpath(input, rawHtml);
 
@@ -176,7 +175,7 @@ public class HtmlToJsonByXpathServiceTests
             ExtractRules = null
         };
 
-        var sut = _fixture.Create<HtmlToJsonByXpathService>();
+        var sut = _fixture.Create<XpathService>();
 
         var result = sut.GetJsonByXpath(input, rawHtml);
 

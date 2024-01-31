@@ -1,126 +1,45 @@
-using Application.Options;
 using Serilog;
-using Application.Models.Enums;
-using Microsoft.AspNetCore.Mvc;
-using MediatR;
-using System.Reflection;
-using Application.Models;
-using Application.Ports;
-using Application.Queries;
-using Scraper.Middleware;
-using Infrastructure.Scrapers;
-using Application.Services;
-using Swashbuckle.AspNetCore.Filters;
-using Newtonsoft.Json;
-using Newtonsoft.Json.Converters;
-using System.Text.Json;
+using Scraper;
 
-Log.Logger = new LoggerConfiguration()
-    .WriteTo
-    .Console()
-    .CreateLogger();
 
-try
+public class Program
 {
-    Log.Logger.Debug("init main");
-
-    var builder = WebApplication.CreateBuilder(args);
-    builder.Host.UseSerilog();
-
-    // Add services to the container.
-
-    builder.Services.AddMediatR(Assembly.GetExecutingAssembly());
-    builder.Services.AddMediatR(typeof(GetHtml.Query).Assembly);
-
-    builder.Services.Configure<AppOptions>(builder.Configuration);
-    builder.Services.AddScoped<ISeleniumDriverFactory, SeleniumDriverFactory>();
-    builder.Services.AddScoped<ISeleniumService, SeleniumService>();
-    builder.Services.AddScoped<IHtmlToJsonService, HtmlToJsonService>();
-    builder.Services.AddScoped<IHtmlToJsonByXpathService, HtmlToJsonByXpathService>();
-
-
-    builder.Services.AddControllers()
-        .ConfigureApiBehaviorOptions(setupAction =>
-        {
-            setupAction.InvalidModelStateResponseFactory = context =>
-            {
-                var apiResponse = new ErrorResponse();
-                foreach (var modelState in context.ModelState)
-                {
-                    foreach (var error in modelState.Value.Errors)
-                    {
-                        apiResponse.Errors.Add(new Error()
-                            { ErrorCode = ErrorCodes.BadRequest, ErrorMessage = error.ErrorMessage });
-                    }
-                }
-
-                return new BadRequestObjectResult(apiResponse);
-            };
-        })
-        .AddNewtonsoftJson(options =>
-        {
-            options.SerializerSettings.Converters.Add(new StringEnumConverter());
-            options.SerializerSettings.ReferenceLoopHandling = ReferenceLoopHandling.Ignore;
-        });
-
-    builder.Services.AddEndpointsApiExplorer();
-    builder.Services.AddSwaggerGen(c =>
+    public static int Main(string[] args)
     {
-        c.ExampleFilters();
-    });
-    builder.Services.AddSwaggerExamplesFromAssemblyOf();
+        Log.Logger = new LoggerConfiguration()
+            .WriteTo
+            .Console()
+            .CreateLogger();
+        IDisposable? metricsCollector = null;
+        try
+        {
+            Log.Logger.Debug("init main");
+            CreateHostBuilder(args).Build().Run();
+            return 0;
+        }
+        catch (Exception ex)
+        {
+            Log.Logger.Fatal(ex, "Stopped program because of exception");
+            return 1;
+        }
+        finally
+        {
+            // Ensure to flush
+            Log.CloseAndFlush();
+            metricsCollector?.Dispose();
+        }
+    }
 
-    builder.Services.AddHealthChecks();
-    builder.Services.AddCors(options =>
-    {
-        options.AddPolicy("Test",
-            policy =>
+    public static IHostBuilder CreateHostBuilder(string[] args) =>
+        Host.CreateDefaultBuilder(args)
+            .ConfigureWebHostDefaults(webBuilder =>
             {
-                policy.AllowAnyOrigin()
-                    .AllowAnyMethod();
+                webBuilder.UseStartup<Startup>()
+                    .UseKestrel(o => { o.Limits.KeepAliveTimeout = TimeSpan.FromMinutes(10); });
+            })
+            .ConfigureLogging(logging =>
+            {
+                logging.ClearProviders();
+                logging.AddSerilog();
             });
-    });
-
-    var app = builder.Build();
-
-    app.UseHttpLogging();
-    var env = app.Environment;
-    //    if (env.IsDevelopment())
-    //    {
-    //;
-    //    }
-
-    app.UseSwagger();
-    app.UseSwaggerUI(c =>
-    {
-        app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "WebApi v1"));
-    });
-    app.UseDeveloperExceptionPage();
-    app.UseMiddleware<ExceptionMiddleware>();
-
-    app.UseRouting();
-
-    app.UseCors("Test");
-
-    app.UseAuthentication();
-    app.UseAuthorization();
-
-    app.UseEndpoints(endpoints =>
-    {
-        endpoints.MapControllers();
-        endpoints.MapHealthChecks("/healthz");
-    });
-
-    app.Run();
-
-    return 0;
-}
-catch (Exception ex)
-{
-    Log.Logger.Fatal(ex, "Stopped program because of exception");
-    return 1;
-}
-finally
-{
-    Log.CloseAndFlush();
 }

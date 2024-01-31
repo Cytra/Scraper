@@ -12,13 +12,13 @@ namespace UnitTests;
 public class ScrapingBeeExamples
 {
     private readonly IFixture _fixture;
-    private readonly HtmlToJsonByXpathService _sut;
+    private readonly XpathService _sut;
     private readonly string _html;
 
     public ScrapingBeeExamples()
     {
         _fixture = new Fixture().Customize(new AutoMoqCustomization());
-        _sut = _fixture.Create<HtmlToJsonByXpathService>();
+        _sut = _fixture.Create<XpathService>();
         _html = GetHtml();
     }
 
