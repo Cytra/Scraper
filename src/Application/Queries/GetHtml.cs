@@ -26,7 +26,7 @@ public static class GetHtml
         {
             return Task.FromResult(new Response()
             {
-                Html = _seleniumService.GetStocks()
+                Html = _seleniumService.GetData(request.Url)
             });
         }
     }
