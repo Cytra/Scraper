@@ -34,7 +34,7 @@ try
 
     builder.Services.Configure<AppOptions>(builder.Configuration);
     builder.Services.AddScoped<ISeleniumDriverFactory, SeleniumDriverFactory>();
-    builder.Services.AddScoped<ISeleniumService, StockService>();
+    builder.Services.AddScoped<ISeleniumService, SeleniumService>();
     builder.Services.AddScoped<IHtmlToJsonService, HtmlToJsonService>();
     builder.Services.AddScoped<IHtmlToJsonByXpathService, HtmlToJsonByXpathService>();
 

@@ -7,11 +7,11 @@ public interface ISeleniumService
     string GetData(string url);
 }
 
-public class StockService : ISeleniumService
+public class SeleniumService : ISeleniumService
 {
     private readonly ISeleniumDriverFactory _seleniumDriverFactory;
 
-    public StockService(ISeleniumDriverFactory seleniumDriverFactory)
+    public SeleniumService(ISeleniumDriverFactory seleniumDriverFactory)
     {
         _seleniumDriverFactory = seleniumDriverFactory;
     }

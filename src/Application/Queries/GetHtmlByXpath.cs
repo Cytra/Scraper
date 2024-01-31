@@ -31,7 +31,7 @@ public static class GetHtmlByXpath
             var json = _htmlToJsonByXpathService.GetJsonByXpath(request, html);
             return Task.FromResult(new Response()
             {
-                Json = json
+                Json = json,
             });
         }
     }

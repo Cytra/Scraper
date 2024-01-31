@@ -44,7 +44,6 @@ public class HtmlController : ControllerBase
     [HttpGet("json")]
     public async Task<ActionResult<JObject>> Get(
         [FromQuery] string url,
-        [FromQuery] bool renderJs,
         [FromQuery] string extractRules,
         CancellationToken cancellationToken)
     {
