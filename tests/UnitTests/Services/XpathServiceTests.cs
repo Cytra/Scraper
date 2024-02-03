@@ -9,11 +9,11 @@ using Xunit;
 
 namespace UnitTests.Services;
 
-public class HtmlToJsonByXpathServiceTests
+public class XpathServiceTests
 {
     private readonly IFixture _fixture;
 
-    public HtmlToJsonByXpathServiceTests()
+    public XpathServiceTests()
     {
         _fixture = new Fixture().Customize(new AutoMoqCustomization());
     }
@@ -33,7 +33,6 @@ public class HtmlToJsonByXpathServiceTests
                     {
                         Selector = "//div[@class=\"col-md-8\"]",
                         ItemType = ItemType.Item,
-                        //SelectorType = SelectorType.Css,
                         OutputType = OutputType.Text,
                         Output = new Dictionary<string, ExtractRule>
                         {
@@ -42,7 +41,6 @@ public class HtmlToJsonByXpathServiceTests
                                 {
                                     Selector = "//span[@class=\"text\"]",
                                     ItemType = ItemType.Item,
-                                    //SelectorType = SelectorType.Css,
                                     OutputType = OutputType.Text
                                 }
                             },
@@ -51,7 +49,6 @@ public class HtmlToJsonByXpathServiceTests
                                 {
                                     Selector = "//small[@class=\"author\"]",
                                     ItemType = ItemType.Item,
-                                    //SelectorType = SelectorType.Css,
                                     OutputType = OutputType.Text
                                 }
                             }
@@ -182,6 +179,36 @@ public class HtmlToJsonByXpathServiceTests
         var resultDict = result as Dictionary<string, object>;
         resultDict.Count.Should().Be(0);
 
+    }
+
+
+    [Fact]
+    public async Task Test1()
+    {
+        //{"key_name" : "css_or_xpath_selector"}
+    }
+
+    [Fact]
+    public async Task Test2()
+    {
+        //{
+        //    "title" : "h1",
+        //    "subtitle" : "#subtitle",
+        //}
+    }
+
+    [Fact]
+    public async Task Test3()
+    {
+        //{ "link" : "@href"}
+    }
+
+    [Fact]
+    public async Task TEst4()
+    {
+        //{ "extract_rules": { "title": "#title"} } # CSS selector
+        //{ "extract_rules": { "title": "//h1[@id=\"title\"]"} } # XPATH selector
+        //{ "extract_rules": { "title": "/html/body/h1[@id=\"title\"]"} }  # XPATH selector
     }
 
     private string GetHtml()

@@ -11,14 +11,24 @@ public class HtmlToJsonByXpath
 
 public class ExtractRule
 {
+    /// <summary>
+    /// Xpath Selector
+    /// </summary>
     public string? Selector { get; set; }
 
+    /// <summary>
+    /// What item should it be
+    /// </summary>
     public ItemType? ItemType { get; set; }
 
-    //public SelectorType? SelectorType { get; set; }
-
+    /// <summary>
+    /// How to return the item
+    /// </summary>
     public OutputType OutputType { get; set; }
 
+    /// <summary>
+    /// Nested Output 
+    /// </summary>
     public object? Output { get; set; }
 }
 
