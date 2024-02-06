@@ -74,17 +74,31 @@ public class XpathService : IXpathService
         return listItems;
     }
 
-    private object GetSingleItem(
-        HtmlNode document,
-        ExtractRule extractRules)
+    private object GetSingleItem(HtmlNode document, ExtractRule extractRules)
     {
         if (extractRules.Output == null)
         {
-            var node = document.SelectSingleNode(extractRules.Selector);
+            var selector = GetSelector(extractRules.Selector);
+            var node = document.SelectNodes(selector).FirstOrDefault();
             return GetOutput(node, extractRules.OutputType);
         }
 
         return HandleNestedObject(document, extractRules);
+    }
+
+    private string? GetSelector(string? selector)
+    {
+        if (string.IsNullOrWhiteSpace(selector))
+        {
+            return null;
+        }
+
+        if (selector.StartsWith("//"))
+        {
+            return selector;
+        }
+
+        return $"//{selector}";
     }
 
     private object HandleNestedObject(
@@ -124,7 +138,7 @@ public class XpathService : IXpathService
         return result;
     }
 
-    private object GetOutput(HtmlNode node, OutputType outputType)
+    private object GetOutput(HtmlNode? node, OutputType outputType)
     {
         if (node == null)
         {

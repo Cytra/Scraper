@@ -22,7 +22,7 @@ public class HtmlControllerPostXpathTests
         await using var factory = new CustomWebApplicationFactory(ConfigureTestServices);
         var client = factory.CreateClient();
 
-        var response = await client.PostAsync("/api/tools/process-scheduled-payments", null);
+        var response = await client.GetAsync("/api/v1/json?Url=http://quotes.toscrape.com&extractRules=");
 
     }
 
