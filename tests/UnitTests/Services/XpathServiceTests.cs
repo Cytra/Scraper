@@ -206,6 +206,7 @@ public class XpathServiceTests
 
         var result = sut.GetJsonByXpath(input, rawHtml);
 
+        result.Count.Should().Be(1);
         result.FirstOrDefault().Key.Should().Be("title");
         result.FirstOrDefault().Value.Should().Be("Documentation - Data Extraction");
     }
@@ -223,7 +224,7 @@ public class XpathServiceTests
                 {
                     "link", new ExtractRule
                     {
-                        ItemType = ItemType.List,
+                        ItemType = ItemType.Item,
                         Selector = "@href",
                     }
                 },
@@ -233,6 +234,10 @@ public class XpathServiceTests
         var sut = _fixture.Create<XpathService>();
 
         var result = sut.GetJsonByXpath(input, rawHtml);
+
+        result.Count.Should().Be(1);
+        result.FirstOrDefault().Key.Should().Be("link");
+        result.FirstOrDefault().Value.Should().Be("https://www.scrapingbee.com/index.xml");
     }
 
     [Fact]

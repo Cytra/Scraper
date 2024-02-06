@@ -61,14 +61,14 @@ public class XpathService : IXpathService
 
     private List<object> GetListItem(HtmlNode document, ExtractRule extractRule)
     {
-        var nodes = document
-            .SelectNodes(extractRule.Selector);
+        var selector = GetSelector(extractRule.Selector);
+        var nodes = document.SelectNodes(selector);
 
         var listItems = new List<object>();
 
         foreach (var node in nodes)
         {
-            listItems.Add(GetOutput(node, extractRule.OutputType));
+            listItems.Add(GetOutput(node, extractRule.OutputType, extractRule.Selector.Substring(1)));
         }
 
         return listItems;
@@ -80,7 +80,7 @@ public class XpathService : IXpathService
         {
             var selector = GetSelector(extractRules.Selector);
             var node = document.SelectNodes(selector).FirstOrDefault();
-            return GetOutput(node, extractRules.OutputType);
+            return GetOutput(node, extractRules.OutputType , extractRules.Selector.Substring(1));
         }
 
         return HandleNestedObject(document, extractRules);
@@ -138,11 +138,17 @@ public class XpathService : IXpathService
         return result;
     }
 
-    private object GetOutput(HtmlNode? node, OutputType outputType)
+    private object GetOutput(HtmlNode? node, OutputType outputType, string selector)
     {
         if (node == null)
         {
             return null;
+        }
+
+        var attribute = node.Attributes.SingleOrDefault(x => x.Name.Contains(selector));
+        if (attribute is not null)
+        {
+            return attribute.Value;
         }
 
         return outputType switch
