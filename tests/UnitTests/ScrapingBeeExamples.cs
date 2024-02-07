@@ -1,8 +1,6 @@
-﻿using System.Reflection;
-using Application.Models;
+﻿using Application.Models;
 using Application.Services;
 using AutoFixture;
-using AutoFixture.AutoMoq;
 using FluentAssertions;
 using Newtonsoft.Json;
 using UnitTests.Helpers;
@@ -15,12 +13,13 @@ public class ScrapingBeeExamples
     private readonly IFixture _fixture;
     private readonly HtmlParser _sut;
     private readonly string _html;
+    private const string Html = "ScrapingBeeBlogs";
 
     public ScrapingBeeExamples()
     {
         _fixture = RealClassFixture.Create();
         _sut = _fixture.Create<HtmlParser>();
-        _html = GetHtml();
+        _html = FileHelpers.GetHtml(Html);
     }
 
     [Fact]
@@ -72,16 +71,5 @@ public class ScrapingBeeExamples
             ExtractRules = extractRules
         };
         return result;
-    }
-
-    private string GetHtml()
-    {
-        var rootFolder = "Data";
-        var fileName = "ScrapingBeeBlogs";
-        var path = Path.Combine(rootFolder, $"{fileName}.html");
-        var assemblyPath = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
-        var fullPath = Path.Combine(assemblyPath, path);
-        var rawHtml = File.ReadAllText(fullPath);
-        return rawHtml;
     }
 }

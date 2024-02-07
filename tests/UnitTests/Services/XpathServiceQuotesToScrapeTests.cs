@@ -63,7 +63,7 @@ public class XpathServiceQuotesToScrapeTests
         var products = productDict["products"];
 
         var productsSecondLevel = products as List<Dictionary<string, object>>;
-        productsSecondLevel.Count.Should().Be(2);
+        productsSecondLevel!.Count.Should().Be(2);
 
         productsSecondLevel[0]["Quote"].ToString().Should().Be(
             "“The world as we have created it is a process of our thinking. It cannot be changed without changing our thinking.”");
@@ -153,7 +153,7 @@ public class XpathServiceQuotesToScrapeTests
         var title = result as Dictionary<string, object>;
         var products = title["products"];
         var productsList = products as List<string>;
-        productsList[0].Should()
+        productsList![0].Should()
             .Be(
                 "“The world as we have created it is a process of our thinking. It cannot be changed without changing our thinking.”");
         productsList.Count.Should().Be(10);
