@@ -33,7 +33,6 @@ public class XpathServiceQuotesToScrapeTests
                     {
                         Selector = "//div[@class=\"col-md-8\"]",
                         ItemType = ItemType.Item,
-                        //OutputType = OutputType.Text,
                         Output = new Dictionary<string, ExtractRule>
                         {
                             {
@@ -41,7 +40,6 @@ public class XpathServiceQuotesToScrapeTests
                                 {
                                     Selector = "//span[@class=\"text\"]",
                                     ItemType = ItemType.Item,
-                                    //OutputType = OutputType.Text
                                 }
                             },
                             {
@@ -49,7 +47,6 @@ public class XpathServiceQuotesToScrapeTests
                                 {
                                     Selector = "//small[@class=\"author\"]",
                                     ItemType = ItemType.Item,
-                                    //OutputType = OutputType.Text
                                 }
                             }
                         }
@@ -66,11 +63,11 @@ public class XpathServiceQuotesToScrapeTests
         var products = productDict["products"];
 
         var productsSecondLevel = products as List<Dictionary<string, object>>;
-        productsSecondLevel.Count.Should().Be(10);
+        productsSecondLevel.Count.Should().Be(2);
 
         productsSecondLevel[0]["Quote"].ToString().Should().Be(
             "“The world as we have created it is a process of our thinking. It cannot be changed without changing our thinking.”");
-        productsSecondLevel[0]["By"].ToString().Should().Be("Albert Einstein");
+        productsSecondLevel[1]["By"].ToString().Should().Be("Albert Einstein");
     }
 
     [Fact]

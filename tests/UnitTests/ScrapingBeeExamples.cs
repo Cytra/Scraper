@@ -5,6 +5,7 @@ using AutoFixture;
 using AutoFixture.AutoMoq;
 using FluentAssertions;
 using Newtonsoft.Json;
+using UnitTests.Helpers;
 using Xunit;
 
 namespace UnitTests;
@@ -17,7 +18,7 @@ public class ScrapingBeeExamples
 
     public ScrapingBeeExamples()
     {
-        _fixture = new Fixture().Customize(new AutoMoqCustomization());
+        _fixture = RealClassFixture.Create();
         _sut = _fixture.Create<HtmlParser>();
         _html = GetHtml();
     }
