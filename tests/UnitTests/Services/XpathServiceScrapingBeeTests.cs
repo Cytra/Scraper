@@ -45,9 +45,9 @@ public class XpathServiceScrapingBeeTests
             }
         };
 
-        var sut = _fixture.Create<XpathService>();
+        var sut = _fixture.Create<HtmlParser>();
 
-        var result = sut.GetJsonByXpath(input, rawHtml);
+        var result = sut.GetJson(input, rawHtml);
 
         result.Count.Should().Be(2);
         var values = result.Values.ToList();
@@ -92,9 +92,9 @@ public class XpathServiceScrapingBeeTests
             }
         };
 
-        var sut = _fixture.Create<XpathService>();
+        var sut = _fixture.Create<HtmlParser>();
 
-        var result = sut.GetJsonByXpath(input, rawHtml);
+        var result = sut.GetJson(input, rawHtml);
 
         result.Count.Should().Be(3);
         var values = result.Values.ToList();
@@ -127,9 +127,9 @@ public class XpathServiceScrapingBeeTests
             }
         };
 
-        var sut = _fixture.Create<XpathService>();
+        var sut = _fixture.Create<HtmlParser>();
 
-        var result = sut.GetJsonByXpath(input, rawHtml);
+        var result = sut.GetJson(input, rawHtml);
 
         result.Count.Should().Be(1);
         result.FirstOrDefault().Key.Should().Be("link");
@@ -156,14 +156,14 @@ public class XpathServiceScrapingBeeTests
             }
         };
 
-        var sut = _fixture.Create<XpathService>();
+        var sut = _fixture.Create<HtmlParser>();
 
-        var result = sut.GetJsonByXpath(input, rawHtml);
+        var result = sut.GetJson(input, rawHtml);
 
         result.Count.Should().Be(1);
         result.FirstOrDefault().Key.Should().Be("link");
         var links = result.FirstOrDefault().Value as List<string>;
-        links.Count.Should().Be(85);
+        links!.Count.Should().Be(85);
         links.FirstOrDefault().Should().Be("https://www.scrapingbee.com/index.xml");
     }
 
@@ -187,9 +187,9 @@ public class XpathServiceScrapingBeeTests
             }
         };
 
-        var sut = _fixture.Create<XpathService>();
+        var sut = _fixture.Create<HtmlParser>();
 
-        var result = sut.GetJsonByXpath(input, rawHtml);
+        var result = sut.GetJson(input, rawHtml);
 
         //output
 
@@ -224,9 +224,9 @@ public class XpathServiceScrapingBeeTests
             }
         };
 
-        var sut = _fixture.Create<XpathService>();
+        var sut = _fixture.Create<HtmlParser>();
 
-        var result = sut.GetJsonByXpath(input, rawHtml);
+        var result = sut.GetJson(input, rawHtml);
 
         //output
 
@@ -283,9 +283,9 @@ public class XpathServiceScrapingBeeTests
             }
         };
 
-        var sut = _fixture.Create<XpathService>();
+        var sut = _fixture.Create<HtmlParser>();
 
-        var result = sut.GetJsonByXpath(input, rawHtml);
+        var result = sut.GetJson(input, rawHtml);
 
         //{
         //    "title_text": "Documentation - HTML API",
@@ -336,9 +336,9 @@ public class XpathServiceScrapingBeeTests
             }
         };
 
-        var sut = _fixture.Create<XpathService>();
+        var sut = _fixture.Create<HtmlParser>();
 
-        var result = sut.GetJsonByXpath(input, rawHtml);
+        var result = sut.GetJson(input, rawHtml);
 
         //{
         //    "first_post_title": "  Block ressources with Puppeteer - (5min)",

@@ -1,4 +1,5 @@
 ﻿using System.Reflection;
+using Application.Interfaces;
 using Application.Models;
 using Application.Models.Enums;
 using Application.Options;
@@ -36,7 +37,7 @@ public class Startup
         services.AddScoped<ISeleniumDriverFactory, SeleniumDriverFactory>();
         services.AddScoped<ISeleniumService, SeleniumService>();
         services.AddScoped<IHtmlToJsonService, HtmlToJsonService>();
-        services.AddScoped<IXpathService, XpathService>();
+        services.AddScoped<IHtmlParser, HtmlParser>();
 
 
         services.AddControllers()

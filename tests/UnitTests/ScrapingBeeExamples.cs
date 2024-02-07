@@ -12,13 +12,13 @@ namespace UnitTests;
 public class ScrapingBeeExamples
 {
     private readonly IFixture _fixture;
-    private readonly XpathService _sut;
+    private readonly HtmlParser _sut;
     private readonly string _html;
 
     public ScrapingBeeExamples()
     {
         _fixture = new Fixture().Customize(new AutoMoqCustomization());
-        _sut = _fixture.Create<XpathService>();
+        _sut = _fixture.Create<HtmlParser>();
         _html = GetHtml();
     }
 
@@ -34,7 +34,7 @@ public class ScrapingBeeExamples
 }";
         var input = GetInput(extractRulesString);
 
-        var result = _sut.GetJsonByXpath(input, _html);
+        var result = _sut.GetJson(input, _html);
 
         var resultDict = result as Dictionary<string, object>;
         resultDict.First().Key.Should().Be("title");
@@ -53,7 +53,7 @@ public class ScrapingBeeExamples
 }";
         var input = GetInput(extractRulesString);
 
-        var result = _sut.GetJsonByXpath(input, _html);
+        var result = _sut.GetJson(input, _html);
 
         var resultDict = result as Dictionary<string, object>;
         resultDict.First().Key.Should().Be("title");

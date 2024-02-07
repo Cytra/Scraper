@@ -58,9 +58,9 @@ public class XpathServiceQuotesToScrapeTests
             }
         };
 
-        var sut = _fixture.Create<XpathService>();
+        var sut = _fixture.Create<HtmlParser>();
 
-        var result = sut.GetJsonByXpath(input, rawHtml);
+        var result = sut.GetJson(input, rawHtml);
 
         var productDict = result as Dictionary<string, object>;
         var products = productDict["products"];
@@ -94,9 +94,9 @@ public class XpathServiceQuotesToScrapeTests
             }
         };
 
-        var sut = _fixture.Create<XpathService>();
+        var sut = _fixture.Create<HtmlParser>();
 
-        var result = sut.GetJsonByXpath(input, rawHtml);
+        var result = sut.GetJson(input, rawHtml);
 
         var title = result as Dictionary<string, object>;
         title["title"].Should().Be("Quotes to Scrape");
@@ -121,9 +121,9 @@ public class XpathServiceQuotesToScrapeTests
             }
         };
 
-        var sut = _fixture.Create<XpathService>();
+        var sut = _fixture.Create<HtmlParser>();
 
-        var result = sut.GetJsonByXpath(input, rawHtml);
+        var result = sut.GetJson(input, rawHtml);
 
         var title = result as Dictionary<string, object>;
         title["title"].Should().Be("Quotes to Scrape");
@@ -149,9 +149,9 @@ public class XpathServiceQuotesToScrapeTests
             }
         };
 
-        var sut = _fixture.Create<XpathService>();
+        var sut = _fixture.Create<HtmlParser>();
 
-        var result = sut.GetJsonByXpath(input, rawHtml);
+        var result = sut.GetJson(input, rawHtml);
 
         var title = result as Dictionary<string, object>;
         var products = title["products"];
@@ -173,9 +173,9 @@ public class XpathServiceQuotesToScrapeTests
             ExtractRules = null
         };
 
-        var sut = _fixture.Create<XpathService>();
+        var sut = _fixture.Create<HtmlParser>();
 
-        var result = sut.GetJsonByXpath(input, rawHtml);
+        var result = sut.GetJson(input, rawHtml);
 
         var resultDict = result as Dictionary<string, object>;
         resultDict.Count.Should().Be(0);

@@ -1,4 +1,5 @@
 ﻿using Application.Extensions;
+using Application.Interfaces;
 using Application.Models;
 using Application.Models.Enums;
 using HtmlAgilityPack;
@@ -6,19 +7,15 @@ using Microsoft.Extensions.Logging;
 
 namespace Application.Services;
 
-public interface IXpathService
-{
-    Dictionary<string, object?> GetJsonByXpath(HtmlToJsonByXpath instructions, string html);
-}
 
-public class XpathService : IXpathService
+public class HtmlParser : IHtmlParser
 {
-    private readonly ILogger<XpathService> _logger;
-    public XpathService(ILogger<XpathService> logger)
+    private readonly ILogger<HtmlParser> _logger;
+    public HtmlParser(ILogger<HtmlParser> logger)
     {
         _logger = logger;
     }
-    public Dictionary<string, object?> GetJsonByXpath(HtmlToJsonByXpath instructions, string html)
+    public Dictionary<string, object?> GetJson(HtmlToJsonByXpath instructions, string html)
     {
         var result = new Dictionary<string, object?>();
         var htmlDoc = new HtmlDocument();
@@ -66,13 +63,17 @@ public class XpathService : IXpathService
 
         foreach (var node in nodes)
         {
-            listItems.Add(GetOutput(node, extractRule.ItemType, extractRule.Selector.Substring(1)));
+            var outputString = GetOutput(node, extractRule.ItemType, extractRule.Selector.Substring(1));
+            if (outputString != null)
+            {
+                listItems.Add(outputString);
+            }
         }
 
         return listItems;
     }
 
-    private object GetSingleItem(HtmlNode document, ExtractRule extractRules)
+    private object? GetSingleItem(HtmlNode document, ExtractRule extractRules)
     {
         if (extractRules.Output == null)
         {
@@ -141,7 +142,7 @@ public class XpathService : IXpathService
         return result;
     }
 
-    private string GetOutput(HtmlNode? node, ItemType? outputType, string selector)
+    private string? GetOutput(HtmlNode? node, ItemType? outputType, string selector)
     {
         if (node == null)
         {

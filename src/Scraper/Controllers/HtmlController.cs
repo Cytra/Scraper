@@ -49,7 +49,7 @@ public class HtmlController : ControllerBase
     {
         var extractRulesObject = JsonConvert.DeserializeObject<Dictionary<string, ExtractRule>>(extractRules);
         var result = await _mediator
-            .Send(new GetHtmlByXpath.Query()
+            .Send(new GetJson.Query()
             {
                 Url = url,
                 ExtractRules = extractRulesObject

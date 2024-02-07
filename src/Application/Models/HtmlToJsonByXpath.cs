@@ -14,7 +14,7 @@ public class ExtractRule
     /// <summary>
     /// Xpath Selector
     /// </summary>
-    public string? Selector { get; set; }
+    public required string Selector { get; set; }
 
     /// <summary>
     /// What item should it be
