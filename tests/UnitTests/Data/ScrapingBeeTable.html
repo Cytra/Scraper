@@ -5099,8 +5099,8 @@ The simplest way to use extraction rules is to use the following format">
                                     <div class="flex flex-wrap border-b border-gray-1400 pb-48">
                                         <div class="w-full ">
                                             <div class="text-16 leading-a50 pt-2">
-                                                <h1 class="text-36 md:text-42  font-bold text-black-100 mb-19 leading-a48">Documentation - Data Extraction</h1>
-                                                <span class="text-20 text-36 mb-19 leading-a48"> Extract data with CSS or XPATH selectors</span>
+                                                <h1 class="text-36 md:text-42  font-bold text-black-100 mb-19 leading-a48" id="title">Documentation - Data Extraction</h1>
+                                                <span class="text-20 text-36 mb-19 leading-a48" id="subtitle"> Extract data with CSS or XPATH selectors</span>
                                             </div>
                                         </div>
 
@@ -5447,7 +5447,7 @@ send_request()</code></pre>
                                         <p>ScrapingBee allows you to easily get formated information from <code>HTML</code> tables.</p>
                                         <p>We offer two modes to do it: <code>table_array</code> and <code>table_json</code>.</p>
                                         <p>Let say you want to extract this table from the HTML page.</p>
-                                        <table><thead><tr><th>Feature used</th><th>API credit cost</th></tr></thead><tbody><tr><td>Rotating Proxy without JavaScript rendering</td><td>1</td></tr><tr><td>Rotating Proxy with JavaScript rendering (default)</td><td>5</td></tr><tr><td>Premium Proxy without JavaScript rendering</td><td>10</td></tr><tr><td>Premium Proxy with JavaScript rendering</td><td>25</td></tr></tbody></table>
+                                        <table id="pricing_table"><thead><tr><th>Feature used</th><th>API credit cost</th></tr></thead><tbody><tr><td>Rotating Proxy without JavaScript rendering</td><td>1</td></tr><tr><td>Rotating Proxy with JavaScript rendering (default)</td><td>5</td></tr><tr><td>Premium Proxy without JavaScript rendering</td><td>10</td></tr><tr><td>Premium Proxy with JavaScript rendering</td><td>25</td></tr></tbody></table>
                                         <p>And let's say that this table have its <code>id</code> set to <code>pricing_table</code>.</p>
                                         <h4 id="json-representation">JSON representation</h4>
                                         <p>If you use those extract rules:</p>

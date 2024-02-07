@@ -9,5 +9,6 @@ public enum ItemType : byte
     None = 0,
     Item = 1,
     List = 2,
-    Table = 3,
+    TableJson = 3,
+    TableArray = 4,
 }

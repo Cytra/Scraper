@@ -3,8 +3,6 @@ using Application.Models;
 using Application.Models.Enums;
 using HtmlAgilityPack;
 using Microsoft.Extensions.Logging;
-using Newtonsoft.Json;
-
 
 namespace Application.Services;
 
@@ -59,16 +57,16 @@ public class XpathService : IXpathService
 
     }
 
-    private List<object> GetListItem(HtmlNode document, ExtractRule extractRule)
+    private List<string> GetListItem(HtmlNode document, ExtractRule extractRule)
     {
         var selector = GetSelector(extractRule.Selector);
         var nodes = document.SelectNodes(selector);
 
-        var listItems = new List<object>();
+        var listItems = new List<string>();
 
         foreach (var node in nodes)
         {
-            listItems.Add(GetOutput(node, extractRule.OutputType, extractRule.Selector.Substring(1)));
+            listItems.Add(GetOutput(node, extractRule.ItemType, extractRule.Selector.Substring(1)));
         }
 
         return listItems;
@@ -80,7 +78,7 @@ public class XpathService : IXpathService
         {
             var selector = GetSelector(extractRules.Selector);
             var node = document.SelectNodes(selector).FirstOrDefault();
-            return GetOutput(node, extractRules.OutputType , extractRules.Selector.Substring(1));
+            return GetOutput(node, extractRules.ItemType , extractRules.Selector.Substring(1));
         }
 
         return HandleNestedObject(document, extractRules);
@@ -93,9 +91,14 @@ public class XpathService : IXpathService
             return null;
         }
 
-        if (selector.StartsWith("//"))
+        if (selector.StartsWith("/"))
         {
             return selector;
+        }
+
+        if (selector.StartsWith("#"))
+        {
+            return $"//*[@id='{selector.Substring(1)}']";
         }
 
         return $"//{selector}";
@@ -107,7 +110,7 @@ public class XpathService : IXpathService
     {
         var result = new List<Dictionary<string, object>>();
 
-        var extractRulesObject = GetDictionary(extractRules.Output!);
+        var extractRulesObject = OutputExtensions.GetDictionary(extractRules.Output!);
 
         if (extractRulesObject == null)
         {
@@ -138,7 +141,7 @@ public class XpathService : IXpathService
         return result;
     }
 
-    private object GetOutput(HtmlNode? node, OutputType outputType, string selector)
+    private string GetOutput(HtmlNode? node, ItemType? outputType, string selector)
     {
         if (node == null)
         {
@@ -153,26 +156,8 @@ public class XpathService : IXpathService
 
         return outputType switch
         {
-            OutputType.Html => node.InnerHtml,
-            OutputType.Text => node.InnerText.Cleanup(),
+            ItemType.Item => node.InnerText.Cleanup(),
             _ => node.InnerText.Cleanup()
         };
-    }
-
-    private Dictionary<string, ExtractRule>? GetDictionary(object extractRules)
-    {
-        Dictionary<string, ExtractRule>? extractRulesObject;
-        if (extractRules is Dictionary<string, ExtractRule> rules)
-        {
-            extractRulesObject = rules;
-        }
-        else
-        {
-            extractRulesObject = JsonConvert
-                .DeserializeObject<Dictionary<string, ExtractRule>>(
-                    extractRules.ToString());
-        }
-
-        return extractRulesObject;
     }
 }

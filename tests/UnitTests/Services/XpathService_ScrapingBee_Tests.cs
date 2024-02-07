@@ -1,191 +1,27 @@
-﻿using System.Reflection;
-using Application.Models;
+﻿using Application.Models;
 using Application.Models.Enums;
 using Application.Services;
 using AutoFixture;
-using AutoFixture.AutoMoq;
 using FluentAssertions;
+using UnitTests.Helpers;
 using Xunit;
 
 namespace UnitTests.Services;
 
-public class XpathServiceTests
+public class XpathService_ScrapingBee_Tests
 {
     private readonly IFixture _fixture;
+    private const string Html = "ScrapingBeeTable";
 
-    public XpathServiceTests()
+    public XpathService_ScrapingBee_Tests()
     {
-        _fixture = new Fixture().Customize(new AutoMoqCustomization());
+        _fixture = RealClassFixture.Create();
     }
 
     [Fact]
-    public void QuotesToScrape_NestedObject()
+    public void GetTitleSubtitle()
     {
-        var rawHtml = GetHtml("QuotesToScrape");
-
-        var input = new HtmlToJsonByXpath
-        {
-            Url = "url",
-            ExtractRules = new Dictionary<string, ExtractRule>
-            {
-                {
-                    "products", new ExtractRule
-                    {
-                        Selector = "//div[@class=\"col-md-8\"]",
-                        ItemType = ItemType.Item,
-                        OutputType = OutputType.Text,
-                        Output = new Dictionary<string, ExtractRule>
-                        {
-                            {
-                                "Quote", new ExtractRule
-                                {
-                                    Selector = "//span[@class=\"text\"]",
-                                    ItemType = ItemType.Item,
-                                    OutputType = OutputType.Text
-                                }
-                            },
-                            {
-                                "By", new ExtractRule
-                                {
-                                    Selector = "//small[@class=\"author\"]",
-                                    ItemType = ItemType.Item,
-                                    OutputType = OutputType.Text
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-        };
-
-        var sut = _fixture.Create<XpathService>();
-
-        var result = sut.GetJsonByXpath(input, rawHtml);
-
-        var productDict = result as Dictionary<string, object>;
-        var products = productDict["products"];
-
-        var productsSecondLevel = products as List<Dictionary<string, object>>;
-        productsSecondLevel.Count.Should().Be(10);
-
-        productsSecondLevel[0]["Quote"].ToString().Should().Be(
-            "“The world as we have created it is a process of our thinking. It cannot be changed without changing our thinking.”");
-        productsSecondLevel[0]["By"].ToString().Should().Be("Albert Einstein");
-    }
-
-    [Fact]
-    public void QuotesToScrape_SingleObject()
-    {
-        var rawHtml = GetHtml("QuotesToScrape");
-
-        var input = new HtmlToJsonByXpath
-        {
-            Url = "url",
-            ExtractRules = new Dictionary<string, ExtractRule>
-            {
-                {
-                    "title", new ExtractRule
-                    {
-                        Selector = "//div[@class=\"col-md-8\"]",
-                        ItemType = ItemType.Item,
-                        OutputType = OutputType.Text,
-                    }
-                }
-            }
-        };
-
-        var sut = _fixture.Create<XpathService>();
-
-        var result = sut.GetJsonByXpath(input, rawHtml);
-
-        var title = result as Dictionary<string, object>;
-        title["title"].Should().Be("Quotes to Scrape");
-    }
-
-    [Fact]
-    public void QuotesToScrape_SingleObject_MinimalInput()
-    {
-        var rawHtml = GetHtml("QuotesToScrape");
-
-        var input = new HtmlToJsonByXpath
-        {
-            Url = "url",
-            ExtractRules = new Dictionary<string, ExtractRule>
-            {
-                {
-                    "title", new ExtractRule
-                    {
-                        Selector = "//div[@class=\"col-md-8\"]",
-                    }
-                }
-            }
-        };
-
-        var sut = _fixture.Create<XpathService>();
-
-        var result = sut.GetJsonByXpath(input, rawHtml);
-
-        var title = result as Dictionary<string, object>;
-        title["title"].Should().Be("Quotes to Scrape");
-    }
-
-    [Fact]
-    public void QuotesToScrape_List_10Items()
-    {
-        var rawHtml = GetHtml("QuotesToScrape");
-
-        var input = new HtmlToJsonByXpath
-        {
-            Url = "url",
-            ExtractRules = new Dictionary<string, ExtractRule>
-            {
-                {
-                    "products", new ExtractRule
-                    {
-                        ItemType = ItemType.List,
-                        Selector = "//span[@class=\"text\"]",
-                    }
-                }
-            }
-        };
-
-        var sut = _fixture.Create<XpathService>();
-
-        var result = sut.GetJsonByXpath(input, rawHtml);
-
-        var title = result as Dictionary<string, object>;
-        var products = title["products"];
-        var productsList = products as List<object>;
-        productsList[0].Should()
-            .Be(
-                "“The world as we have created it is a process of our thinking. It cannot be changed without changing our thinking.”");
-        productsList.Count.Should().Be(10);
-    }
-
-    [Fact]
-    public void QuotesToScrape_NullExtractRules_EmptyList()
-    {
-        var rawHtml = GetHtml("QuotesToScrape");
-
-        var input = new HtmlToJsonByXpath
-        {
-            Url = "url",
-            ExtractRules = null
-        };
-
-        var sut = _fixture.Create<XpathService>();
-
-        var result = sut.GetJsonByXpath(input, rawHtml);
-
-        var resultDict = result as Dictionary<string, object>;
-        resultDict.Count.Should().Be(0);
-
-    }
-
-    [Fact]
-    public void ScrapingBee_GetTitle()
-    {
-        var rawHtml = GetHtml("ScrapingBeeTable");
+        var rawHtml = FileHelpers.GetHtml(Html);
 
         var input = new HtmlToJsonByXpath
         {
@@ -198,6 +34,13 @@ public class XpathServiceTests
                         ItemType = ItemType.Item,
                         Selector = "h1",
                     }
+                },
+                {
+                    "subtitle", new ExtractRule
+                    {
+                        ItemType = ItemType.Item,
+                        Selector = "#subtitle",
+                    }
                 }
             }
         };
@@ -206,15 +49,68 @@ public class XpathServiceTests
 
         var result = sut.GetJsonByXpath(input, rawHtml);
 
-        result.Count.Should().Be(1);
-        result.FirstOrDefault().Key.Should().Be("title");
-        result.FirstOrDefault().Value.Should().Be("Documentation - Data Extraction");
+        result.Count.Should().Be(2);
+        var values = result.Values.ToList();
+        var keys = result.Keys.ToList();
+        keys[0].Should().Be("title");
+        keys[1].Should().Be("subtitle");
+        values[0].Should().Be("Documentation - Data Extraction");
+        values[1].Should().Be("Extract data with CSS or XPATH selectors");
     }
 
     [Fact]
-    public void ScrapingBee_GetAllRefs()
+    public void GetTitle_DifferentTypes()
     {
-        var rawHtml = GetHtml("ScrapingBeeTable");
+        var rawHtml = FileHelpers.GetHtml(Html);
+
+        var input = new HtmlToJsonByXpath
+        {
+            Url = "url",
+            ExtractRules = new Dictionary<string, ExtractRule>
+            {
+                {
+                    "title", new ExtractRule
+                    {
+                        ItemType = ItemType.Item,
+                        Selector = "#title",
+                    }
+                },
+                {
+                    "title2", new ExtractRule
+                    {
+                        ItemType = ItemType.Item,
+                        Selector = "//*[@id='title']", //*[@id='yourNodeId']
+                    }
+                },
+                {
+                    "title3", new ExtractRule
+                    {
+                        ItemType = ItemType.Item,
+                        Selector = "//h1[@id='title']",
+                    }
+                },
+            }
+        };
+
+        var sut = _fixture.Create<XpathService>();
+
+        var result = sut.GetJsonByXpath(input, rawHtml);
+
+        result.Count.Should().Be(3);
+        var values = result.Values.ToList();
+        var keys = result.Keys.ToList();
+        keys[0].Should().Be("title");
+        keys[1].Should().Be("title2");
+        keys[2].Should().Be("title3");
+        values[0].Should().Be("Documentation - Data Extraction");
+        values[1].Should().Be("Documentation - Data Extraction");
+        values[2].Should().Be("Documentation - Data Extraction");
+    }
+
+    [Fact]
+    public void GetFirstRef()
+    {
+        var rawHtml = FileHelpers.GetHtml(Html);
 
         var input = new HtmlToJsonByXpath
         {
@@ -241,9 +137,9 @@ public class XpathServiceTests
     }
 
     [Fact]
-    public void TEst4()
+    public void GetAllRefs()
     {
-        var rawHtml = GetHtml("QuotesToScrape");
+        var rawHtml = FileHelpers.GetHtml(Html);
 
         var input = new HtmlToJsonByXpath
         {
@@ -251,24 +147,10 @@ public class XpathServiceTests
             ExtractRules = new Dictionary<string, ExtractRule>
             {
                 {
-                    "title", new ExtractRule
+                    "link", new ExtractRule
                     {
-                        ItemType = ItemType.Item,
-                        Selector = "#title",
-                    }
-                },
-                {
-                    "title2", new ExtractRule
-                    {
-                        ItemType = ItemType.Item,
-                        Selector = "//h1[@id=\\\"title\\",
-                    }
-                },
-                {
-                    "title3", new ExtractRule
-                    {
-                        ItemType = ItemType.Item,
-                        Selector = "/html/body/h1[@id=\"title\"]",
+                        ItemType = ItemType.List,
+                        Selector = "@href",
                     }
                 },
             }
@@ -278,15 +160,17 @@ public class XpathServiceTests
 
         var result = sut.GetJsonByXpath(input, rawHtml);
 
-        //{ "extract_rules": { "title": "#title"} } # CSS selector
-        //{ "extract_rules": { "title": "//h1[@id=\"title\"]"} } # XPATH selector
-        //{ "extract_rules": { "title": "/html/body/h1[@id=\"title\"]"} }  # XPATH selector
+        result.Count.Should().Be(1);
+        result.FirstOrDefault().Key.Should().Be("link");
+        var links = result.FirstOrDefault().Value as List<string>;
+        links.Count.Should().Be(85);
+        links.FirstOrDefault().Should().Be("https://www.scrapingbee.com/index.xml");
     }
 
     [Fact]
-    public async Task Table1Json()
+    public void Table1Json()
     {
-        var rawHtml = GetHtml("QuotesToScrape");
+        var rawHtml = FileHelpers.GetHtml(Html);
 
         var input = new HtmlToJsonByXpath
         {
@@ -297,7 +181,7 @@ public class XpathServiceTests
                     "table_json", new ExtractRule
                     {
                         Selector = "#pricing_table",
-                        OutputType = OutputType.TableJson
+                        //OutputType = OutputType.TableJson
                     }
                 },
             }
@@ -321,9 +205,9 @@ public class XpathServiceTests
 
 
     [Fact]
-    public async Task Table1Array()
+    public void Table1Array()
     {
-        var rawHtml = GetHtml("QuotesToScrape");
+        var rawHtml = FileHelpers.GetHtml(Html);
 
         var input = new HtmlToJsonByXpath
         {
@@ -334,7 +218,7 @@ public class XpathServiceTests
                     "table_array", new ExtractRule
                     {
                         Selector = "#pricing_table",
-                        OutputType = OutputType.TableArray
+                        //OutputType = OutputType.TableArray
                     }
                 },
             }
@@ -359,9 +243,9 @@ public class XpathServiceTests
 
 
     [Fact]
-    public async Task AllSelectors()
+    public void AllSelectors()
     {
-        var rawHtml = GetHtml("QuotesToScrape");
+        var rawHtml = FileHelpers.GetHtml(Html);
 
         var input = new HtmlToJsonByXpath
         {
@@ -372,28 +256,28 @@ public class XpathServiceTests
                     "title_text", new ExtractRule
                     {
                         Selector = "h1",
-                        OutputType = OutputType.Text
+                        //OutputType = OutputType.Text
                     }
                 },
                 {
                     "title_html", new ExtractRule
                     {
                         Selector = "h1",
-                        OutputType = OutputType.Html
+                        //OutputType = OutputType.Html
                     }
                 },
                 {
                     "table_array", new ExtractRule
                     {
                         Selector = "table",
-                        OutputType = OutputType.TableArray
+                        //OutputType = OutputType.TableArray
                     }
                 },
                 {
                     "table_json", new ExtractRule
                     {
                         Selector = "table",
-                        OutputType = OutputType.TableJson
+                        //OutputType = OutputType.TableJson
                     }
                 },
             }
@@ -424,10 +308,11 @@ public class XpathServiceTests
     }
 
 
-    public async Task SingleItemOrList()
+    [Fact]
+    public void SingleItemOrList()
     {
 
-        var rawHtml = GetHtml("QuotesToScrape");
+        var rawHtml = FileHelpers.GetHtml(Html);
 
         var input = new HtmlToJsonByXpath
         {
@@ -467,7 +352,8 @@ public class XpathServiceTests
         //}
     }
 
-    public async Task CleanTextTrueTest()
+    [Fact]
+    public void CleanTextTrueTest()
     {
         //{
         //    "first_post_description" : {
@@ -482,7 +368,8 @@ public class XpathServiceTests
         //}
     }
 
-    public async Task CleanTextFalseTest()
+    [Fact]
+    public void CleanTextFalseTest()
     {
         //{
         //    "first_post_description" : {
@@ -496,7 +383,8 @@ public class XpathServiceTests
         //}
     }
 
-    public async Task NestedObject()
+    [Fact]
+    public void NestedObject()
     {
 
         //{
@@ -536,8 +424,8 @@ public class XpathServiceTests
         //}
     }
 
-
-    public async Task ExtractAllLinksFromPage()
+    [Fact]
+    public void ExtractAllLinksFromPage()
     {
         //{
         //    "all_links" : {
@@ -556,7 +444,8 @@ public class XpathServiceTests
         //}
     }
 
-    public async Task ExtractAllLInksAndAnchors()
+    [Fact]
+    public void ExtractAllLInksAndAnchors()
     {
 
         //{
@@ -589,7 +478,7 @@ public class XpathServiceTests
     }
 
     [Fact]
-    public async Task ExtractAllEmails()
+    public void ExtractAllEmails()
     {
         //{
         //    "email_addresses": {
@@ -604,16 +493,5 @@ public class XpathServiceTests
         //    "mailto:contact@scrapingbee.com"
         //        ]
         //}
-    }
-
-
-    private string GetHtml(string filename)
-    {
-        var rootFolder = "Data";
-        var path = Path.Combine(rootFolder, $"{filename}.html");
-        var assemblyPath = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
-        var fullPath = Path.Combine(assemblyPath, path);
-        var rawHtml = File.ReadAllText(fullPath);
-        return rawHtml;
     }
 }
