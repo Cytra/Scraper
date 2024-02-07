@@ -8,12 +8,12 @@ using Xunit;
 
 namespace UnitTests.Services;
 
-public class XpathService_ScrapingBee_Tests
+public class XpathServiceScrapingBeeTests
 {
     private readonly IFixture _fixture;
     private const string Html = "ScrapingBeeTable";
 
-    public XpathService_ScrapingBee_Tests()
+    public XpathServiceScrapingBeeTests()
     {
         _fixture = RealClassFixture.Create();
     }

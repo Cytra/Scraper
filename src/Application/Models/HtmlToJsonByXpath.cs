@@ -21,11 +21,6 @@ public class ExtractRule
     /// </summary>
     public ItemType? ItemType { get; set; }
 
-    ///// <summary>
-    ///// How to return the item
-    ///// </summary>
-    //public OutputType OutputType { get; set; }
-
     /// <summary>
     /// Nested Output 
     /// </summary>
