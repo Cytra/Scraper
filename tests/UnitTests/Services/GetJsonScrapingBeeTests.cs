@@ -334,7 +334,6 @@ public class GetJsonScrapingBeeTests
         resultString.Trim().Should().Be(expectedString.Trim()[1..^1]);
     }
 
-
     [Fact]
     public void SingleItemOrList()
     {
@@ -366,20 +365,20 @@ public class GetJsonScrapingBeeTests
 
         var result = sut.GetJson(input, rawHtml);
 
-        //{
-        //    "first_post_title": "  Block ressources with Puppeteer - (5min)",
-        //    "all_post_title": [
-        //    "  Block ressources with Puppeteer - (5min)",
-        //    "  Web Scraping vs Web Crawling: Ultimate Guide - (10min)",
-        //    ...
-        //    "  Scraping E-Commerce Product Data - (6min)",
-        //    "  Introduction to Chrome Headless with Java - (4min)"
-        //        ]
-        //}
+        result.Count.Should().Be(2);
+        var values = result.Values.ToList();
+        var keys = result.Keys.ToList();
+        keys[0].Should().Be("first_post_title");
+        keys[1].Should().Be("all_post_title");
+        values[0].Should().Be("\"  Block ressources with Puppeteer - (5min)\"");
+        var postList = values[1] as List<string>;
+        postList.Count.Should().Be(4);
+        postList[0].Should().Be("\"  Block ressources with Puppeteer - (5min)\"");
+        postList[1].Should().Be("\"  Web Scraping vs Web Crawling: Ultimate Guide - (10min)\"");
     }
 
     [Fact]
-    public void CleanTextTrueTest()
+    public void CleanTextTrue()
     {
         //{
         //    "first_post_description" : {
@@ -395,7 +394,7 @@ public class GetJsonScrapingBeeTests
     }
 
     [Fact]
-    public void CleanTextFalseTest()
+    public void DirtyTextFalse()
     {
         //{
         //    "first_post_description" : {

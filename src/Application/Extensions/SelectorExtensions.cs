@@ -14,9 +14,14 @@ internal static class SelectorExtensions
             return selector;
         }
 
+        if (selector.StartsWith("."))
+        {
+            return $".//*[contains(@class, '{selector[1..]}')]";
+        }
+
         if (selector.StartsWith("#"))
         {
-            return $"//*[@id='{selector.Substring(1)}']";
+            return $"//*[@id='{selector[1..]}']";
         }
 
         return $"//{selector}";
@@ -24,6 +29,6 @@ internal static class SelectorExtensions
 
     internal static string GetOutputSelector(string selector)
     {
-        return selector.Substring(1);
+        return selector[1..];
     }
 }
