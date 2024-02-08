@@ -428,6 +428,69 @@ public class GetJsonScrapingBeeTests
         //    }
         //}
 
+        var rawHtml = FileHelpers.GetHtml(Html);
+
+        var input = new HtmlToJsonByXpath
+        {
+            Url = "url",
+            ExtractRules = new Dictionary<string, ExtractRule>
+            {
+                {
+                    "title", new ExtractRule
+                    {
+                        Selector = "h1",
+                        ItemType = ItemType.Item
+                    }
+                },
+                {
+                    "subtitle", new ExtractRule
+                    {
+                        Selector = "#subtitle",
+                        ItemType = ItemType.List
+                    }
+                },
+                {
+                    "articles", new ExtractRule
+                    {
+                        Selector = ".card",
+                        ItemType = ItemType.List,
+                        Output = new Dictionary<string, ExtractRule>
+                        {
+                            {
+                                "link", new ExtractRule
+                                {
+                                    Selector = ".post-title",
+                                    ItemType = ItemType.Item,
+                                }
+                            },
+                            {
+                                "description", new ExtractRule
+                                {
+                                    Selector = ".post-description",
+                                    ItemType = ItemType.Item,
+                                }
+                            }
+                        }
+                    }
+                },
+
+            }
+        };
+
+        var sut = _fixture.Create<HtmlParser>();
+
+        var result = sut.GetJson(input, rawHtml);
+
+        //result.Count.Should().Be(2);
+        //var values = result.Values.ToList();
+        //var keys = result.Keys.ToList();
+        //keys[0].Should().Be("first_post_title");
+        //keys[1].Should().Be("all_post_title");
+        //values[0].Should().Be("\"  Block ressources with Puppeteer - (5min)\"");
+        //var postList = values[1] as List<string>;
+        //postList.Count.Should().Be(4);
+        //postList[0].Should().Be("\"  Block ressources with Puppeteer - (5min)\"");
+        //postList[1].Should().Be("\"  Web Scraping vs Web Crawling: Ultimate Guide - (10min)\"");
 
         //{
         //    "title": "The ScrapingBee Blog",
@@ -459,6 +522,27 @@ public class GetJsonScrapingBeeTests
         //    }
         //}
 
+        var rawHtml = FileHelpers.GetHtml(Html);
+
+        var input = new HtmlToJsonByXpath
+        {
+            Url = "url",
+            ExtractRules = new Dictionary<string, ExtractRule>
+            {
+                {
+                    "all_links", new ExtractRule
+                    {
+                        Selector = "a",
+                        ItemType = ItemType.List
+                    }
+                },
+            }
+        };
+
+        var sut = _fixture.Create<HtmlParser>();
+
+        var result = sut.GetJson(input, rawHtml);
+
         //{
         //    "all_links": [
         //    "https://www.scrapingbee.com/",
@@ -485,6 +569,44 @@ public class GetJsonScrapingBeeTests
         //    }
         //}
 
+        var rawHtml = FileHelpers.GetHtml(Html);
+
+        var input = new HtmlToJsonByXpath
+        {
+            Url = "url",
+            ExtractRules = new Dictionary<string, ExtractRule>
+            {
+                {
+                    "all_links", new ExtractRule
+                    {
+                        Selector = "a",
+                        ItemType = ItemType.List,
+                        Output = new Dictionary<string, ExtractRule>
+                        {
+                            {
+                                "anchor", new ExtractRule
+                                {
+                                    Selector = "a",
+                                    ItemType = ItemType.Item,
+                                }
+                            },
+                            {
+                                "href", new ExtractRule
+                                {
+                                    Selector = "a",
+                                    ItemType = ItemType.Item,
+                                }
+                            }
+                        }
+                    }
+                },
+            }
+        };
+
+        var sut = _fixture.Create<HtmlParser>();
+
+        var result = sut.GetJson(input, rawHtml);
+
         //{
         //    "all_links":[
         //    {
@@ -510,6 +632,27 @@ public class GetJsonScrapingBeeTests
         //        "type": "list"
         //    }
         //}
+
+        var rawHtml = FileHelpers.GetHtml(Html);
+
+        var input = new HtmlToJsonByXpath
+        {
+            Url = "url",
+            ExtractRules = new Dictionary<string, ExtractRule>
+            {
+                {
+                    "email_addresses", new ExtractRule
+                    {
+                        Selector = "a[href^='mailto']",
+                        ItemType = ItemType.List,
+                    }
+                },
+            }
+        };
+
+        var sut = _fixture.Create<HtmlParser>();
+
+        var result = sut.GetJson(input, rawHtml);
 
         //{
         //    "email_addresses": [
