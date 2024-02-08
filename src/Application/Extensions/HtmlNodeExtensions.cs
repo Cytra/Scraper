@@ -27,8 +27,8 @@ public class HtmlNodeExtensions : IHtmlNodeExtensions
             {
                 ItemType.Item => GetSingleItem(document, extractRule),
                 ItemType.List => GetListItem(document, extractRule),
-                ItemType.TableArray => GetTableArray(document, extractRule),
                 ItemType.TableJson => GetTableJson(document, extractRule),
+                ItemType.TableArray => GetTableArray(document, extractRule),
                 _ => GetSingleItem(document, extractRule),
             };
         }
@@ -66,14 +66,48 @@ public class HtmlNodeExtensions : IHtmlNodeExtensions
         return listItems;
     }
 
-    internal static object? GetTableArray(HtmlNode document, ExtractRule extractRule)
+    internal static object GetTableJson(HtmlNode document, ExtractRule extractRule)
     {
-        throw new NotImplementedException();
+        var tableJson = new List<Dictionary<string, string>>();
+        var node = GetNodes(document, extractRule).FirstOrDefault();
+
+        var headers = node.SelectNodes(".//thead//th").Select(th => th.InnerText.Trim()).ToArray();
+
+        var rows = node.SelectNodes(".//tbody//tr");
+        foreach (var row in rows)
+        {
+            var rowData = row.SelectNodes("td").Select(td => td.InnerText.Trim()).ToArray();
+
+            var item = new Dictionary<string, string>();
+            for (int i = 0; i < headers.Length; i++)
+            {
+                item[headers[i]] = rowData[i];
+            }
+
+            tableJson.Add(item);
+        }
+        return tableJson;
     }
 
-    internal static object? GetTableJson(HtmlNode document, ExtractRule extractRule)
+    internal  object GetTableArray(HtmlNode document, ExtractRule extractRule)
     {
-        throw new NotImplementedException();
+        var tableArray = new List<List<string>>();
+        var node = GetNodes(document, extractRule).FirstOrDefault();
+
+        if (node != null)
+        {
+            var rows = node.SelectNodes(".//tbody//tr");
+            if (rows is not null && rows.Count > 0)
+            {
+                foreach (var row in rows)
+                {
+                    var rowData = row.SelectNodes("td").Select(td => td.InnerText.Trim()).ToList();
+                    tableArray.Add(rowData);
+                }
+            }
+        }
+
+        return tableArray;
     }
 
     private object HandleNestedObject(

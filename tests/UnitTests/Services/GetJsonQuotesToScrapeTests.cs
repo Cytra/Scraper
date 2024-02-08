@@ -85,7 +85,6 @@ public class GetJsonQuotesToScrapeTests
                     {
                         Selector = "//div[@class=\"col-md-8\"]",
                         ItemType = ItemType.Item,
-                        //OutputType = OutputType.Text,
                     }
                 }
             }
@@ -176,6 +175,5 @@ public class GetJsonQuotesToScrapeTests
 
         var resultDict = result as Dictionary<string, object>;
         resultDict.Count.Should().Be(0);
-
     }
 }

@@ -1,4 +1,5 @@
-﻿using Application.Models;
+﻿using System.Text.Json;
+using Application.Models;
 using Application.Models.Enums;
 using Application.Services;
 using AutoFixture;
@@ -32,14 +33,14 @@ public class GetJsonScrapingBeeTests
                     "title", new ExtractRule
                     {
                         ItemType = ItemType.Item,
-                        Selector = "h1",
+                        Selector = "h1"
                     }
                 },
                 {
                     "subtitle", new ExtractRule
                     {
                         ItemType = ItemType.Item,
-                        Selector = "#subtitle",
+                        Selector = "#subtitle"
                     }
                 }
             }
@@ -72,23 +73,23 @@ public class GetJsonScrapingBeeTests
                     "title", new ExtractRule
                     {
                         ItemType = ItemType.Item,
-                        Selector = "#title",
+                        Selector = "#title"
                     }
                 },
                 {
                     "title2", new ExtractRule
                     {
                         ItemType = ItemType.Item,
-                        Selector = "//*[@id='title']", //*[@id='yourNodeId']
+                        Selector = "//*[@id='title']" //*[@id='yourNodeId']
                     }
                 },
                 {
                     "title3", new ExtractRule
                     {
                         ItemType = ItemType.Item,
-                        Selector = "//h1[@id='title']",
+                        Selector = "//h1[@id='title']"
                     }
-                },
+                }
             }
         };
 
@@ -121,9 +122,9 @@ public class GetJsonScrapingBeeTests
                     "link", new ExtractRule
                     {
                         ItemType = ItemType.Item,
-                        Selector = "@href",
+                        Selector = "@href"
                     }
-                },
+                }
             }
         };
 
@@ -150,9 +151,9 @@ public class GetJsonScrapingBeeTests
                     "link", new ExtractRule
                     {
                         ItemType = ItemType.List,
-                        Selector = "@href",
+                        Selector = "@href"
                     }
-                },
+                }
             }
         };
 
@@ -168,10 +169,20 @@ public class GetJsonScrapingBeeTests
     }
 
     [Fact]
-    public void Table1Json()
+    public void GetTableJson()
     {
+        //{
+        //    ""table_json"": [
+        //    { ""Feature used"": ""Rotating Proxy without JavaScript rendering"", ""API credit cost"": ""1""},
+        //    { ""Feature used"": ""Rotating Proxy with JavaScript rendering(default)"", ""API credit cost"": ""5""},
+        //    { ""Feature used"": ""Premium Proxy without JavaScript rendering"", ""API credit cost"": ""10""},
+        //    { ""Feature used"": ""Premium Proxy with JavaScript rendering"", ""API credit cost"": ""25""}
+        //    ]
+        //}
+        var expectedString = @"
+""{""table_json"":[{""Feature used"":""Rotating Proxy without JavaScript rendering"",""API credit cost"":""1""},{""Feature used"":""Rotating Proxy with JavaScript rendering (default)"",""API credit cost"":""5""},{""Feature used"":""Premium Proxy without JavaScript rendering"",""API credit cost"":""10""},{""Feature used"":""Premium Proxy with JavaScript rendering"",""API credit cost"":""25""}]}""
+";
         var rawHtml = FileHelpers.GetHtml(Html);
-
         var input = new HtmlToJsonByXpath
         {
             Url = "url",
@@ -181,34 +192,34 @@ public class GetJsonScrapingBeeTests
                     "table_json", new ExtractRule
                     {
                         Selector = "#pricing_table",
-                        //OutputType = OutputType.TableJson
+                        ItemType = ItemType.TableJson
                     }
-                },
+                }
             }
         };
 
         var sut = _fixture.Create<HtmlParser>();
 
         var result = sut.GetJson(input, rawHtml);
-
-        //output
-
-        //{
-        //    "table_json": [
-        //    { "Feature used": "Rotating Proxy without JavaScript rendering", "API credit cost": "1"},
-        //    { "Feature used": "Rotating Proxy with JavaScript rendering  (default)", "API credit cost": "5"},
-        //    { "Feature used": "Premium Proxy without JavaScript rendering", "API credit cost": "10"},
-        //    { "Feature used": "Premium Proxy with JavaScript rendering", "API credit cost": "25"}
-        //    ]
-        //}
+        var resultString = JsonSerializer.Serialize(result);
+        resultString.Trim().Should().Be(expectedString.Trim()[1..^1]);
     }
 
-
     [Fact]
-    public void Table1Array()
+    public void GetTableArray()
     {
+        //{
+        //    "table_array": [
+        //    ["Rotating Proxy without JavaScript rendering", "1"],
+        //    ["Rotating Proxy with JavaScript rendering  (default)", "5"],
+        //    ["Premium Proxy without JavaScript rendering", "10"],
+        //    ["Premium Proxy with JavaScript rendering", "25"]
+        //        ]
+        //}
+        var expectedString = @"
+""{""table_array"":[[""Rotating Proxy without JavaScript rendering"",""1""],[""Rotating Proxy with JavaScript rendering (default)"",""5""],[""Premium Proxy without JavaScript rendering"",""10""],[""Premium Proxy with JavaScript rendering"",""25""]]}""
+";
         var rawHtml = FileHelpers.GetHtml(Html);
-
         var input = new HtmlToJsonByXpath
         {
             Url = "url",
@@ -218,35 +229,65 @@ public class GetJsonScrapingBeeTests
                     "table_array", new ExtractRule
                     {
                         Selector = "#pricing_table",
-                        //OutputType = OutputType.TableArray
+                        ItemType = ItemType.TableArray
                     }
-                },
+                }
             }
         };
 
         var sut = _fixture.Create<HtmlParser>();
 
         var result = sut.GetJson(input, rawHtml);
-
-        //output
-
-
-        //{
-        //    "table_array": [
-        //    ["Rotating Proxy without JavaScript rendering", "1"],
-        //    ["Rotating Proxy with JavaScript rendering  (default)", "5"],
-        //    ["Premium Proxy without JavaScript rendering", "10"],
-        //    ["Premium Proxy with JavaScript rendering", "25"]
-        //        ]
-        //}
+        var resultString = JsonSerializer.Serialize(result);
+        resultString.Trim().Should().Be(expectedString.Trim()[1..^1]);
     }
-
 
     [Fact]
     public void AllSelectors()
     {
-        var rawHtml = FileHelpers.GetHtml(Html);
-
+//{
+//	"title_text": "Documentation - Data Extraction",
+//	"title_html": "Documentation - Data Extraction",
+//	"table_array": [
+//		[
+//			"Rotating Proxy without JavaScript rendering",
+//			"1"
+//		],
+//		[
+//			"Rotating Proxy with JavaScript rendering (default)",
+//			"5"
+//		],
+//		[
+//			"Premium Proxy without JavaScript rendering",
+//			"10"
+//		],
+//		[
+//			"Premium Proxy with JavaScript rendering",
+//			"25"
+//		]
+//	],
+//	"table_json": [
+//		{
+//			"Feature used": "Rotating Proxy without JavaScript rendering",
+//			"API credit cost": "1"
+//		},
+//		{
+//			"Feature used": "Rotating Proxy with JavaScript rendering (default)",
+//			"API credit cost": "5"
+//		},
+//		{
+//			"Feature used": "Premium Proxy without JavaScript rendering",
+//			"API credit cost": "10"
+//		},
+//		{
+//			"Feature used": "Premium Proxy with JavaScript rendering",
+//			"API credit cost": "25"
+//		}
+//	]
+//}
+        var expectedString = @"
+""{""title_text"":""Documentation - Data Extraction"",""title_html"":""Documentation - Data Extraction"",""table_array"":[[""Rotating Proxy without JavaScript rendering"",""1""],[""Rotating Proxy with JavaScript rendering (default)"",""5""],[""Premium Proxy without JavaScript rendering"",""10""],[""Premium Proxy with JavaScript rendering"",""25""]],""table_json"":[{""Feature used"":""Rotating Proxy without JavaScript rendering"",""API credit cost"":""1""},{""Feature used"":""Rotating Proxy with JavaScript rendering (default)"",""API credit cost"":""5""},{""Feature used"":""Premium Proxy without JavaScript rendering"",""API credit cost"":""10""},{""Feature used"":""Premium Proxy with JavaScript rendering"",""API credit cost"":""25""}]}""
+";
         var input = new HtmlToJsonByXpath
         {
             Url = "url",
@@ -256,62 +297,47 @@ public class GetJsonScrapingBeeTests
                     "title_text", new ExtractRule
                     {
                         Selector = "h1",
-                        //OutputType = OutputType.Text
+                        ItemType = ItemType.Item
                     }
                 },
                 {
                     "title_html", new ExtractRule
                     {
                         Selector = "h1",
-                        //OutputType = OutputType.Html
+                        ItemType = ItemType.Item
                     }
                 },
                 {
                     "table_array", new ExtractRule
                     {
                         Selector = "table",
-                        //OutputType = OutputType.TableArray
+                        ItemType = ItemType.TableArray
                     }
                 },
                 {
                     "table_json", new ExtractRule
                     {
                         Selector = "table",
-                        //OutputType = OutputType.TableJson
+                        ItemType = ItemType.TableJson
                     }
-                },
+                }
             }
         };
+
+
+        var rawHtml = FileHelpers.GetHtml(Html);
 
         var sut = _fixture.Create<HtmlParser>();
 
         var result = sut.GetJson(input, rawHtml);
-
-        //{
-        //    "title_text": "Documentation - HTML API",
-        //    "title_text_relevant": "Documentation - HTML API", # No particular effect here. Use it on "body" to see the difference with "text"
-        //    "title_html": "<h1 id=\"the-scrapingbee-documentation\"> Documentation - HTML API </h1>",
-        //    "title_id": "the-scrapingbee-documentation"
-        //    "table_array": [
-        //    ["Rotating Proxy without JavaScript rendering", "1"],
-        //    ["Rotating Proxy with JavaScript rendering  (default)", "5"],
-        //    ["Premium Proxy without JavaScript rendering", "10"],
-        //    ["Premium Proxy with JavaScript rendering", "25"]
-        //        ]
-        //    "table_json": [
-        //    { "Feature used": "Rotating Proxy without JavaScript rendering", "API credit cost": "1"},
-        //    { "Feature used": "Rotating Proxy with JavaScript rendering  (default)", "API credit cost": "5"},
-        //    { "Feature used": "Premium Proxy without JavaScript rendering", "API credit cost": "10"},
-        //    { "Feature used": "Premium Proxy with JavaScript rendering", "API credit cost": "25"}
-        //    ]
-        //}
+        var resultString = JsonSerializer.Serialize(result);
+        resultString.Trim().Should().Be(expectedString.Trim()[1..^1]);
     }
 
 
     [Fact]
     public void SingleItemOrList()
     {
-
         var rawHtml = FileHelpers.GetHtml(Html);
 
         var input = new HtmlToJsonByXpath
@@ -332,7 +358,7 @@ public class GetJsonScrapingBeeTests
                         Selector = ".post-title",
                         ItemType = ItemType.List
                     }
-                },
+                }
             }
         };
 
@@ -386,7 +412,6 @@ public class GetJsonScrapingBeeTests
     [Fact]
     public void NestedObject()
     {
-
         //{
         //    "title" : "h1",
         //    "subtitle" : "#subtitle",
@@ -447,7 +472,6 @@ public class GetJsonScrapingBeeTests
     [Fact]
     public void ExtractAllLInksAndAnchors()
     {
-
         //{
         //    "all_links" : {
         //        "selector": "a",

@@ -10,6 +10,21 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Content Include="..\UnitTests\Data\AutoPliusCorola.html" Link="Data\AutoPliusCorola.html">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\UnitTests\Data\QuotesToScrape.html" Link="Data\QuotesToScrape.html">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\UnitTests\Data\ScrapingBeeBlogs.html" Link="Data\ScrapingBeeBlogs.html">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\UnitTests\Data\ScrapingBeeTable.html" Link="Data\ScrapingBeeTable.html">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+
+  <ItemGroup>
 	  <PackageReference Include="AutoFixture" Version="4.17.0" />
 	  <PackageReference Include="AutoFixture.AutoNSubstitute" Version="4.17.0" />
 	  <PackageReference Include="FluentAssertions" Version="6.12.0" />
@@ -26,18 +41,6 @@
     </PackageReference>
   </ItemGroup>
 
-  <ItemGroup>
-    <None Update="Data\AutoPliusCorola.html">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Update="Data\QuotesToScrape.html">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Update="Data\ScrapingBeeBlogs.html">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-  </ItemGroup>
-
 	<ItemGroup>
 		<ProjectReference Include="..\..\src\Infrastructure\Infrastructure.csproj" />
 		<ProjectReference Include="..\..\src\Scraper\Scraper.csproj" />
@@ -46,11 +49,11 @@
 		<None Update="appsettings.json">
 			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
 		</None>
-		<None Update="Data\ScrapingBeeTable.html">
-		  <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-		</None>
 	</ItemGroup>
 	<ItemGroup>
 		<PackageReference Update="SonarAnalyzer.CSharp" Version="9.4.0.72892" />
+	</ItemGroup>
+	<ItemGroup>
+	  <Folder Include="Data\" />
 	</ItemGroup>
 </Project>
