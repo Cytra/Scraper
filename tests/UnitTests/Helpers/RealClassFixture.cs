@@ -1,5 +1,5 @@
 ﻿using AutoFixture;
-using AutoFixture.AutoMoq;
+using AutoFixture.AutoNSubstitute;
 
 namespace UnitTests.Helpers;
 
@@ -7,7 +7,7 @@ public static class RealClassFixture
 {
     public static IFixture Create(bool configureMembers = false)
     {
-        var fixture = new Fixture().Customize(new AutoMoqCustomization() { ConfigureMembers = configureMembers });
+        var fixture = new Fixture().Customize(new AutoNSubstituteCustomization(){ConfigureMembers = configureMembers });
 
         fixture.Behaviors.OfType<ThrowingRecursionBehavior>().ToList()
             .ForEach(b => fixture.Behaviors.Remove(b));

@@ -8,12 +8,12 @@ using Xunit;
 
 namespace UnitTests.Services;
 
-public class XpathServiceQuotesToScrapeTests
+public class GetJsonQuotesToScrapeTests
 {
     private readonly IFixture _fixture;
     private const string Html = "QuotesToScrape";
 
-    public XpathServiceQuotesToScrapeTests()
+    public GetJsonQuotesToScrapeTests()
     {
         _fixture = RealClassFixture.Create();
     }
