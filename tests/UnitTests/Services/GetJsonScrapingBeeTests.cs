@@ -1,9 +1,11 @@
 ﻿using System.Text.Json;
+using System.Text.Json.Nodes;
 using Application.Models;
 using Application.Models.Enums;
 using Application.Services;
 using AutoFixture;
 using FluentAssertions;
+using Newtonsoft.Json.Linq;
 using UnitTests.Helpers;
 using Xunit;
 
@@ -163,7 +165,7 @@ public class GetJsonScrapingBeeTests
 
         result.Count.Should().Be(1);
         result.FirstOrDefault().Key.Should().Be("link");
-        var links = result.FirstOrDefault().Value as List<string>;
+        var links = result.FirstOrDefault().Value as List<object>;
         links!.Count.Should().Be(85);
         links.FirstOrDefault().Should().Be("https://www.scrapingbee.com/index.xml");
     }
@@ -371,7 +373,7 @@ public class GetJsonScrapingBeeTests
         keys[0].Should().Be("first_post_title");
         keys[1].Should().Be("all_post_title");
         values[0].Should().Be("\"  Block ressources with Puppeteer - (5min)\"");
-        var postList = values[1] as List<string>;
+        var postList = values[1] as List<object>;
         postList.Count.Should().Be(4);
         postList[0].Should().Be("\"  Block ressources with Puppeteer - (5min)\"");
         postList[1].Should().Be("\"  Web Scraping vs Web Crawling: Ultimate Guide - (10min)\"");
@@ -380,55 +382,71 @@ public class GetJsonScrapingBeeTests
     [Fact]
     public void CleanTextTrue()
     {
-        //{
-        //    "first_post_description" : {
-        //        "selector": ".card > div",
-        //        "clean": true #default
-        //    }
-        //}
+        var rawHtml = FileHelpers.GetHtml(Html);
 
+        var input = new HtmlToJsonByXpath
+        {
+            Url = "url",
+            ExtractRules = new Dictionary<string, ExtractRule>
+            {
+                {
+                    "first_post_description", new ExtractRule
+                    {
+                        Selector = ".card",
+                        ItemType = ItemType.Item,
+                        Clean = true
+                    }
+                }
+            }
+        };
 
-        //{
-        //    "first_post_description": "How to Use a Proxy with Python Requests? - (7min) By Maxine Meurer 13 October 2021 In this tutorial we will see how to use a proxy with the Requests package. We will also discuss on how to choose the right proxy provider.read more",
-        //}
+        var sut = _fixture.Create<HtmlParser>();
+
+        var result = sut.GetJson(input, rawHtml);
+
+        result.Count.Should().Be(1);
+        var values = result.Values.ToList();
+        var keys = result.Keys.ToList();
+        keys[0].Should().Be("first_post_description");
+        values[0].Should().Be("How to Use a Proxy with Python Requests? - (7min) By Maxine Meurer 13 October 2021 In this tutorial we will see how to use a proxy with the Requests package. We will also discuss on how to choose the right proxy provider.read more");
     }
 
     [Fact]
     public void DirtyTextFalse()
     {
-        //{
-        //    "first_post_description" : {
-        //        "selector": ".card > div",
-        //        "clean": false
-        //    }
-        //}
+        var rawHtml = FileHelpers.GetHtml(Html);
 
-        //{
-        //    "first_post_description": "\n                How to Use a Proxy with Python Requests? - (7min)\n        \n            \n            \n            By Maxine Meurer\n            \n            \n            13 October 2021\n            \n        \n        In this tutorial we will see how to use a proxy with the Requests package. We will also discuss on how to choose the right proxy provider.\n        read more\n        ",
-        //}
+        var input = new HtmlToJsonByXpath
+        {
+            Url = "url",
+            ExtractRules = new Dictionary<string, ExtractRule>
+            {
+                {
+                    "first_post_description", new ExtractRule
+                    {
+                        Selector = ".card",
+                        ItemType = ItemType.Item,
+                        Clean = false
+                    }
+                }
+            }
+        };
+
+        var sut = _fixture.Create<HtmlParser>();
+
+        var result = sut.GetJson(input, rawHtml);
+
+        result.Count.Should().Be(1);
+        var values = result.Values.ToList();
+        var keys = result.Keys.ToList();
+        keys[0].Should().Be("first_post_description");
+        values[0].Should().Be("                How to Use a Proxy with Python Requests? - (7min) By Maxine Meurer 13 October 2021 In this tutorial we will see how to use a proxy with the Requests package. We will also discuss on how to choose the right proxy provider.read more");
     }
 
     [Fact]
     public void NestedObject()
     {
-        //{
-        //    "title" : "h1",
-        //    "subtitle" : "#subtitle",
-        //    "articles": {
-        //        "selector": ".card",
-        //        "type": "list",
-        //        "output": {
-        //            "title": ".post-title",
-        //            "link": {
-        //                "selector": ".post-title",
-        //                "output": "@href"
-        //            },
-        //            "description": ".post-description"
-        //        }
-        //    }
-        //}
-
-        var rawHtml = FileHelpers.GetHtml(Html);
+        var rawHtml = FileHelpers.GetHtml("ScrapingBeeBlogs");
 
         var input = new HtmlToJsonByXpath
         {
@@ -445,28 +463,35 @@ public class GetJsonScrapingBeeTests
                 {
                     "subtitle", new ExtractRule
                     {
-                        Selector = "#subtitle",
+                        Selector = "h4",
                         ItemType = ItemType.List
                     }
                 },
                 {
                     "articles", new ExtractRule
                     {
-                        Selector = ".card",
+                        Selector = ".w-full sm:w-1/2 p-10 md:p-28 flex",
                         ItemType = ItemType.List,
                         Output = new Dictionary<string, ExtractRule>
                         {
                             {
                                 "link", new ExtractRule
                                 {
-                                    Selector = ".post-title",
+                                    Selector = "@href",
+                                    ItemType = ItemType.Item,
+                                }
+                            },
+                            {
+                                "title", new ExtractRule
+                                {
+                                    Selector = "h4",
                                     ItemType = ItemType.Item,
                                 }
                             },
                             {
                                 "description", new ExtractRule
                                 {
-                                    Selector = ".post-description",
+                                    Selector = "p",
                                     ItemType = ItemType.Item,
                                 }
                             }
@@ -481,48 +506,26 @@ public class GetJsonScrapingBeeTests
 
         var result = sut.GetJson(input, rawHtml);
 
-        //result.Count.Should().Be(2);
-        //var values = result.Values.ToList();
-        //var keys = result.Keys.ToList();
-        //keys[0].Should().Be("first_post_title");
-        //keys[1].Should().Be("all_post_title");
-        //values[0].Should().Be("\"  Block ressources with Puppeteer - (5min)\"");
-        //var postList = values[1] as List<string>;
-        //postList.Count.Should().Be(4);
-        //postList[0].Should().Be("\"  Block ressources with Puppeteer - (5min)\"");
-        //postList[1].Should().Be("\"  Web Scraping vs Web Crawling: Ultimate Guide - (10min)\"");
+        result.Count.Should().Be(3);
+        var values = result.Values.ToList();
+        var keys = result.Keys.ToList();
+        keys[0].Should().Be("title");
+        keys[1].Should().Be("subtitle");
+        keys[2].Should().Be("articles");
+        values[0].Should().Be("The ScrapingBee Blog");
 
-        //{
-        //    "title": "The ScrapingBee Blog",
-        //    "subtitle": " We help you get better at web-scraping: detailed tutorial, case studies and \n                        writing by industry experts",
-        //    "articles": [
-        //    {
-        //        "title": "  Block ressources with Puppeteer - (5min)",
-        //        "link": "https://www.scrapingbee.com/blog/block-requests-puppeteer/",
-        //        "description": "This article will show you how to intercept and block requests with Puppeteer using the request interception API and the puppeteer extra plugin."
-        //    },
-        //    ...
-        //    {
-        //        "title": "  Web Scraping vs Web Crawling: Ultimate Guide - (10min)",
-        //        "link": "https://www.scrapingbee.com/blog/scraping-vs-crawling/",
-        //        "description": "What is the difference between web scraping and web crawling? That's exactly what we will discover in this article, and the different tools you can use."
-        //    },
-        //    ]
-        //}
+        var subtitle = values[1] as List<object>;
+        subtitle!.Count.Should().Be(23);
+        subtitle.FirstOrDefault().Should().Be("Don't know where to begin?");
+
+        var nested = JsonSerializer.Serialize(values[2]);
+        nested.Should().Be("[[{\"link\":\"https://www.scrapingbee.com/index.xml\"},{\"title\":\"Don\\u0027t know where to begin?\"},{\"description\":\"text-30\"}],[{\"link\":\"https://www.scrapingbee.com/index.xml\"},{\"title\":\"Don\\u0027t know where to begin?\"},{\"description\":\"text-30\"}],[{\"link\":\"https://www.scrapingbee.com/index.xml\"},{\"title\":\"Don\\u0027t know where to begin?\"},{\"description\":\"text-30\"}],[{\"link\":\"https://www.scrapingbee.com/index.xml\"},{\"title\":\"Don\\u0027t know where to begin?\"},{\"description\":\"text-30\"}],[{\"link\":\"https://www.scrapingbee.com/index.xml\"},{\"title\":\"Don\\u0027t know where to begin?\"},{\"description\":\"text-30\"}],[{\"link\":\"https://www.scrapingbee.com/index.xml\"},{\"title\":\"Don\\u0027t know where to begin?\"},{\"description\":\"text-30\"}],[{\"link\":\"https://www.scrapingbee.com/index.xml\"},{\"title\":\"Don\\u0027t know where to begin?\"},{\"description\":\"text-30\"}],[{\"link\":\"https://www.scrapingbee.com/index.xml\"},{\"title\":\"Don\\u0027t know where to begin?\"},{\"description\":\"text-30\"}],[{\"link\":\"https://www.scrapingbee.com/index.xml\"},{\"title\":\"Don\\u0027t know where to begin?\"},{\"description\":\"text-30\"}],[{\"link\":\"https://www.scrapingbee.com/index.xml\"},{\"title\":\"Don\\u0027t know where to begin?\"},{\"description\":\"text-30\"}],[{\"link\":\"https://www.scrapingbee.com/index.xml\"},{\"title\":\"Don\\u0027t know where to begin?\"},{\"description\":\"text-30\"}],[{\"link\":\"https://www.scrapingbee.com/index.xml\"},{\"title\":\"Don\\u0027t know where to begin?\"},{\"description\":\"text-30\"}],[{\"link\":\"https://www.scrapingbee.com/index.xml\"},{\"title\":\"Don\\u0027t know where to begin?\"},{\"description\":\"text-30\"}],[{\"link\":\"https://www.scrapingbee.com/index.xml\"},{\"title\":\"Don\\u0027t know where to begin?\"},{\"description\":\"text-30\"}]]");
     }
 
     [Fact]
     public void ExtractAllLinksFromPage()
     {
-        //{
-        //    "all_links" : {
-        //        "selector": "a",
-        //        "type": "list",
-        //        "output": "@href"
-        //    }
-        //}
-
-        var rawHtml = FileHelpers.GetHtml(Html);
+        var rawHtml = FileHelpers.GetHtml("ScrapingBeeBlogs");
 
         var input = new HtmlToJsonByXpath
         {
@@ -532,7 +535,7 @@ public class GetJsonScrapingBeeTests
                 {
                     "all_links", new ExtractRule
                     {
-                        Selector = "a",
+                        Selector = "@href",
                         ItemType = ItemType.List
                     }
                 },
@@ -543,13 +546,11 @@ public class GetJsonScrapingBeeTests
 
         var result = sut.GetJson(input, rawHtml);
 
-        //{
-        //    "all_links": [
-        //    "https://www.scrapingbee.com/",
-        //    ...,
-        //    "https://www.scrapingbee.com/api-store/"
-        //        ]
-        //}
+        result.Count.Should().Be(1);
+        result.FirstOrDefault().Key.Should().Be("all_links");
+        var links = result.FirstOrDefault().Value as List<object>;
+        links!.Count.Should().Be(109);
+        links.FirstOrDefault().Should().Be("https://www.scrapingbee.com/index.xml");
     }
 
     [Fact]
@@ -569,7 +570,7 @@ public class GetJsonScrapingBeeTests
         //    }
         //}
 
-        var rawHtml = FileHelpers.GetHtml(Html);
+        var rawHtml = FileHelpers.GetHtml("ScrapingBeeBlogs");
 
         var input = new HtmlToJsonByXpath
         {
@@ -593,7 +594,7 @@ public class GetJsonScrapingBeeTests
                             {
                                 "href", new ExtractRule
                                 {
-                                    Selector = "a",
+                                    Selector = "href",
                                     ItemType = ItemType.Item,
                                 }
                             }
@@ -625,15 +626,9 @@ public class GetJsonScrapingBeeTests
     [Fact]
     public void ExtractAllEmails()
     {
-        //{
-        //    "email_addresses": {
-        //        "selector": "a[href^='mailto']",
-        //        "output": "@href",
-        //        "type": "list"
-        //    }
-        //}
+        //<span class="hljs-string">"mailto:contact@scrapingbee.com"</span>
 
-        var rawHtml = FileHelpers.GetHtml(Html);
+        var rawHtml = FileHelpers.GetHtml("ScrapingBeeBlogs");
 
         var input = new HtmlToJsonByXpath
         {
@@ -653,11 +648,5 @@ public class GetJsonScrapingBeeTests
         var sut = _fixture.Create<HtmlParser>();
 
         var result = sut.GetJson(input, rawHtml);
-
-        //{
-        //    "email_addresses": [
-        //    "mailto:contact@scrapingbee.com"
-        //        ]
-        //}
     }
 }

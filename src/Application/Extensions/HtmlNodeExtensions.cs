@@ -45,18 +45,44 @@ public class HtmlNodeExtensions : IHtmlNodeExtensions
         if (extractRules.Output != null) return HandleNestedObject(document, extractRules);
 
         var nodes = GetNodes(document, extractRules);
-        return OutputExtensions.GetOutput(nodes.FirstOrDefault(), extractRules.ItemType, SelectorExtensions.GetOutputSelector(extractRules.Selector));
+        return OutputExtensions.GetOutput(
+            nodes.FirstOrDefault(), 
+            extractRules.ItemType, 
+            SelectorExtensions.GetOutputSelector(extractRules.Selector),
+            extractRules.Clean
+            );
     }
 
-    internal static List<string> GetListItem(HtmlNode document, ExtractRule extractRule)
+    internal List<object> GetListItem(HtmlNode document, ExtractRule extractRule)
     {
+
         var nodes = GetNodes(document, extractRule);
 
-        var listItems = new List<string>();
+
+        var listItems = new List<object>();
+
+        if (nodes == null)
+        {
+            return listItems;
+        }
 
         foreach (var node in nodes)
         {
-            var outputString = OutputExtensions.GetOutput(node, extractRule.ItemType, SelectorExtensions.GetOutputSelector(extractRule.Selector));
+            if (extractRule.Output != null)
+            {
+                var nestedObject = HandleNestedObject(document, extractRule);
+                if (nestedObject != null)
+                {
+                    listItems.Add(nestedObject);
+                }
+                continue;
+            }
+            
+            var outputString = OutputExtensions.GetOutput(
+                node, 
+                extractRule.ItemType, 
+                SelectorExtensions.GetOutputSelector(extractRule.Selector),
+                extractRule.Clean);
             if (outputString != null)
             {
                 listItems.Add(outputString);

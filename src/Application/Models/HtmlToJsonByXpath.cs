@@ -25,5 +25,10 @@ public class ExtractRule
     /// Nested Output 
     /// </summary>
     public object? Output { get; set; }
+
+    /// <summary>
+    /// If false returns the html
+    /// </summary>
+    public bool Clean { get; set; } = true;
 }
 

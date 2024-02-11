@@ -151,7 +151,7 @@ public class GetJsonQuotesToScrapeTests
 
         var title = result as Dictionary<string, object>;
         var products = title["products"];
-        var productsList = products as List<string>;
+        var productsList = products as List<object>;
         productsList![0].Should()
             .Be(
                 "“The world as we have created it is a process of our thinking. It cannot be changed without changing our thinking.”");
