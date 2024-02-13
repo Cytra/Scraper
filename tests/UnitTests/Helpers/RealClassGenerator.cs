@@ -19,7 +19,7 @@ public class RealClassGenerator : ISpecimenBuilder
 
     private static Type? FindConcreteType(Type interfaceType)
     {
-        var interfaceNameWithoutI = interfaceType.Name[1..];
+        var interfaceNameWithoutI = interfaceType.FullName[1..];
         if (string.IsNullOrWhiteSpace(interfaceNameWithoutI))
         {
             return null;
@@ -28,7 +28,7 @@ public class RealClassGenerator : ISpecimenBuilder
         var allTypes = Assembly.Load("Application").GetTypes();
 
         var concreteTypes = allTypes
-            .Where(x => x is { IsClass: true, IsAbstract: false } && interfaceType.IsAssignableFrom(x));
+            .Where(x => x is { IsClass: true, IsAbstract: false } && interfaceType.IsAssignableFrom(x)).ToList();
 
         return concreteTypes.FirstOrDefault();
     }

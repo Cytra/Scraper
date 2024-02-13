@@ -1,7 +1,8 @@
 ﻿using System.Text.Json;
-using Application.Models; 
+using Application.Interfaces;
+using Application.Models;
 using Application.Models.Enums;
-using Application.Services;
+using Application.Services.Parsers;
 using AutoFixture;
 using FluentAssertions;
 using UnitTests.Helpers;
@@ -46,9 +47,9 @@ public class GetJsonScrapingBeeTests
             }
         };
 
-        var sut = _fixture.Create<HtmlParser>();
+        var sut = _fixture.Create<HtmlParser<ImplicitExtractRule>>();
 
-        var result = sut.GetJson(input, rawHtml);
+        var result = sut.GetJson(input.ExtractRules, rawHtml);
 
         result.Count.Should().Be(2);
         var values = result.Values.ToList();
@@ -93,9 +94,9 @@ public class GetJsonScrapingBeeTests
             }
         };
 
-        var sut = _fixture.Create<HtmlParser>();
+        var sut = _fixture.Create<HtmlParser<ImplicitExtractRule>>();
 
-        var result = sut.GetJson(input, rawHtml);
+        var result = sut.GetJson(input.ExtractRules, rawHtml);
 
         result.Count.Should().Be(3);
         var values = result.Values.ToList();
@@ -127,10 +128,9 @@ public class GetJsonScrapingBeeTests
                 }
             }
         };
+        var sut = _fixture.Create<HtmlParser<ImplicitExtractRule>>();
 
-        var sut = _fixture.Create<HtmlParser>();
-
-        var result = sut.GetJson(input, rawHtml);
+        var result = sut.GetJson(input.ExtractRules, rawHtml);
 
         result.Count.Should().Be(1);
         result.FirstOrDefault().Key.Should().Be("link");
@@ -157,9 +157,9 @@ public class GetJsonScrapingBeeTests
             }
         };
 
-        var sut = _fixture.Create<HtmlParser>();
+        var sut = _fixture.Create<HtmlParser<ImplicitExtractRule>>();
 
-        var result = sut.GetJson(input, rawHtml);
+        var result = sut.GetJson(input.ExtractRules, rawHtml);
 
         result.Count.Should().Be(1);
         result.FirstOrDefault().Key.Should().Be("link");
@@ -198,9 +198,9 @@ public class GetJsonScrapingBeeTests
             }
         };
 
-        var sut = _fixture.Create<HtmlParser>();
+        var sut = _fixture.Create<HtmlParser<ImplicitExtractRule>>();
 
-        var result = sut.GetJson(input, rawHtml);
+        var result = sut.GetJson(input.ExtractRules, rawHtml);
         var resultString = JsonSerializer.Serialize(result);
         resultString.Trim().Should().Be(expectedString.Trim()[1..^1]);
     }
@@ -235,9 +235,9 @@ public class GetJsonScrapingBeeTests
             }
         };
 
-        var sut = _fixture.Create<HtmlParser>();
+        var sut = _fixture.Create<HtmlParser<ImplicitExtractRule>>();
 
-        var result = sut.GetJson(input, rawHtml);
+        var result = sut.GetJson(input.ExtractRules, rawHtml);
         var resultString = JsonSerializer.Serialize(result);
         resultString.Trim().Should().Be(expectedString.Trim()[1..^1]);
     }
@@ -327,9 +327,9 @@ public class GetJsonScrapingBeeTests
 
         var rawHtml = FileHelpers.GetHtml(Html);
 
-        var sut = _fixture.Create<HtmlParser>();
+        var sut = _fixture.Create<HtmlParser<ImplicitExtractRule>>();
 
-        var result = sut.GetJson(input, rawHtml);
+        var result = sut.GetJson(input.ExtractRules, rawHtml);
         var resultString = JsonSerializer.Serialize(result);
         resultString.Trim().Should().Be(expectedString.Trim()[1..^1]);
     }
@@ -361,9 +361,9 @@ public class GetJsonScrapingBeeTests
             }
         };
 
-        var sut = _fixture.Create<HtmlParser>();
+        var sut = _fixture.Create<HtmlParser<ImplicitExtractRule>>();
 
-        var result = sut.GetJson(input, rawHtml);
+        var result = sut.GetJson(input.ExtractRules, rawHtml);
 
         result.Count.Should().Be(2);
         var values = result.Values.ToList();
@@ -398,9 +398,9 @@ public class GetJsonScrapingBeeTests
             }
         };
 
-        var sut = _fixture.Create<HtmlParser>();
+        var sut = _fixture.Create<HtmlParser<ImplicitExtractRule>>();
 
-        var result = sut.GetJson(input, rawHtml);
+        var result = sut.GetJson(input.ExtractRules, rawHtml);
 
         result.Count.Should().Be(1);
         var values = result.Values.ToList();
@@ -430,9 +430,9 @@ public class GetJsonScrapingBeeTests
             }
         };
 
-        var sut = _fixture.Create<HtmlParser>();
+        var sut = _fixture.Create<HtmlParser<ImplicitExtractRule>>();
 
-        var result = sut.GetJson(input, rawHtml);
+        var result = sut.GetJson(input.ExtractRules, rawHtml);
 
         result.Count.Should().Be(1);
         var values = result.Values.ToList();
@@ -500,9 +500,9 @@ public class GetJsonScrapingBeeTests
             }
         };
 
-        var sut = _fixture.Create<HtmlParser>();
+        var sut = _fixture.Create<HtmlParser<ImplicitExtractRule>>();
 
-        var result = sut.GetJson(input, rawHtml);
+        var result = sut.GetJson(input.ExtractRules, rawHtml);
 
         result.Count.Should().Be(3);
         var values = result.Values.ToList();
@@ -540,9 +540,9 @@ public class GetJsonScrapingBeeTests
             }
         };
 
-        var sut = _fixture.Create<HtmlParser>();
+        var sut = _fixture.Create<HtmlParser<ImplicitExtractRule>>();
 
-        var result = sut.GetJson(input, rawHtml);
+        var result = sut.GetJson(input.ExtractRules, rawHtml);
 
         result.Count.Should().Be(1);
         result.FirstOrDefault().Key.Should().Be("all_links");
@@ -602,9 +602,9 @@ public class GetJsonScrapingBeeTests
             }
         };
 
-        var sut = _fixture.Create<HtmlParser>();
+        var sut = _fixture.Create<HtmlParser<ImplicitExtractRule>>();
 
-        var result = sut.GetJson(input, rawHtml);
+        var result = sut.GetJson(input.ExtractRules, rawHtml);
 
         //{
         //    "all_links":[
@@ -643,8 +643,8 @@ public class GetJsonScrapingBeeTests
             }
         };
 
-        var sut = _fixture.Create<HtmlParser>();
+        var sut = _fixture.Create<HtmlParser<ImplicitExtractRule>>();
 
-        var result = sut.GetJson(input, rawHtml);
+        var result = sut.GetJson(input.ExtractRules, rawHtml);
     }
 }

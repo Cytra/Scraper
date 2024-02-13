@@ -3,9 +3,7 @@ using HtmlAgilityPack;
 
 namespace Application.Interfaces;
 
-public interface IJsonExtractorFacade
+public interface IJsonExtractorFacade<T> where T : ExtractRuleBase
 {
-    object? GetObjectToAdd(HtmlNode document, ImplicitExtractRule implicitExtractRule);
-
-    object? GetObjectToAdd(HtmlNode document, ExplicitExtractRule implicitExtractRule);
+    object? GetObjectToAdd(HtmlNode document, T extractRule);
 }

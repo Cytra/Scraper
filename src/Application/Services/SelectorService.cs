@@ -1,36 +1,38 @@
 ﻿using Application.Interfaces;
+using Application.Models;
 
 namespace Application.Services;
 
-public class SelectorService : ISelectorService
+public class ImplicitSelectorService : ISelectorService<ImplicitExtractRule>
 {
-    public string? GetImplicitInputSelector(string? selector)
+    public string? GetImplicitInputSelector(ImplicitExtractRule selector)
     {
-        if (string.IsNullOrWhiteSpace(selector))
+        var selectorString = selector.Selector;
+        if (string.IsNullOrWhiteSpace(selectorString))
         {
             return null;
         }
 
-        if (selector.StartsWith("/"))
+        if (selectorString.StartsWith("/"))
         {
-            return selector;
+            return selectorString;
         }
 
-        if (selector.StartsWith("."))
+        if (selectorString.StartsWith("."))
         {
-            return $".//*[contains(@class, '{selector[1..]}')]";
+            return $".//*[contains(@class, '{selectorString[1..]}')]";
         }
 
-        if (selector.StartsWith("#"))
+        if (selectorString.StartsWith("#"))
         {
-            return $"//*[@id='{selector[1..]}']";
+            return $"//*[@id='{selectorString[1..]}']";
         }
 
         return $"//{selector}";
     }
 
-    public string GetImplicitOutputSelector(string selector)
+    public string GetImplicitOutputSelector(ImplicitExtractRule selector)
     {
-        return selector[1..];
+        return selector.Selector[1..];
     }
 }

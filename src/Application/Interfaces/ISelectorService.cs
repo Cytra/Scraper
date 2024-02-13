@@ -1,8 +1,10 @@
-﻿namespace Application.Interfaces;
+﻿using Application.Models;
 
-public interface ISelectorService
+namespace Application.Interfaces;
+
+public interface ISelectorService<T> where T : ExtractRuleBase
 {
-    string? GetImplicitInputSelector(string? selector);
+    string? GetImplicitInputSelector(T selector);
 
-    string GetImplicitOutputSelector(string selector);
+    string GetImplicitOutputSelector(T selector);
 }

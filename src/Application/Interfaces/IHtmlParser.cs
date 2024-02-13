@@ -1,9 +1,8 @@
 ﻿using Application.Models;
-using OneOf;
 
 namespace Application.Interfaces;
 
-public interface IHtmlParser
+public interface IHtmlParser<T> where T : ExtractRuleBase
 {
-    Dictionary<string, object?> GetJson(JsonByXpathOneOf instructions, string html);
+    Dictionary<string, object?> GetJson(Dictionary<string, T>? extractRules, string html);
 }

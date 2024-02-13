@@ -4,32 +4,32 @@ using Application.Models;
 using Application.Models.Enums;
 using HtmlAgilityPack;
 using Microsoft.Extensions.Logging;
+using Newtonsoft.Json;
 
 namespace Application.Services;
 
-public class JsonExtractorFacade : IJsonExtractorFacade
+public class JsonExtractorFacade<T> : IJsonExtractorFacade<T> where T : ExtractRuleBase
 {
-    private readonly ILogger<HtmlParser> _logger;
-    private readonly ISelectorService _selectorService;
+    private readonly ISelectorService<T> _selectorService;
+    private readonly ILogger<JsonExtractorFacade<T>> _logger;
     public JsonExtractorFacade(
-        ILogger<HtmlParser> logger,
-        ISelectorService selectorService)
+        ISelectorService<T> selectorService, ILogger<JsonExtractorFacade<T>> logger)
     {
-        _logger = logger;
         _selectorService = selectorService;
+        _logger = logger;
     }
 
-    public object? GetObjectToAdd(HtmlNode document, ImplicitExtractRule implicitExtractRule)
+    public object? GetObjectToAdd(HtmlNode document, T extractRule)
     {
         try
         {
-            return implicitExtractRule.ItemType switch
+            return extractRule.ItemType switch
             {
-                ItemType.Item => GetSingleItem(document, implicitExtractRule),
-                ItemType.List => GetListItem(document, implicitExtractRule),
-                ItemType.TableJson => GetTableJson(document, implicitExtractRule),
-                ItemType.TableArray => GetTableArray(document, implicitExtractRule),
-                _ => GetSingleItem(document, implicitExtractRule),
+                ItemType.Item => GetSingleItem(document, extractRule),
+                ItemType.List => GetListItem(document, extractRule),
+                ItemType.TableJson => GetTableJson(document, extractRule),
+                ItemType.TableArray => GetTableArray(document, extractRule),
+                _ => GetSingleItem(document, extractRule),
             };
         }
         catch (Exception e)
@@ -40,12 +40,7 @@ public class JsonExtractorFacade : IJsonExtractorFacade
         return null;
     }
 
-    public object? GetObjectToAdd(HtmlNode document, ExplicitExtractRule implicitExtractRule)
-    {
-        throw new NotImplementedException();
-    }
-
-    internal object? GetSingleItem(HtmlNode document, ImplicitExtractRule implicitExtractRules)
+    internal object? GetSingleItem(HtmlNode document, T implicitExtractRules)
     {
         if (implicitExtractRules.Output != null) return HandleNestedObject(document, implicitExtractRules);
 
@@ -53,12 +48,12 @@ public class JsonExtractorFacade : IJsonExtractorFacade
         return OutputExtensions.GetOutput(
             nodes.FirstOrDefault(),
             implicitExtractRules.ItemType,
-            _selectorService.GetImplicitOutputSelector(implicitExtractRules.Selector),
+            _selectorService.GetImplicitOutputSelector(implicitExtractRules),
             implicitExtractRules.Clean
             );
     }
 
-    internal List<object> GetListItem(HtmlNode document, ImplicitExtractRule implicitExtractRule)
+    internal List<object> GetListItem(HtmlNode document, T implicitExtractRule)
     {
 
         var nodes = GetNodes(document, implicitExtractRule);
@@ -85,7 +80,7 @@ public class JsonExtractorFacade : IJsonExtractorFacade
             var outputString = OutputExtensions.GetOutput(
                 node,
                 implicitExtractRule.ItemType,
-                _selectorService.GetImplicitOutputSelector(implicitExtractRule.Selector),
+                _selectorService.GetImplicitOutputSelector(implicitExtractRule),
                 implicitExtractRule.Clean);
             if (outputString != null)
             {
@@ -96,7 +91,7 @@ public class JsonExtractorFacade : IJsonExtractorFacade
         return listItems;
     }
 
-    internal object GetTableJson(HtmlNode document, ImplicitExtractRule implicitExtractRule)
+    internal object GetTableJson(HtmlNode document, T implicitExtractRule)
     {
         var tableJson = new List<Dictionary<string, string>>();
         var node = GetNodes(document, implicitExtractRule).FirstOrDefault();
@@ -119,7 +114,7 @@ public class JsonExtractorFacade : IJsonExtractorFacade
         return tableJson;
     }
 
-    internal object GetTableArray(HtmlNode document, ImplicitExtractRule implicitExtractRule)
+    internal object GetTableArray(HtmlNode document, T implicitExtractRule)
     {
         var tableArray = new List<List<string>>();
         var node = GetNodes(document, implicitExtractRule).FirstOrDefault();
@@ -142,11 +137,11 @@ public class JsonExtractorFacade : IJsonExtractorFacade
 
     private object HandleNestedObject(
         HtmlNode document,
-        ImplicitExtractRule implicitExtractRules)
+        T implicitExtractRules)
     {
         var result = new List<Dictionary<string, object?>>();
 
-        var extractRulesObject = OutputExtensions.GetExtractRules(implicitExtractRules.Output!);
+        var extractRulesObject = GetExtractRules(implicitExtractRules.Output!);
 
         if (extractRulesObject == null)
         {
@@ -165,10 +160,27 @@ public class JsonExtractorFacade : IJsonExtractorFacade
         return result;
     }
 
-    private HtmlNodeCollection GetNodes(HtmlNode document, ImplicitExtractRule implicitExtractRule)
+    private HtmlNodeCollection GetNodes(HtmlNode document, T implicitExtractRule)
     {
-        var selector = _selectorService.GetImplicitInputSelector(implicitExtractRule.Selector);
+        var selector = _selectorService.GetImplicitInputSelector(implicitExtractRule);
         var nodes = document.SelectNodes(selector);
         return nodes;
+    }
+
+    internal static Dictionary<string, T>? GetExtractRules(object extractRules)
+    {
+        Dictionary<string, T>? extractRulesObject;
+        if (extractRules is Dictionary<string, T> rules)
+        {
+            extractRulesObject = rules;
+        }
+        else
+        {
+            extractRulesObject = JsonConvert
+                .DeserializeObject<Dictionary<string, T>>(
+                    extractRules.ToString());
+        }
+
+        return extractRulesObject;
     }
 }

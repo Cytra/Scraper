@@ -2,7 +2,6 @@
 using Application.Models;
 using Application.Ports;
 using MediatR;
-using OneOf;
 
 namespace Application.Queries;
 
@@ -17,10 +16,10 @@ public static class GetExplicitJson
 
     public class Handler : IRequestHandler<Query, Response>
     {
-        private readonly IHtmlParser _htmlParser;
+        private readonly IHtmlParser<ExplicitExtractRule> _htmlParser;
         private readonly ISeleniumService _seleniumService;
 
-        public Handler(IHtmlParser htmlParser,
+        public Handler(IHtmlParser<ExplicitExtractRule> htmlParser,
             ISeleniumService seleniumService)
         {
             _htmlParser = htmlParser;
@@ -30,7 +29,7 @@ public static class GetExplicitJson
         public Task<Response> Handle(Query request, CancellationToken cancellationToken)
         {
             var html = _seleniumService.GetData(request.Url);
-            var json = _htmlParser.GetJson(request, html);
+            var json = _htmlParser.GetJson(request.ExtractRules, html);
             return Task.FromResult(new Response()
             {
                 Json = json,

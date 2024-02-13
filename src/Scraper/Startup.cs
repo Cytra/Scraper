@@ -6,9 +6,11 @@ using Application.Options;
 using Application.Ports;
 using Application.Queries;
 using Application.Services;
+using Application.Services.Parsers;
 using Infrastructure.Scrapers;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Server.Kestrel.Core.Internal.Http;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 using Scraper.Middleware;
@@ -37,10 +39,11 @@ public class Startup
         services.AddScoped<ISeleniumDriverFactory, SeleniumDriverFactory>();
         services.AddScoped<ISeleniumService, SeleniumService>();
         services.AddScoped<IHtmlToJsonService, HtmlToJsonService>();
-        services.AddScoped<IHtmlParser, HtmlParser>();
-        services.AddScoped<IJsonExtractorFacade, JsonExtractorFacade>();
-        services.AddScoped<ISelectorService, SelectorService>();
-
+        services.AddScoped<IHtmlParser<ImplicitExtractRule>, HtmlParser<ImplicitExtractRule>>();
+        services.AddScoped<IHtmlParser<ExplicitExtractRule>, HtmlParser<ExplicitExtractRule>>();
+        services.AddScoped<IJsonExtractorFacade<ImplicitExtractRule>, JsonExtractorFacade<ImplicitExtractRule>>();
+        services.AddScoped<IJsonExtractorFacade<ExplicitExtractRule>, JsonExtractorFacade<ExplicitExtractRule>>();
+        services.AddScoped<ISelectorService<ImplicitExtractRule>, ImplicitSelectorService>();
 
         services.AddControllers()
             .ConfigureApiBehaviorOptions(setupAction =>
