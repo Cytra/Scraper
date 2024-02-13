@@ -28,7 +28,7 @@ public class ImplicitSelectorService : ISelectorService<ImplicitExtractRule>
             return $"//*[@id='{selectorString[1..]}']";
         }
 
-        return $"//{selector}";
+        return $"//{selectorString}";
     }
 
     public string GetImplicitOutputSelector(ImplicitExtractRule selector)

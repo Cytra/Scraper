@@ -1,10 +1,11 @@
 ﻿using System.Text.Json;
-using Application.Interfaces;
 using Application.Models;
 using Application.Models.Enums;
+using Application.Services;
 using Application.Services.Parsers;
 using AutoFixture;
 using FluentAssertions;
+using Microsoft.Extensions.Logging;
 using UnitTests.Helpers;
 using Xunit;
 
@@ -14,10 +15,16 @@ public class GetJsonScrapingBeeTests
 {
     private readonly IFixture _fixture; 
     private const string Html = "ScrapingBeeTable";
+    private readonly HtmlParser<ImplicitExtractRule> _sut;
 
     public GetJsonScrapingBeeTests()
     {
         _fixture = RealClassFixture.Create();
+
+        var logger = _fixture.Freeze<ILogger<JsonExtractorFacade<ImplicitExtractRule>>>();
+        var selectorService = new ImplicitSelectorService();
+        var jsonExtractorFacade = new JsonExtractorFacade<ImplicitExtractRule>(selectorService, logger);
+        _sut = new HtmlParser<ImplicitExtractRule>(jsonExtractorFacade);
     }
 
     [Fact]
@@ -47,9 +54,7 @@ public class GetJsonScrapingBeeTests
             }
         };
 
-        var sut = _fixture.Create<HtmlParser<ImplicitExtractRule>>();
-
-        var result = sut.GetJson(input.ExtractRules, rawHtml);
+        var result = _sut.GetJson(input.ExtractRules, rawHtml);
 
         result.Count.Should().Be(2);
         var values = result.Values.ToList();
@@ -94,9 +99,7 @@ public class GetJsonScrapingBeeTests
             }
         };
 
-        var sut = _fixture.Create<HtmlParser<ImplicitExtractRule>>();
-
-        var result = sut.GetJson(input.ExtractRules, rawHtml);
+        var result = _sut.GetJson(input.ExtractRules, rawHtml);
 
         result.Count.Should().Be(3);
         var values = result.Values.ToList();
@@ -128,9 +131,8 @@ public class GetJsonScrapingBeeTests
                 }
             }
         };
-        var sut = _fixture.Create<HtmlParser<ImplicitExtractRule>>();
 
-        var result = sut.GetJson(input.ExtractRules, rawHtml);
+        var result = _sut.GetJson(input.ExtractRules, rawHtml);
 
         result.Count.Should().Be(1);
         result.FirstOrDefault().Key.Should().Be("link");
@@ -157,9 +159,7 @@ public class GetJsonScrapingBeeTests
             }
         };
 
-        var sut = _fixture.Create<HtmlParser<ImplicitExtractRule>>();
-
-        var result = sut.GetJson(input.ExtractRules, rawHtml);
+        var result = _sut.GetJson(input.ExtractRules, rawHtml);
 
         result.Count.Should().Be(1);
         result.FirstOrDefault().Key.Should().Be("link");
@@ -198,9 +198,7 @@ public class GetJsonScrapingBeeTests
             }
         };
 
-        var sut = _fixture.Create<HtmlParser<ImplicitExtractRule>>();
-
-        var result = sut.GetJson(input.ExtractRules, rawHtml);
+        var result = _sut.GetJson(input.ExtractRules, rawHtml);
         var resultString = JsonSerializer.Serialize(result);
         resultString.Trim().Should().Be(expectedString.Trim()[1..^1]);
     }
@@ -235,9 +233,7 @@ public class GetJsonScrapingBeeTests
             }
         };
 
-        var sut = _fixture.Create<HtmlParser<ImplicitExtractRule>>();
-
-        var result = sut.GetJson(input.ExtractRules, rawHtml);
+        var result = _sut.GetJson(input.ExtractRules, rawHtml);
         var resultString = JsonSerializer.Serialize(result);
         resultString.Trim().Should().Be(expectedString.Trim()[1..^1]);
     }
@@ -327,9 +323,7 @@ public class GetJsonScrapingBeeTests
 
         var rawHtml = FileHelpers.GetHtml(Html);
 
-        var sut = _fixture.Create<HtmlParser<ImplicitExtractRule>>();
-
-        var result = sut.GetJson(input.ExtractRules, rawHtml);
+        var result = _sut.GetJson(input.ExtractRules, rawHtml);
         var resultString = JsonSerializer.Serialize(result);
         resultString.Trim().Should().Be(expectedString.Trim()[1..^1]);
     }
@@ -361,9 +355,7 @@ public class GetJsonScrapingBeeTests
             }
         };
 
-        var sut = _fixture.Create<HtmlParser<ImplicitExtractRule>>();
-
-        var result = sut.GetJson(input.ExtractRules, rawHtml);
+        var result = _sut.GetJson(input.ExtractRules, rawHtml);
 
         result.Count.Should().Be(2);
         var values = result.Values.ToList();
@@ -398,9 +390,7 @@ public class GetJsonScrapingBeeTests
             }
         };
 
-        var sut = _fixture.Create<HtmlParser<ImplicitExtractRule>>();
-
-        var result = sut.GetJson(input.ExtractRules, rawHtml);
+        var result = _sut.GetJson(input.ExtractRules, rawHtml);
 
         result.Count.Should().Be(1);
         var values = result.Values.ToList();
@@ -430,9 +420,7 @@ public class GetJsonScrapingBeeTests
             }
         };
 
-        var sut = _fixture.Create<HtmlParser<ImplicitExtractRule>>();
-
-        var result = sut.GetJson(input.ExtractRules, rawHtml);
+        var result = _sut.GetJson(input.ExtractRules, rawHtml);
 
         result.Count.Should().Be(1);
         var values = result.Values.ToList();
@@ -500,9 +488,7 @@ public class GetJsonScrapingBeeTests
             }
         };
 
-        var sut = _fixture.Create<HtmlParser<ImplicitExtractRule>>();
-
-        var result = sut.GetJson(input.ExtractRules, rawHtml);
+        var result = _sut.GetJson(input.ExtractRules, rawHtml);
 
         result.Count.Should().Be(3);
         var values = result.Values.ToList();
@@ -540,9 +526,7 @@ public class GetJsonScrapingBeeTests
             }
         };
 
-        var sut = _fixture.Create<HtmlParser<ImplicitExtractRule>>();
-
-        var result = sut.GetJson(input.ExtractRules, rawHtml);
+        var result = _sut.GetJson(input.ExtractRules, rawHtml);
 
         result.Count.Should().Be(1);
         result.FirstOrDefault().Key.Should().Be("all_links");
@@ -602,9 +586,7 @@ public class GetJsonScrapingBeeTests
             }
         };
 
-        var sut = _fixture.Create<HtmlParser<ImplicitExtractRule>>();
-
-        var result = sut.GetJson(input.ExtractRules, rawHtml);
+        var result = _sut.GetJson(input.ExtractRules, rawHtml);
 
         //{
         //    "all_links":[
@@ -643,8 +625,6 @@ public class GetJsonScrapingBeeTests
             }
         };
 
-        var sut = _fixture.Create<HtmlParser<ImplicitExtractRule>>();
-
-        var result = sut.GetJson(input.ExtractRules, rawHtml);
+        var result = _sut.GetJson(input.ExtractRules, rawHtml);
     }
 }

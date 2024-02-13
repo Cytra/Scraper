@@ -1,8 +1,10 @@
 ﻿using Application.Models;
 using Application.Models.Enums;
+using Application.Services;
 using Application.Services.Parsers;
 using AutoFixture;
 using FluentAssertions;
+using Microsoft.Extensions.Logging;
 using UnitTests.Helpers;
 using Xunit;
 
@@ -12,10 +14,15 @@ public class GetJsonQuotesToScrapeTests
 {
     private readonly IFixture _fixture;
     private const string Html = "QuotesToScrape";
+    private readonly HtmlParser<ImplicitExtractRule> _sut;
 
     public GetJsonQuotesToScrapeTests()
     {
         _fixture = RealClassFixture.Create();
+        var logger = _fixture.Freeze<ILogger<JsonExtractorFacade<ImplicitExtractRule>>>();
+        var selectorService = new ImplicitSelectorService();
+        var jsonExtractorFacade = new JsonExtractorFacade<ImplicitExtractRule>(selectorService, logger);
+        _sut = new HtmlParser<ImplicitExtractRule>(jsonExtractorFacade);
     }
 
     [Fact]
@@ -55,9 +62,7 @@ public class GetJsonQuotesToScrapeTests
             }
         };
 
-        var sut = _fixture.Create<HtmlParser<ImplicitExtractRule>>();
-
-        var result = sut.GetJson(input.ExtractRules, rawHtml);
+        var result = _sut.GetJson(input.ExtractRules, rawHtml);
 
         var productDict = result as Dictionary<string, object>;
         var products = productDict["products"];
@@ -90,9 +95,7 @@ public class GetJsonQuotesToScrapeTests
             }
         };
 
-        var sut = _fixture.Create<HtmlParser<ImplicitExtractRule>>();
-
-        var result = sut.GetJson(input.ExtractRules, rawHtml);
+        var result = _sut.GetJson(input.ExtractRules, rawHtml);
 
         var title = result as Dictionary<string, object>;
         title["title"].Should().Be("Quotes to Scrape");
@@ -117,9 +120,7 @@ public class GetJsonQuotesToScrapeTests
             }
         };
 
-        var sut = _fixture.Create<HtmlParser<ImplicitExtractRule>>();
-
-        var result = sut.GetJson(input.ExtractRules, rawHtml);
+        var result = _sut.GetJson(input.ExtractRules, rawHtml);
 
         var title = result as Dictionary<string, object>;
         title["title"].Should().Be("Quotes to Scrape");
@@ -145,9 +146,7 @@ public class GetJsonQuotesToScrapeTests
             }
         };
 
-        var sut = _fixture.Create<HtmlParser<ImplicitExtractRule>>();
-
-        var result = sut.GetJson(input.ExtractRules, rawHtml);
+        var result = _sut.GetJson(input.ExtractRules, rawHtml);
 
         var title = result as Dictionary<string, object>;
         var products = title["products"];
@@ -169,9 +168,7 @@ public class GetJsonQuotesToScrapeTests
             ExtractRules = null
         };
 
-        var sut = _fixture.Create<HtmlParser<ImplicitExtractRule>>();
-
-        var result = sut.GetJson(input.ExtractRules, rawHtml);
+        var result = _sut.GetJson(input.ExtractRules, rawHtml);
 
         var resultDict = result as Dictionary<string, object>;
         resultDict.Count.Should().Be(0);
