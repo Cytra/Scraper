@@ -2,20 +2,8 @@
 
 namespace Application.Models;
 
-public class HtmlToJsonByXpath
+public class ExtractRuleBase
 {
-    public required string Url { get; set; }
-
-    public Dictionary<string, ExtractRule>? ExtractRules { get; set; }
-}
-
-public class ExtractRule
-{
-    /// <summary>
-    /// Xpath Selector
-    /// </summary>
-    public required string Selector { get; set; }
-
     /// <summary>
     /// What item should it be
     /// </summary>
@@ -31,4 +19,3 @@ public class ExtractRule
     /// </summary>
     public bool Clean { get; set; } = true;
 }
-

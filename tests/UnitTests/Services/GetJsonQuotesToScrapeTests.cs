@@ -23,27 +23,27 @@ public class GetJsonQuotesToScrapeTests
     {
         var rawHtml = FileHelpers.GetHtml(Html);
 
-        var input = new HtmlToJsonByXpath
+        var input = new JsonByXpathImplicit
         {
             Url = "url",
-            ExtractRules = new Dictionary<string, ExtractRule>
+            ExtractRules = new Dictionary<string, ImplicitExtractRule>
             {
                 {
-                    "products", new ExtractRule
+                    "products", new ImplicitExtractRule
                     {
                         Selector = "//div[@class=\"col-md-8\"]",
                         ItemType = ItemType.Item,
-                        Output = new Dictionary<string, ExtractRule>
+                        Output = new Dictionary<string, ImplicitExtractRule>
                         {
                             {
-                                "Quote", new ExtractRule
+                                "Quote", new ImplicitExtractRule
                                 {
                                     Selector = "//span[@class=\"text\"]",
                                     ItemType = ItemType.Item,
                                 }
                             },
                             {
-                                "By", new ExtractRule
+                                "By", new ImplicitExtractRule
                                 {
                                     Selector = "//small[@class=\"author\"]",
                                     ItemType = ItemType.Item,
@@ -75,13 +75,13 @@ public class GetJsonQuotesToScrapeTests
     {
         var rawHtml = FileHelpers.GetHtml(Html);
 
-        var input = new HtmlToJsonByXpath
+        var input = new JsonByXpathImplicit
         {
             Url = "url",
-            ExtractRules = new Dictionary<string, ExtractRule>
+            ExtractRules = new Dictionary<string, ImplicitExtractRule>
             {
                 {
-                    "title", new ExtractRule
+                    "title", new ImplicitExtractRule
                     {
                         Selector = "//div[@class=\"col-md-8\"]",
                         ItemType = ItemType.Item,
@@ -103,13 +103,13 @@ public class GetJsonQuotesToScrapeTests
     {
         var rawHtml = FileHelpers.GetHtml(Html);
 
-        var input = new HtmlToJsonByXpath
+        var input = new JsonByXpathImplicit
         {
             Url = "url",
-            ExtractRules = new Dictionary<string, ExtractRule>
+            ExtractRules = new Dictionary<string, ImplicitExtractRule>
             {
                 {
-                    "title", new ExtractRule
+                    "title", new ImplicitExtractRule
                     {
                         Selector = "//div[@class=\"col-md-8\"]",
                     }
@@ -130,13 +130,13 @@ public class GetJsonQuotesToScrapeTests
     {
         var rawHtml = FileHelpers.GetHtml(Html);
 
-        var input = new HtmlToJsonByXpath
+        var input = new JsonByXpathImplicit
         {
             Url = "url",
-            ExtractRules = new Dictionary<string, ExtractRule>
+            ExtractRules = new Dictionary<string, ImplicitExtractRule>
             {
                 {
-                    "products", new ExtractRule
+                    "products", new ImplicitExtractRule
                     {
                         ItemType = ItemType.List,
                         Selector = "//span[@class=\"text\"]",
@@ -163,7 +163,7 @@ public class GetJsonQuotesToScrapeTests
     {
         var rawHtml = FileHelpers.GetHtml(Html);
 
-        var input = new HtmlToJsonByXpath
+        var input = new JsonByXpathImplicit
         {
             Url = "url",
             ExtractRules = null

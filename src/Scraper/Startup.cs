@@ -1,5 +1,4 @@
 ﻿using System.Reflection;
-using Application.Extensions;
 using Application.Interfaces;
 using Application.Models;
 using Application.Models.Enums;
@@ -39,7 +38,8 @@ public class Startup
         services.AddScoped<ISeleniumService, SeleniumService>();
         services.AddScoped<IHtmlToJsonService, HtmlToJsonService>();
         services.AddScoped<IHtmlParser, HtmlParser>();
-        services.AddScoped<IHtmlNodeExtensions, HtmlNodeExtensions>();
+        services.AddScoped<IJsonExtractorFacade, JsonExtractorFacade>();
+        services.AddScoped<ISelectorService, SelectorService>();
 
 
         services.AddControllers()

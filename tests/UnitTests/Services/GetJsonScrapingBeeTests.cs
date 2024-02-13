@@ -1,11 +1,9 @@
 ﻿using System.Text.Json;
-using System.Text.Json.Nodes;
-using Application.Models;
+using Application.Models; 
 using Application.Models.Enums;
 using Application.Services;
 using AutoFixture;
 using FluentAssertions;
-using Newtonsoft.Json.Linq;
 using UnitTests.Helpers;
 using Xunit;
 
@@ -13,7 +11,7 @@ namespace UnitTests.Services;
 
 public class GetJsonScrapingBeeTests
 {
-    private readonly IFixture _fixture;
+    private readonly IFixture _fixture; 
     private const string Html = "ScrapingBeeTable";
 
     public GetJsonScrapingBeeTests()
@@ -26,20 +24,20 @@ public class GetJsonScrapingBeeTests
     {
         var rawHtml = FileHelpers.GetHtml(Html);
 
-        var input = new HtmlToJsonByXpath
+        var input = new JsonByXpathImplicit
         {
             Url = "url",
-            ExtractRules = new Dictionary<string, ExtractRule>
+            ExtractRules = new Dictionary<string, ImplicitExtractRule>
             {
                 {
-                    "title", new ExtractRule
+                    "title", new ImplicitExtractRule
                     {
                         ItemType = ItemType.Item,
                         Selector = "h1"
                     }
                 },
                 {
-                    "subtitle", new ExtractRule
+                    "subtitle", new ImplicitExtractRule
                     {
                         ItemType = ItemType.Item,
                         Selector = "#subtitle"
@@ -66,27 +64,27 @@ public class GetJsonScrapingBeeTests
     {
         var rawHtml = FileHelpers.GetHtml(Html);
 
-        var input = new HtmlToJsonByXpath
+        var input = new JsonByXpathImplicit
         {
             Url = "url",
-            ExtractRules = new Dictionary<string, ExtractRule>
+            ExtractRules = new Dictionary<string, ImplicitExtractRule>
             {
                 {
-                    "title", new ExtractRule
+                    "title", new ImplicitExtractRule
                     {
                         ItemType = ItemType.Item,
                         Selector = "#title"
                     }
                 },
                 {
-                    "title2", new ExtractRule
+                    "title2", new ImplicitExtractRule
                     {
                         ItemType = ItemType.Item,
                         Selector = "//*[@id='title']" //*[@id='yourNodeId']
                     }
                 },
                 {
-                    "title3", new ExtractRule
+                    "title3", new ImplicitExtractRule
                     {
                         ItemType = ItemType.Item,
                         Selector = "//h1[@id='title']"
@@ -115,13 +113,13 @@ public class GetJsonScrapingBeeTests
     {
         var rawHtml = FileHelpers.GetHtml(Html);
 
-        var input = new HtmlToJsonByXpath
+        var input = new JsonByXpathImplicit
         {
             Url = "url",
-            ExtractRules = new Dictionary<string, ExtractRule>
+            ExtractRules = new Dictionary<string, ImplicitExtractRule>
             {
                 {
-                    "link", new ExtractRule
+                    "link", new ImplicitExtractRule
                     {
                         ItemType = ItemType.Item,
                         Selector = "@href"
@@ -144,13 +142,13 @@ public class GetJsonScrapingBeeTests
     {
         var rawHtml = FileHelpers.GetHtml(Html);
 
-        var input = new HtmlToJsonByXpath
+        var input = new JsonByXpathImplicit
         {
             Url = "url",
-            ExtractRules = new Dictionary<string, ExtractRule>
+            ExtractRules = new Dictionary<string, ImplicitExtractRule>
             {
                 {
-                    "link", new ExtractRule
+                    "link", new ImplicitExtractRule
                     {
                         ItemType = ItemType.List,
                         Selector = "@href"
@@ -185,13 +183,13 @@ public class GetJsonScrapingBeeTests
 ""{""table_json"":[{""Feature used"":""Rotating Proxy without JavaScript rendering"",""API credit cost"":""1""},{""Feature used"":""Rotating Proxy with JavaScript rendering (default)"",""API credit cost"":""5""},{""Feature used"":""Premium Proxy without JavaScript rendering"",""API credit cost"":""10""},{""Feature used"":""Premium Proxy with JavaScript rendering"",""API credit cost"":""25""}]}""
 ";
         var rawHtml = FileHelpers.GetHtml(Html);
-        var input = new HtmlToJsonByXpath
+        var input = new JsonByXpathImplicit
         {
             Url = "url",
-            ExtractRules = new Dictionary<string, ExtractRule>
+            ExtractRules = new Dictionary<string, ImplicitExtractRule>
             {
                 {
-                    "table_json", new ExtractRule
+                    "table_json", new ImplicitExtractRule
                     {
                         Selector = "#pricing_table",
                         ItemType = ItemType.TableJson
@@ -222,13 +220,13 @@ public class GetJsonScrapingBeeTests
 ""{""table_array"":[[""Rotating Proxy without JavaScript rendering"",""1""],[""Rotating Proxy with JavaScript rendering (default)"",""5""],[""Premium Proxy without JavaScript rendering"",""10""],[""Premium Proxy with JavaScript rendering"",""25""]]}""
 ";
         var rawHtml = FileHelpers.GetHtml(Html);
-        var input = new HtmlToJsonByXpath
+        var input = new JsonByXpathImplicit
         {
             Url = "url",
-            ExtractRules = new Dictionary<string, ExtractRule>
+            ExtractRules = new Dictionary<string, ImplicitExtractRule>
             {
                 {
-                    "table_array", new ExtractRule
+                    "table_array", new ImplicitExtractRule
                     {
                         Selector = "#pricing_table",
                         ItemType = ItemType.TableArray
@@ -290,34 +288,34 @@ public class GetJsonScrapingBeeTests
         var expectedString = @"
 ""{""title_text"":""Documentation - Data Extraction"",""title_html"":""Documentation - Data Extraction"",""table_array"":[[""Rotating Proxy without JavaScript rendering"",""1""],[""Rotating Proxy with JavaScript rendering (default)"",""5""],[""Premium Proxy without JavaScript rendering"",""10""],[""Premium Proxy with JavaScript rendering"",""25""]],""table_json"":[{""Feature used"":""Rotating Proxy without JavaScript rendering"",""API credit cost"":""1""},{""Feature used"":""Rotating Proxy with JavaScript rendering (default)"",""API credit cost"":""5""},{""Feature used"":""Premium Proxy without JavaScript rendering"",""API credit cost"":""10""},{""Feature used"":""Premium Proxy with JavaScript rendering"",""API credit cost"":""25""}]}""
 ";
-        var input = new HtmlToJsonByXpath
+        var input = new JsonByXpathImplicit
         {
             Url = "url",
-            ExtractRules = new Dictionary<string, ExtractRule>
+            ExtractRules = new Dictionary<string, ImplicitExtractRule>
             {
                 {
-                    "title_text", new ExtractRule
+                    "title_text", new ImplicitExtractRule
                     {
                         Selector = "h1",
                         ItemType = ItemType.Item
                     }
                 },
                 {
-                    "title_html", new ExtractRule
+                    "title_html", new ImplicitExtractRule
                     {
                         Selector = "h1",
                         ItemType = ItemType.Item
                     }
                 },
                 {
-                    "table_array", new ExtractRule
+                    "table_array", new ImplicitExtractRule
                     {
                         Selector = "table",
                         ItemType = ItemType.TableArray
                     }
                 },
                 {
-                    "table_json", new ExtractRule
+                    "table_json", new ImplicitExtractRule
                     {
                         Selector = "table",
                         ItemType = ItemType.TableJson
@@ -341,20 +339,20 @@ public class GetJsonScrapingBeeTests
     {
         var rawHtml = FileHelpers.GetHtml(Html);
 
-        var input = new HtmlToJsonByXpath
+        var input = new JsonByXpathImplicit
         {
             Url = "url",
-            ExtractRules = new Dictionary<string, ExtractRule>
+            ExtractRules = new Dictionary<string, ImplicitExtractRule>
             {
                 {
-                    "first_post_title", new ExtractRule
+                    "first_post_title", new ImplicitExtractRule
                     {
                         Selector = ".post-title",
                         ItemType = ItemType.Item
                     }
                 },
                 {
-                    "all_post_title", new ExtractRule
+                    "all_post_title", new ImplicitExtractRule
                     {
                         Selector = ".post-title",
                         ItemType = ItemType.List
@@ -384,13 +382,13 @@ public class GetJsonScrapingBeeTests
     {
         var rawHtml = FileHelpers.GetHtml(Html);
 
-        var input = new HtmlToJsonByXpath
+        var input = new JsonByXpathImplicit
         {
             Url = "url",
-            ExtractRules = new Dictionary<string, ExtractRule>
+            ExtractRules = new Dictionary<string, ImplicitExtractRule>
             {
                 {
-                    "first_post_description", new ExtractRule
+                    "first_post_description", new ImplicitExtractRule
                     {
                         Selector = ".card",
                         ItemType = ItemType.Item,
@@ -416,13 +414,13 @@ public class GetJsonScrapingBeeTests
     {
         var rawHtml = FileHelpers.GetHtml(Html);
 
-        var input = new HtmlToJsonByXpath
+        var input = new JsonByXpathImplicit
         {
             Url = "url",
-            ExtractRules = new Dictionary<string, ExtractRule>
+            ExtractRules = new Dictionary<string, ImplicitExtractRule>
             {
                 {
-                    "first_post_description", new ExtractRule
+                    "first_post_description", new ImplicitExtractRule
                     {
                         Selector = ".card",
                         ItemType = ItemType.Item,
@@ -448,48 +446,48 @@ public class GetJsonScrapingBeeTests
     {
         var rawHtml = FileHelpers.GetHtml("ScrapingBeeBlogs");
 
-        var input = new HtmlToJsonByXpath
+        var input = new JsonByXpathImplicit
         {
             Url = "url",
-            ExtractRules = new Dictionary<string, ExtractRule>
+            ExtractRules = new Dictionary<string, ImplicitExtractRule>
             {
                 {
-                    "title", new ExtractRule
+                    "title", new ImplicitExtractRule
                     {
                         Selector = "h1",
                         ItemType = ItemType.Item
                     }
                 },
                 {
-                    "subtitle", new ExtractRule
+                    "subtitle", new ImplicitExtractRule
                     {
                         Selector = "h4",
                         ItemType = ItemType.List
                     }
                 },
                 {
-                    "articles", new ExtractRule
+                    "articles", new ImplicitExtractRule
                     {
                         Selector = ".w-full sm:w-1/2 p-10 md:p-28 flex",
                         ItemType = ItemType.List,
-                        Output = new Dictionary<string, ExtractRule>
+                        Output = new Dictionary<string, ImplicitExtractRule>
                         {
                             {
-                                "link", new ExtractRule
+                                "link", new ImplicitExtractRule
                                 {
                                     Selector = "@href",
                                     ItemType = ItemType.Item,
                                 }
                             },
                             {
-                                "title", new ExtractRule
+                                "title", new ImplicitExtractRule
                                 {
                                     Selector = "h4",
                                     ItemType = ItemType.Item,
                                 }
                             },
                             {
-                                "description", new ExtractRule
+                                "description", new ImplicitExtractRule
                                 {
                                     Selector = "p",
                                     ItemType = ItemType.Item,
@@ -527,13 +525,13 @@ public class GetJsonScrapingBeeTests
     {
         var rawHtml = FileHelpers.GetHtml("ScrapingBeeBlogs");
 
-        var input = new HtmlToJsonByXpath
+        var input = new JsonByXpathImplicit
         {
             Url = "url",
-            ExtractRules = new Dictionary<string, ExtractRule>
+            ExtractRules = new Dictionary<string, ImplicitExtractRule>
             {
                 {
-                    "all_links", new ExtractRule
+                    "all_links", new ImplicitExtractRule
                     {
                         Selector = "@href",
                         ItemType = ItemType.List
@@ -572,27 +570,27 @@ public class GetJsonScrapingBeeTests
 
         var rawHtml = FileHelpers.GetHtml("ScrapingBeeBlogs");
 
-        var input = new HtmlToJsonByXpath
+        var input = new JsonByXpathImplicit
         {
             Url = "url",
-            ExtractRules = new Dictionary<string, ExtractRule>
+            ExtractRules = new Dictionary<string, ImplicitExtractRule>
             {
                 {
-                    "all_links", new ExtractRule
+                    "all_links", new ImplicitExtractRule
                     {
                         Selector = "a",
                         ItemType = ItemType.List,
-                        Output = new Dictionary<string, ExtractRule>
+                        Output = new Dictionary<string, ImplicitExtractRule>
                         {
                             {
-                                "anchor", new ExtractRule
+                                "anchor", new ImplicitExtractRule
                                 {
                                     Selector = "a",
                                     ItemType = ItemType.Item,
                                 }
                             },
                             {
-                                "href", new ExtractRule
+                                "href", new ImplicitExtractRule
                                 {
                                     Selector = "href",
                                     ItemType = ItemType.Item,
@@ -630,13 +628,13 @@ public class GetJsonScrapingBeeTests
 
         var rawHtml = FileHelpers.GetHtml("ScrapingBeeBlogs");
 
-        var input = new HtmlToJsonByXpath
+        var input = new JsonByXpathImplicit
         {
             Url = "url",
-            ExtractRules = new Dictionary<string, ExtractRule>
+            ExtractRules = new Dictionary<string, ImplicitExtractRule>
             {
                 {
-                    "email_addresses", new ExtractRule
+                    "email_addresses", new ImplicitExtractRule
                     {
                         Selector = "a[href^='mailto']",
                         ItemType = ItemType.List,

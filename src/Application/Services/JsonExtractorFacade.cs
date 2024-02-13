@@ -1,35 +1,35 @@
-﻿using Application.Models;
+﻿using Application.Extensions;
+using Application.Interfaces;
+using Application.Models;
 using Application.Models.Enums;
-using Application.Services;
 using HtmlAgilityPack;
 using Microsoft.Extensions.Logging;
 
-namespace Application.Extensions;
+namespace Application.Services;
 
-public interface IHtmlNodeExtensions
-{
-    object? GetObjectToAdd(HtmlNode document, ExtractRule extractRule);
-}
-
-public class HtmlNodeExtensions : IHtmlNodeExtensions
+public class JsonExtractorFacade : IJsonExtractorFacade
 {
     private readonly ILogger<HtmlParser> _logger;
-    public HtmlNodeExtensions(ILogger<HtmlParser> logger)
+    private readonly ISelectorService _selectorService;
+    public JsonExtractorFacade(
+        ILogger<HtmlParser> logger,
+        ISelectorService selectorService)
     {
         _logger = logger;
+        _selectorService = selectorService;
     }
 
-    public object? GetObjectToAdd(HtmlNode document, ExtractRule extractRule)
+    public object? GetObjectToAdd(HtmlNode document, ImplicitExtractRule implicitExtractRule)
     {
         try
         {
-            return extractRule.ItemType switch
+            return implicitExtractRule.ItemType switch
             {
-                ItemType.Item => GetSingleItem(document, extractRule),
-                ItemType.List => GetListItem(document, extractRule),
-                ItemType.TableJson => GetTableJson(document, extractRule),
-                ItemType.TableArray => GetTableArray(document, extractRule),
-                _ => GetSingleItem(document, extractRule),
+                ItemType.Item => GetSingleItem(document, implicitExtractRule),
+                ItemType.List => GetListItem(document, implicitExtractRule),
+                ItemType.TableJson => GetTableJson(document, implicitExtractRule),
+                ItemType.TableArray => GetTableArray(document, implicitExtractRule),
+                _ => GetSingleItem(document, implicitExtractRule),
             };
         }
         catch (Exception e)
@@ -40,24 +40,28 @@ public class HtmlNodeExtensions : IHtmlNodeExtensions
         return null;
     }
 
-    internal object? GetSingleItem(HtmlNode document, ExtractRule extractRules)
+    public object? GetObjectToAdd(HtmlNode document, ExplicitExtractRule implicitExtractRule)
     {
-        if (extractRules.Output != null) return HandleNestedObject(document, extractRules);
+        throw new NotImplementedException();
+    }
 
-        var nodes = GetNodes(document, extractRules);
+    internal object? GetSingleItem(HtmlNode document, ImplicitExtractRule implicitExtractRules)
+    {
+        if (implicitExtractRules.Output != null) return HandleNestedObject(document, implicitExtractRules);
+
+        var nodes = GetNodes(document, implicitExtractRules);
         return OutputExtensions.GetOutput(
-            nodes.FirstOrDefault(), 
-            extractRules.ItemType, 
-            SelectorExtensions.GetOutputSelector(extractRules.Selector),
-            extractRules.Clean
+            nodes.FirstOrDefault(),
+            implicitExtractRules.ItemType,
+            _selectorService.GetImplicitOutputSelector(implicitExtractRules.Selector),
+            implicitExtractRules.Clean
             );
     }
 
-    internal List<object> GetListItem(HtmlNode document, ExtractRule extractRule)
+    internal List<object> GetListItem(HtmlNode document, ImplicitExtractRule implicitExtractRule)
     {
 
-        var nodes = GetNodes(document, extractRule);
-
+        var nodes = GetNodes(document, implicitExtractRule);
 
         var listItems = new List<object>();
 
@@ -68,21 +72,21 @@ public class HtmlNodeExtensions : IHtmlNodeExtensions
 
         foreach (var node in nodes)
         {
-            if (extractRule.Output != null)
+            if (implicitExtractRule.Output != null)
             {
-                var nestedObject = HandleNestedObject(document, extractRule);
+                var nestedObject = HandleNestedObject(document, implicitExtractRule);
                 if (nestedObject != null)
                 {
                     listItems.Add(nestedObject);
                 }
                 continue;
             }
-            
+
             var outputString = OutputExtensions.GetOutput(
-                node, 
-                extractRule.ItemType, 
-                SelectorExtensions.GetOutputSelector(extractRule.Selector),
-                extractRule.Clean);
+                node,
+                implicitExtractRule.ItemType,
+                _selectorService.GetImplicitOutputSelector(implicitExtractRule.Selector),
+                implicitExtractRule.Clean);
             if (outputString != null)
             {
                 listItems.Add(outputString);
@@ -92,10 +96,10 @@ public class HtmlNodeExtensions : IHtmlNodeExtensions
         return listItems;
     }
 
-    internal static object GetTableJson(HtmlNode document, ExtractRule extractRule)
+    internal object GetTableJson(HtmlNode document, ImplicitExtractRule implicitExtractRule)
     {
         var tableJson = new List<Dictionary<string, string>>();
-        var node = GetNodes(document, extractRule).FirstOrDefault();
+        var node = GetNodes(document, implicitExtractRule).FirstOrDefault();
 
         var headers = node.SelectNodes(".//thead//th").Select(th => th.InnerText.Trim()).ToArray();
 
@@ -115,10 +119,10 @@ public class HtmlNodeExtensions : IHtmlNodeExtensions
         return tableJson;
     }
 
-    internal  object GetTableArray(HtmlNode document, ExtractRule extractRule)
+    internal object GetTableArray(HtmlNode document, ImplicitExtractRule implicitExtractRule)
     {
         var tableArray = new List<List<string>>();
-        var node = GetNodes(document, extractRule).FirstOrDefault();
+        var node = GetNodes(document, implicitExtractRule).FirstOrDefault();
 
         if (node != null)
         {
@@ -138,11 +142,11 @@ public class HtmlNodeExtensions : IHtmlNodeExtensions
 
     private object HandleNestedObject(
         HtmlNode document,
-        ExtractRule extractRules)
+        ImplicitExtractRule implicitExtractRules)
     {
         var result = new List<Dictionary<string, object?>>();
 
-        var extractRulesObject = OutputExtensions.GetExtractRules(extractRules.Output!);
+        var extractRulesObject = OutputExtensions.GetExtractRules(implicitExtractRules.Output!);
 
         if (extractRulesObject == null)
         {
@@ -161,9 +165,9 @@ public class HtmlNodeExtensions : IHtmlNodeExtensions
         return result;
     }
 
-    private static HtmlNodeCollection GetNodes(HtmlNode document, ExtractRule extractRule)
+    private HtmlNodeCollection GetNodes(HtmlNode document, ImplicitExtractRule implicitExtractRule)
     {
-        var selector = SelectorExtensions.GetInputSelector(extractRule.Selector);
+        var selector = _selectorService.GetImplicitInputSelector(implicitExtractRule.Selector);
         var nodes = document.SelectNodes(selector);
         return nodes;
     }

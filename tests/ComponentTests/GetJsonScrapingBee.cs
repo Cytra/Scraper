@@ -38,7 +38,7 @@ public class GetJsonScrapingBee
     }
 }";
 
-        var response = await client.GetAsync($"/api/v1/json?Url=http://quotes.toscrape.com&extractRules={extractRulesString}");
+        var response = await client.GetAsync($"/api/v1/implicit-json?Url=http://quotes.toscrape.com&extractRules={extractRulesString}");
         
         var result = await response.Content.ReadFromJsonAsync<Dictionary<string, string>>(_jsonSerializerOptions);
         result!.First().Key.Should().Be("title");
@@ -58,7 +58,7 @@ public class GetJsonScrapingBee
     }
 }";
 
-        var response = await client.GetAsync($"/api/v1/json?Url=http://quotes.toscrape.com&extractRules={extractRulesString}");
+        var response = await client.GetAsync($"/api/v1/implicit-json?Url=http://quotes.toscrape.com&extractRules={extractRulesString}");
 
         var result = await response.Content.ReadFromJsonAsync<Dictionary<string, string>>(_jsonSerializerOptions);
         result!.First().Key.Should().Be("title");

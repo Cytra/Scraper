@@ -41,19 +41,36 @@ public class HtmlController : ControllerBase
         return Ok(result.Json);
     }
 
-    [HttpGet("json")]
-    public async Task<ActionResult<JObject>> Get(
+    [HttpGet("implicit-json")]
+    public async Task<ActionResult<JObject>> GetImplicitJson(
         [FromQuery] string url,
         [FromQuery] string extractRules,
         CancellationToken cancellationToken)
     {
-        var extractRulesObject = JsonConvert.DeserializeObject<Dictionary<string, ExtractRule>>(extractRules);
+        var extractRulesObject = JsonConvert.DeserializeObject<Dictionary<string, ImplicitExtractRule>>(extractRules);
         var result = await _mediator
-            .Send(new GetJson.Query()
+            .Send(new GetImplicitJson.Query()
             {
                 Url = url,
                 ExtractRules = extractRulesObject
             },
+                cancellationToken);
+        return Ok(result.Json);
+    }
+
+    [HttpGet("explicit-json")]
+    public async Task<ActionResult<JObject>> GetExplicitJson(
+        [FromQuery] string url,
+        [FromQuery] string extractRules,
+        CancellationToken cancellationToken)
+    {
+        var extractRulesObject = JsonConvert.DeserializeObject<Dictionary<string, ExplicitExtractRule>>(extractRules);
+        var result = await _mediator
+            .Send(new GetExplicitJson.Query()
+                {
+                    Url = url,
+                    ExtractRules = extractRulesObject
+                },
                 cancellationToken);
         return Ok(result.Json);
     }

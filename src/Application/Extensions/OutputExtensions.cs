@@ -47,17 +47,17 @@ internal static class OutputExtensions
         return node.Value;
     }
 
-    internal static Dictionary<string, ExtractRule>? GetExtractRules(object extractRules)
+    internal static Dictionary<string, ImplicitExtractRule>? GetExtractRules(object extractRules)
     {
-        Dictionary<string, ExtractRule>? extractRulesObject;
-        if (extractRules is Dictionary<string, ExtractRule> rules)
+        Dictionary<string, ImplicitExtractRule>? extractRulesObject;
+        if (extractRules is Dictionary<string, ImplicitExtractRule> rules)
         {
             extractRulesObject = rules;
         }
         else
         {
             extractRulesObject = JsonConvert
-                .DeserializeObject<Dictionary<string, ExtractRule>>(
+                .DeserializeObject<Dictionary<string, ImplicitExtractRule>>(
                     extractRules.ToString());
         }
 

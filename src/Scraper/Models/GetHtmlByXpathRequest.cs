@@ -2,7 +2,7 @@
 
 namespace Scraper.Models;
 
-public class GetHtmlByXpathRequest : HtmlToJsonByXpath
+public class GetHtmlByXpathImplicitRequest : JsonByXpathImplicit
 {
 
 }

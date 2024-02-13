@@ -1,8 +1,10 @@
-﻿namespace Application.Extensions;
+﻿using Application.Interfaces;
 
-internal static class SelectorExtensions
+namespace Application.Services;
+
+public class SelectorService : ISelectorService
 {
-    internal static string? GetInputSelector(string? selector)
+    public string? GetImplicitInputSelector(string? selector)
     {
         if (string.IsNullOrWhiteSpace(selector))
         {
@@ -27,7 +29,7 @@ internal static class SelectorExtensions
         return $"//{selector}";
     }
 
-    internal static string GetOutputSelector(string selector)
+    public string GetImplicitOutputSelector(string selector)
     {
         return selector[1..];
     }

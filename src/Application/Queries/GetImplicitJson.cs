@@ -2,12 +2,13 @@
 using Application.Models;
 using Application.Ports;
 using MediatR;
+using OneOf;
 
 namespace Application.Queries;
 
-public static class GetJson
+public static class GetImplicitJson
 {
-    public class Query : HtmlToJsonByXpath, IRequest<Response> { }
+    public class Query : JsonByXpathImplicit, IRequest<Response> { }
 
     public class Response : ErrorResponse
     {
