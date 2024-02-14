@@ -5109,7 +5109,7 @@ The simplest way to use extraction rules is to use the following format">
 
                                     <p class="my-10"> You can also discover this feature using our Postman collection covering every ScrapingBee's features.</p>
                                     <div class="postman-run-button inline-block" data-postman-action="collection/fork" data-postman-var-1="19660521-faef6818-896f-4127-821a-868fadcbe053" data-postman-collection-url="entityId=19660521-faef6818-896f-4127-821a-868fadcbe053&amp;entityType=collection&amp;workspaceId=ec53dca3-6e2a-4301-b2ea-9a754fc93c8f" data-postman-button-index="0"></div>
-                                    <script type="text/javascript">
+                                <script type="text/javascript">
     (function (p,o,s,t,m,a,n) {
         !p[s] && (p[s] = function () { (p[t] || (p[t] = [])).push(arguments); });
         !o.getElementById(s+t) && o.getElementsByTagName("head")[0].appendChild((
@@ -5131,7 +5131,7 @@ The simplest way to use extraction rules is to use the following format">
 </code></pre><p>For example, if you wish to extract the title and subtitle of our <a href="/blog/">blog</a>, you will need to use those rules.</p>
 <pre tabindex="0"><code class="hljs language-json"><span class="hljs-punctuation">{</span>
                                         <span class="hljs-attr">"title"</span> <span class="hljs-punctuation">:</span> <span class="hljs-string">"h1"</span><span class="hljs-punctuation">,</span>
-                                        <span class="hljs-attr">"subtitle"</span> <span class="hljs-punctuation">:</span> <span class="hljs-string">"#subtitle"</span><span class="hljs-punctuation">,</span>
+                                        <span class="hljs-attr">"subtitle"</span> <span class="hljs-punctuation">:</span> <span class="hljs-punctuation">,</span>
 <span class="hljs-punctuation">}</span>
 </code></pre><p>And this will be the JSON response</p>
 <pre tabindex="0"><code class="hljs language-json"><span class="hljs-punctuation">{</span>
@@ -5172,7 +5172,7 @@ client = ScrapingBeeClient(api_key=<span class="hljs-string">'YOUR-API-KEY'</spa
 response = client.get(
                                                         <span class="hljs-string">'https://www.scrapingbee.com/blog'</span>,
     params={
-                                                        <span class="hljs-string">'extract_rules'</span>:{<span class="hljs-string">"title"</span>: <span class="hljs-string">"h1"</span>, <span class="hljs-string">"subtitle"</span>: <span class="hljs-string">"#subtitle"</span>},
+                                                        <span class="hljs-string">'extract_rules'</span>:{<span class="hljs-string">"title"</span>: <span class="hljs-string">"h1"</span>},
     },
 )
 <span class="hljs-built_in">print</span>(<span class="hljs-string">'Response HTTP Status Code: '</span>, response.status_code)

@@ -7,6 +7,7 @@ using Application.Ports;
 using Application.Queries;
 using Application.Services;
 using Application.Services.Parsers;
+using Application.Services.Selector;
 using Infrastructure.Scrapers;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;

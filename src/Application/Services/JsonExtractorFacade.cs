@@ -55,15 +55,9 @@ public class JsonExtractorFacade<T> : IJsonExtractorFacade<T> where T : ExtractR
 
     internal List<object> GetListItem(HtmlNode document, T implicitExtractRule)
     {
-
         var nodes = GetNodes(document, implicitExtractRule);
 
         var listItems = new List<object>();
-
-        if (nodes == null)
-        {
-            return listItems;
-        }
 
         foreach (var node in nodes)
         {

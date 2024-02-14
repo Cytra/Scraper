@@ -14,12 +14,15 @@ internal static class OutputExtensions
             return null;
         }
 
-        var attribute = node.Attributes.SingleOrDefault(x => x.Name.Contains(selector));
-        if (attribute is not null)
+        if (!string.IsNullOrWhiteSpace(selector))
         {
-            return attribute.CleanText(clean);
+            var attribute = node.Attributes.FirstOrDefault(x => x.Name.Contains(selector));
+            if (attribute is not null)
+            {
+                return attribute.CleanText(clean);
+            }
         }
-
+        
         return outputType switch
         {
             ItemType.Item => node.CleanText(clean),

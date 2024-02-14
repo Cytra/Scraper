@@ -1,7 +1,7 @@
 ﻿using Application.Interfaces;
 using Application.Models;
 
-namespace Application.Services;
+namespace Application.Services.Selector;
 
 public class ImplicitSelectorService : ISelectorService<ImplicitExtractRule>
 {

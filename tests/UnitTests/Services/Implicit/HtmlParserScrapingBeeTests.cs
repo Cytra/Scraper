@@ -3,24 +3,24 @@ using Application.Models;
 using Application.Models.Enums;
 using Application.Services;
 using Application.Services.Parsers;
+using Application.Services.Selector;
 using AutoFixture;
 using FluentAssertions;
 using Microsoft.Extensions.Logging;
 using UnitTests.Helpers;
 using Xunit;
 
-namespace UnitTests.Services;
+namespace UnitTests.Services.Implicit;
 
-public class GetJsonScrapingBeeTests
+public class HtmlParserScrapingBeeTests
 {
-    private readonly IFixture _fixture; 
+    private readonly IFixture _fixture;
     private const string Html = "ScrapingBeeTable";
     private readonly HtmlParser<ImplicitExtractRule> _sut;
 
-    public GetJsonScrapingBeeTests()
+    public HtmlParserScrapingBeeTests()
     {
         _fixture = RealClassFixture.Create();
-
         var logger = _fixture.Freeze<ILogger<JsonExtractorFacade<ImplicitExtractRule>>>();
         var selectorService = new ImplicitSelectorService();
         var jsonExtractorFacade = new JsonExtractorFacade<ImplicitExtractRule>(selectorService, logger);
@@ -241,46 +241,46 @@ public class GetJsonScrapingBeeTests
     [Fact]
     public void AllSelectors()
     {
-//{
-//	"title_text": "Documentation - Data Extraction",
-//	"title_html": "Documentation - Data Extraction",
-//	"table_array": [
-//		[
-//			"Rotating Proxy without JavaScript rendering",
-//			"1"
-//		],
-//		[
-//			"Rotating Proxy with JavaScript rendering (default)",
-//			"5"
-//		],
-//		[
-//			"Premium Proxy without JavaScript rendering",
-//			"10"
-//		],
-//		[
-//			"Premium Proxy with JavaScript rendering",
-//			"25"
-//		]
-//	],
-//	"table_json": [
-//		{
-//			"Feature used": "Rotating Proxy without JavaScript rendering",
-//			"API credit cost": "1"
-//		},
-//		{
-//			"Feature used": "Rotating Proxy with JavaScript rendering (default)",
-//			"API credit cost": "5"
-//		},
-//		{
-//			"Feature used": "Premium Proxy without JavaScript rendering",
-//			"API credit cost": "10"
-//		},
-//		{
-//			"Feature used": "Premium Proxy with JavaScript rendering",
-//			"API credit cost": "25"
-//		}
-//	]
-//}
+        //{
+        //	"title_text": "Documentation - Data Extraction",
+        //	"title_html": "Documentation - Data Extraction",
+        //	"table_array": [
+        //		[
+        //			"Rotating Proxy without JavaScript rendering",
+        //			"1"
+        //		],
+        //		[
+        //			"Rotating Proxy with JavaScript rendering (default)",
+        //			"5"
+        //		],
+        //		[
+        //			"Premium Proxy without JavaScript rendering",
+        //			"10"
+        //		],
+        //		[
+        //			"Premium Proxy with JavaScript rendering",
+        //			"25"
+        //		]
+        //	],
+        //	"table_json": [
+        //		{
+        //			"Feature used": "Rotating Proxy without JavaScript rendering",
+        //			"API credit cost": "1"
+        //		},
+        //		{
+        //			"Feature used": "Rotating Proxy with JavaScript rendering (default)",
+        //			"API credit cost": "5"
+        //		},
+        //		{
+        //			"Feature used": "Premium Proxy without JavaScript rendering",
+        //			"API credit cost": "10"
+        //		},
+        //		{
+        //			"Feature used": "Premium Proxy with JavaScript rendering",
+        //			"API credit cost": "25"
+        //		}
+        //	]
+        //}
         var expectedString = @"
 ""{""title_text"":""Documentation - Data Extraction"",""title_html"":""Documentation - Data Extraction"",""table_array"":[[""Rotating Proxy without JavaScript rendering"",""1""],[""Rotating Proxy with JavaScript rendering (default)"",""5""],[""Premium Proxy without JavaScript rendering"",""10""],[""Premium Proxy with JavaScript rendering"",""25""]],""table_json"":[{""Feature used"":""Rotating Proxy without JavaScript rendering"",""API credit cost"":""1""},{""Feature used"":""Rotating Proxy with JavaScript rendering (default)"",""API credit cost"":""5""},{""Feature used"":""Premium Proxy without JavaScript rendering"",""API credit cost"":""10""},{""Feature used"":""Premium Proxy with JavaScript rendering"",""API credit cost"":""25""}]}""
 ";
@@ -503,7 +503,7 @@ public class GetJsonScrapingBeeTests
         subtitle.FirstOrDefault().Should().Be("Don't know where to begin?");
 
         var nested = JsonSerializer.Serialize(values[2]);
-        nested.Should().Be("[[{\"link\":\"https://www.scrapingbee.com/index.xml\"},{\"title\":\"Don\\u0027t know where to begin?\"},{\"description\":\"text-30\"}],[{\"link\":\"https://www.scrapingbee.com/index.xml\"},{\"title\":\"Don\\u0027t know where to begin?\"},{\"description\":\"text-30\"}],[{\"link\":\"https://www.scrapingbee.com/index.xml\"},{\"title\":\"Don\\u0027t know where to begin?\"},{\"description\":\"text-30\"}],[{\"link\":\"https://www.scrapingbee.com/index.xml\"},{\"title\":\"Don\\u0027t know where to begin?\"},{\"description\":\"text-30\"}],[{\"link\":\"https://www.scrapingbee.com/index.xml\"},{\"title\":\"Don\\u0027t know where to begin?\"},{\"description\":\"text-30\"}],[{\"link\":\"https://www.scrapingbee.com/index.xml\"},{\"title\":\"Don\\u0027t know where to begin?\"},{\"description\":\"text-30\"}],[{\"link\":\"https://www.scrapingbee.com/index.xml\"},{\"title\":\"Don\\u0027t know where to begin?\"},{\"description\":\"text-30\"}],[{\"link\":\"https://www.scrapingbee.com/index.xml\"},{\"title\":\"Don\\u0027t know where to begin?\"},{\"description\":\"text-30\"}],[{\"link\":\"https://www.scrapingbee.com/index.xml\"},{\"title\":\"Don\\u0027t know where to begin?\"},{\"description\":\"text-30\"}],[{\"link\":\"https://www.scrapingbee.com/index.xml\"},{\"title\":\"Don\\u0027t know where to begin?\"},{\"description\":\"text-30\"}],[{\"link\":\"https://www.scrapingbee.com/index.xml\"},{\"title\":\"Don\\u0027t know where to begin?\"},{\"description\":\"text-30\"}],[{\"link\":\"https://www.scrapingbee.com/index.xml\"},{\"title\":\"Don\\u0027t know where to begin?\"},{\"description\":\"text-30\"}],[{\"link\":\"https://www.scrapingbee.com/index.xml\"},{\"title\":\"Don\\u0027t know where to begin?\"},{\"description\":\"text-30\"}],[{\"link\":\"https://www.scrapingbee.com/index.xml\"},{\"title\":\"Don\\u0027t know where to begin?\"},{\"description\":\"text-30\"}]]");
+        //ested.Should().Be("\"[[{\"link\":\"https://www.scrapingbee.com/index.xml\"},{\"title\":\"Don\\u0027t know where to begin?\"},{\"description\":\"We help you get better at web-scraping: detailed tutorials, case studies and writings by industry experts.\"}],[{\"link\":\"https://www.scrapingbee.com/index.xml\"},{\"title\":\"Don\\u0027t know where to begin?\"},{\"description\":\"We help you get better at web-scraping: detailed tutorials, case studies and writings by industry experts.\"}],[{\"link\":\"https://www.scrapingbee.com/index.xml\"},{\"title\":\"Don\\u0027t know where to begin?\"},{\"description\":\"We help you get better at web-scraping: detailed tutorials, case studies and writings by industry experts.\"}],[{\"link\":\"https://www.scrapingbee.com/index.xml\"},{\"title\":\"Don\\u0027t know where to begin?\"},{\"description\":\"We help you get better at web-scraping: detailed tutorials, case studies and writings by industry experts.\"}],[{\"link\":\"https://www.scrapingbee.com/index.xml\"},{\"title\":\"Don\\u0027t know where to begin?\"},{\"description\":\"We help you get better at web-scraping: detailed tutorials, case studies and writings by industry experts.\"}],[{\"link\":\"https://www.scrapingbee.com/index.xml\"},{\"title\":\"Don\\u0027t know where to begin?\"},{\"description\":\"We help you get better at web-scraping: detailed tutorials, case studies and writings by industry experts.\"}],[{\"link\":\"https://www.scrapingbee.com/index.xml\"},{\"title\":\"Don\\u0027t know where to begin?\"},{\"description\":\"We help you get better at web-scraping: detailed tutorials, case studies and writings by industry experts.\"}],[{\"link\":\"https://www.scrapingbee.com/index.xml\"},{\"title\":\"Don\\u0027t know where to begin?\"},{\"description\":\"We help you get better at web-scraping: detailed tutorials, case studies and writings by industry experts.\"}],[{\"link\":\"https://www.scrapingbee.com/index.xml\"},{\"title\":\"Don\\u0027t know where to begin?\"},{\"description\":\"We help you get better at web-scraping: detailed tutorials, case studies and writings by industry experts.\"}],[{\"link\":\"https://www.scrapingbee.com/index.xml\"},{\"title\":\"Don\\u0027t know where to begin?\"},{\"description\":\"We help you get better at web-scraping: detailed tutorials, case studies and writings by industry experts.\"}],[{\"link\":\"https://www.scrapingbee.com/index.xml\"},{\"title\":\"Don\\u0027t know where to begin?\"},{\"description\":\"We help you get better at web-scraping: detailed tutorials, case studies and writings by industry experts.\"}],[{\"link\":\"https://www.scrapingbee.com/index.xml\"},{\"title\":\"Don\\u0027t know where to begin?\"},{\"description\":\"We help you get better at web-scraping: detailed tutorials, case studies and writings by industry experts.\"}],[{\"link\":\"https://www.scrapingbee.com/index.xml\"},{\"title\":\"Don\\u0027t know where to begin?\"},{\"description\":\"We help you get better at web-scraping: detailed tutorials, case studies and writings by industry experts.\"}],[{\"link\":\"https://www.scrapingbee.com/index.xml\"},{\"title\":\"Don\\u0027t know where to begin?\"},{\"description\":\"We help you get better at web-scraping: detailed tutorials, case studies and writings by industry experts.\"}]]\"");
     }
 
     [Fact]

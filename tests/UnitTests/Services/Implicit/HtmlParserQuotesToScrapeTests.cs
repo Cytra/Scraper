@@ -2,21 +2,22 @@
 using Application.Models.Enums;
 using Application.Services;
 using Application.Services.Parsers;
+using Application.Services.Selector;
 using AutoFixture;
 using FluentAssertions;
 using Microsoft.Extensions.Logging;
 using UnitTests.Helpers;
 using Xunit;
 
-namespace UnitTests.Services;
+namespace UnitTests.Services.Implicit;
 
-public class GetJsonQuotesToScrapeTests
+public class HtmlParserQuotesToScrapeTests
 {
     private readonly IFixture _fixture;
     private const string Html = "QuotesToScrape";
     private readonly HtmlParser<ImplicitExtractRule> _sut;
 
-    public GetJsonQuotesToScrapeTests()
+    public HtmlParserQuotesToScrapeTests()
     {
         _fixture = RealClassFixture.Create();
         var logger = _fixture.Freeze<ILogger<JsonExtractorFacade<ImplicitExtractRule>>>();
