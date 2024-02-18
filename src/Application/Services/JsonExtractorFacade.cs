@@ -63,7 +63,9 @@ public class JsonExtractorFacade<T> : IJsonExtractorFacade<T> where T : ExtractR
         {
             if (implicitExtractRule.Output != null)
             {
-                var nestedObject = HandleNestedObject(document, implicitExtractRule);
+                var htmlDoc = new HtmlDocument();
+                htmlDoc.LoadHtml(node.InnerHtml);
+                var nestedObject = HandleNestedObject(htmlDoc.DocumentNode, implicitExtractRule);
                 if (nestedObject != null)
                 {
                     listItems.Add(nestedObject);

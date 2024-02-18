@@ -1,4 +1,6 @@
-﻿namespace Application.Models;
+﻿using Application.Models.Enums;
+
+namespace Application.Models;
 
 public class ExplicitExtractRule : ExtractRuleBase
 {

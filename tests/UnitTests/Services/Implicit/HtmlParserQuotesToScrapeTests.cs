@@ -13,14 +13,13 @@ namespace UnitTests.Services.Implicit;
 
 public class HtmlParserQuotesToScrapeTests
 {
-    private readonly IFixture _fixture;
     private const string Html = "QuotesToScrape";
     private readonly HtmlParser<ImplicitExtractRule> _sut;
 
     public HtmlParserQuotesToScrapeTests()
     {
-        _fixture = RealClassFixture.Create();
-        var logger = _fixture.Freeze<ILogger<JsonExtractorFacade<ImplicitExtractRule>>>();
+        var fixture = RealClassFixture.Create();
+        var logger = fixture.Freeze<ILogger<JsonExtractorFacade<ImplicitExtractRule>>>();
         var selectorService = new ImplicitSelectorService();
         var jsonExtractorFacade = new JsonExtractorFacade<ImplicitExtractRule>(selectorService, logger);
         _sut = new HtmlParser<ImplicitExtractRule>(jsonExtractorFacade);

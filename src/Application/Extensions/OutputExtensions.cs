@@ -1,7 +1,5 @@
-﻿using Application.Models;
-using Application.Models.Enums;
+﻿using Application.Models.Enums;
 using HtmlAgilityPack;
-using Newtonsoft.Json;
 
 namespace Application.Extensions;
 
@@ -32,38 +30,11 @@ internal static class OutputExtensions
 
     private static string? CleanText(this HtmlNode? node, bool clean)
     {
-        if (clean)
-        {
-            return node.InnerText.Cleanup();
-        }
-
-        return node.InnerText;
+        return clean ? node.InnerText.Cleanup() : node.InnerText;
     }
 
     private static string? CleanText(this HtmlAttribute? node, bool clean)
     {
-        if (clean)
-        {
-            return node.Value.Cleanup();
-        }
-
-        return node.Value;
-    }
-
-    internal static Dictionary<string, ImplicitExtractRule>? GetExtractRules(object extractRules)
-    {
-        Dictionary<string, ImplicitExtractRule>? extractRulesObject;
-        if (extractRules is Dictionary<string, ImplicitExtractRule> rules)
-        {
-            extractRulesObject = rules;
-        }
-        else
-        {
-            extractRulesObject = JsonConvert
-                .DeserializeObject<Dictionary<string, ImplicitExtractRule>>(
-                    extractRules.ToString());
-        }
-
-        return extractRulesObject;
+        return clean ? node.Value.Cleanup() : node.Value;
     }
 }

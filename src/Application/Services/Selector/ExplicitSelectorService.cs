@@ -41,6 +41,10 @@ public class ExplicitSelectorService : ISelectorService<ExplicitExtractRule>
 
     public string GetImplicitOutputSelector(ExplicitExtractRule selector)
     {
+        if (selector.Selector.Element is "a" or "link")
+        {
+            return "href";
+        }
         return string.Empty;
     }
 }
