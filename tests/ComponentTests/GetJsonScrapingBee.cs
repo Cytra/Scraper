@@ -1,4 +1,5 @@
-﻿using System.Net.Http.Json;
+﻿using System.Net;
+using System.Net.Http.Json;
 using System.Text.Json;
 using Application.Ports;
 using AutoFixture;
@@ -9,6 +10,7 @@ using Microsoft.Extensions.DependencyInjection;
 using NSubstitute;
 using Xunit;
 using FluentAssertions;
+using System.Text;
 
 namespace ComponentTests;
 
@@ -59,6 +61,30 @@ public class GetJsonScrapingBee
 }";
 
         var response = await client.GetAsync($"/api/v1/implicit-json?Url=http://quotes.toscrape.com&extractRules={extractRulesString}");
+
+        var result = await response.Content.ReadFromJsonAsync<Dictionary<string, string>>(_jsonSerializerOptions);
+        result!.First().Key.Should().Be("title");
+        result!.First().Value.Should().Be("The ScrapingBee Blog");
+    }
+
+    [Fact]
+    public async Task Post_ScrapingBeeExamples_OnlyH1TagXpath()
+    {
+        await using var factory = new CustomWebApplicationFactory(ConfigureTestServices);
+        var client = factory.CreateClient();
+        var extractRulesString = @"{
+  ""title"": {
+    ""selector"": {
+      ""element"": ""h1"",
+    }
+  }
+}";
+
+        var content = new StringContent(extractRulesString, Encoding.UTF8, "application/json");
+
+        var response = await client.PostAsync("/api/v1/explicit-json?Url=http://quotes.toscrape.com", content);
+
+        response.StatusCode.Should().Be(HttpStatusCode.OK);
 
         var result = await response.Content.ReadFromJsonAsync<Dictionary<string, string>>(_jsonSerializerOptions);
         result!.First().Key.Should().Be("title");

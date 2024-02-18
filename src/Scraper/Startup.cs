@@ -45,6 +45,7 @@ public class Startup
         services.AddScoped<IJsonExtractorFacade<ImplicitExtractRule>, JsonExtractorFacade<ImplicitExtractRule>>();
         services.AddScoped<IJsonExtractorFacade<ExplicitExtractRule>, JsonExtractorFacade<ExplicitExtractRule>>();
         services.AddScoped<ISelectorService<ImplicitExtractRule>, ImplicitSelectorService>();
+        services.AddScoped<ISelectorService<ExplicitExtractRule>, ExplicitSelectorService>();
 
         services.AddControllers()
             .ConfigureApiBehaviorOptions(setupAction =>
