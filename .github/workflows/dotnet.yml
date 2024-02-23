@@ -19,5 +19,5 @@ jobs:
       with:
         dotnet-version: 8.0.x
     - name: Test
-      run: dotnet test tests/UnitTests/UnitTests.csproj --verbosity /p:CollectCoverage=true /p:CoverletOutputFormat=cobertura /p:CoverletOutput="./TestResults/"/p:ExcludeByFile=$UNIT_TEST_EXCLUDED_FILES -clp:ErrorsOnly
+      run: dotnet test tests/UnitTests/UnitTests.csproj
 
