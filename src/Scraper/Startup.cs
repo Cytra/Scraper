@@ -9,9 +9,7 @@ using Application.Services;
 using Application.Services.Parsers;
 using Application.Services.Selector;
 using Infrastructure.Scrapers;
-using MediatR;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Server.Kestrel.Core.Internal.Http;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 using Scraper.Middleware;
@@ -32,9 +30,12 @@ public class Startup
     public IWebHostEnvironment Environment { get; }
 
     public virtual void ConfigureServices(IServiceCollection services)
-    { 
-        services.AddMediatR(Assembly.GetExecutingAssembly());
-        services.AddMediatR(typeof(GetHtml.Query).Assembly);
+    {
+        services.AddHttpLogging(_ => { });
+        services.AddMediatR(cfg =>
+        {
+            cfg.RegisterServicesFromAssemblies(typeof(GetHtml.Query).Assembly);
+        });
 
         services.Configure<AppOptions>(Configuration);
         services.AddScoped<ISeleniumDriverFactory, SeleniumDriverFactory>();

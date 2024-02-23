@@ -35,8 +35,6 @@ public class GetJsonScrapingBee
         var extractRulesString = @"{
     ""title"" : {
         ""selector"": ""//h1"",
-        ""OutputType"": ""text"",
-        ""type"": ""Item""
     }
 }";
 
@@ -55,8 +53,6 @@ public class GetJsonScrapingBee
         var extractRulesString = @"{
     ""title"" : {
         ""selector"": ""//h1[@class=\""mb-21\""]"",
-        ""OutputType"": ""text"",
-        ""type"": ""Item""
     }
 }";
 
