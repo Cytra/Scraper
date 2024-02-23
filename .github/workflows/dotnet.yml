@@ -40,4 +40,4 @@ jobs:
           context: .
           file: ./src/Scraper/Dockerfile
           push: true
-          tags: ${{ secrets.DOCKERHUB_USERNAME }}/scraper:latest
+          tags: cytra/scraper:latest
