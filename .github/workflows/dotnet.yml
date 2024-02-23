@@ -19,8 +19,8 @@ jobs:
       with:
         dotnet-version: 8.0.x
     - name: Restore dependencies
-      run: dotnet restore
+      run: dotnet restore src/Scraper/Scraper.csproj
     - name: Build
-      run: dotnet build --no-restore
+      run: dotnet build src/Scraper/Scraper.csproj --no-restore
     - name: Test
-      run: dotnet test --no-build --verbosity normal
+      run: dotnet test tests/UnitTests/UnitTests.csproj  --no-build --verbosity normal
