@@ -20,4 +20,6 @@ jobs:
         dotnet-version: 8.0.x
     - name: Test
       run: dotnet test tests/UnitTests/UnitTests.csproj
+    - name: Build the Docker image
+      run: docker build -f src/scraper/Dockerfile . --tag my-image-name:$(date +%s) 
 
