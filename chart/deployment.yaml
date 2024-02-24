@@ -1,0 +1,53 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: scraper-deployment
+  labels:
+    app: scraper   # Adding the 'app: scraper' label
+spec:
+  replicas: 1  # Adjust the number of replicas as needed
+  selector:
+    matchLabels:
+      app: scraper  # Match the labels for pod template
+  template:
+    metadata:
+      labels:
+        app: scraper  # Labels for the pods created by this template
+    spec:
+      containers:
+      - name: scraper-container
+        image: cytra/scraper:latest
+
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: scraper-service
+  labels:
+    app: scraper
+spec:
+  selector:
+    app: scraper
+  ports:
+  - protocol: TCP
+    port: 80
+    targetPort: 80
+
+---
+
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: scraper-ingress
+spec:
+  rules:
+  - http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: scraper-service
+            port:
+              number: 80
