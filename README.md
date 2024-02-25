@@ -11,3 +11,5 @@ helm install selenium-release docker-selenium/selenium-grid -f values.yaml --nam
 
 # Update the deployment
 helm upgrade selenium-release docker-selenium/selenium-grid -f values.yaml --namespace selenium
+
+helm delete selenium-release --namespace selenium
