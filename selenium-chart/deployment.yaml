@@ -40,3 +40,4 @@ spec:
       protocol: TCP
       port: 7900
       targetPort: 7900
+  type: LoadBalancer
