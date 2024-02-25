@@ -15,7 +15,7 @@ public class SeleniumDriverFactory : ISeleniumDriverFactory
     }
     public RemoteWebDriver GetDriver()
     {
-        var chromeOptions = new ChromeOptions();
+        var chromeOptions = new ChromeOptions(); 
         return new RemoteWebDriver(new Uri($"{_seleniumUrl}"), chromeOptions);
     }
 }

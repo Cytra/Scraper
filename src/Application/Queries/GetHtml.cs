@@ -15,19 +15,19 @@ public static class GetHtml
 
     public class Handler : IRequestHandler<Query, Response> 
     {
-        private readonly ISeleniumService _seleniumService;
+        private readonly IHtmlService _htmlService;
 
-        public Handler(ISeleniumService seleniumService)
+        public Handler(IHtmlService htmlService)
         {
-            _seleniumService = seleniumService;
+            _htmlService = htmlService;
         }
 
-        public Task<Response> Handle(Query request, CancellationToken cancellationToken)
+        public async Task<Response> Handle(Query request, CancellationToken cancellationToken)
         {
-            return Task.FromResult(new Response()
+            return new Response()
             {
-                Html = _seleniumService.GetData(request.Url)
-            });
+                Html = await _htmlService.GetData(request.Url)
+            };
         }
     }
 }

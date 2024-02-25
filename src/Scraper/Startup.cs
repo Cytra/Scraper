@@ -39,7 +39,8 @@ public class Startup
 
         services.Configure<AppOptions>(Configuration);
         services.AddScoped<ISeleniumDriverFactory, SeleniumDriverFactory>();
-        services.AddScoped<ISeleniumService, SeleniumService>();
+        //services.AddScoped<IHtmlService, HtmlService>();
+        services.AddScoped<IHtmlService, PlayWrightService>();
         services.AddScoped<IHtmlToJsonService, HtmlToJsonService>();
         services.AddScoped<IHtmlParser<ImplicitExtractRule>, HtmlParser<ImplicitExtractRule>>();
         services.AddScoped<IHtmlParser<ExplicitExtractRule>, HtmlParser<ExplicitExtractRule>>();

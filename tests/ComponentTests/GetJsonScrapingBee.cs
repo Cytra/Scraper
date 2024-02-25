@@ -16,15 +16,15 @@ namespace ComponentTests;
 
 public class GetJsonScrapingBee
 {
-    private readonly ISeleniumService _seleniumService;
+    private readonly IHtmlService _htmlService;
     private readonly JsonSerializerOptions _jsonSerializerOptions = new(JsonSerializerDefaults.Web);
 
     public GetJsonScrapingBee()
     {
         var fixture = new Fixture().Customize(new AutoNSubstituteCustomization());
-        _seleniumService = fixture.Freeze<ISeleniumService>();
+        _htmlService = fixture.Freeze<IHtmlService>();
         var html = FileHelpers.GetHtml("ScrapingBeeBlogs");
-        _seleniumService.GetData(Arg.Any<string>()).Returns(html);
+        _htmlService.GetData(Arg.Any<string>()).Returns(html);
     }
 
     [Fact]
@@ -89,6 +89,6 @@ public class GetJsonScrapingBee
 
     private void ConfigureTestServices(IServiceCollection services)
     {
-        services.AddScoped(_ => _seleniumService);
+        services.AddScoped(_ => _htmlService);
     }
 }

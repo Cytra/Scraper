@@ -17,23 +17,23 @@ public static class GetImplicitJson
     public class Handler : IRequestHandler<Query, Response>
     {
         private readonly IHtmlParser<ImplicitExtractRule> _htmlParser;
-        private readonly ISeleniumService _seleniumService;
+        private readonly IHtmlService _htmlService;
 
         public Handler(IHtmlParser<ImplicitExtractRule> htmlParser, 
-            ISeleniumService seleniumService)
+            IHtmlService htmlService)
         {
             _htmlParser = htmlParser;
-            _seleniumService = seleniumService;
+            _htmlService = htmlService;
         }
 
-        public Task<Response> Handle(Query request, CancellationToken cancellationToken)
+        public async Task<Response> Handle(Query request, CancellationToken cancellationToken)
         {
-            var html = _seleniumService.GetData(request.Url);
+            var html = await _htmlService.GetData(request.Url);
             var json = _htmlParser.GetJson(request.ExtractRules, html);
-            return Task.FromResult(new Response()
+            return new Response()
             {
                 Json = json,
-            });
+            };
         }
     }
 }

@@ -19,26 +19,26 @@ public static class HtmlByXpath
 
     public class Handler : IRequestHandler<Command, Response>
     {
-        private readonly ISeleniumService _seleniumService;
+        private readonly IHtmlService _htmlService;
         private readonly IHtmlToJsonService _htmlToJsonService;
 
         public Handler(
-            ISeleniumService seleniumService, 
+            IHtmlService htmlService, 
             IHtmlToJsonService htmlToJsonService)
         {
-            _seleniumService = seleniumService;
+            _htmlService = htmlService;
             _htmlToJsonService = htmlToJsonService;
         }
 
-        public Task<Response> Handle(Command request, CancellationToken cancellationToken)
+        public async Task<Response> Handle(Command request, CancellationToken cancellationToken)
         {
-            var html = _seleniumService.GetData(request.Url);
+            var html = await _htmlService.GetData(request.Url);
 
             var json = _htmlToJsonService.GetDictionaryFromHtml(html);
-            return Task.FromResult(new Response()
+            return new Response()
             {
                 Json = json
-            });
+            };
         }
     }
 }

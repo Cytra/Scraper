@@ -2,16 +2,16 @@
 
 namespace Infrastructure.Scrapers;
 
-public class SeleniumService : ISeleniumService
+public class HtmlService : IHtmlService
 {
     private readonly ISeleniumDriverFactory _seleniumDriverFactory;
 
-    public SeleniumService(ISeleniumDriverFactory seleniumDriverFactory)
+    public HtmlService(ISeleniumDriverFactory seleniumDriverFactory)
     {
         _seleniumDriverFactory = seleniumDriverFactory;
     }
 
-    public string GetData(string url)
+    public async Task<string> GetData(string url)
     {
         var driver = _seleniumDriverFactory.GetDriver();
         driver.Url = url;

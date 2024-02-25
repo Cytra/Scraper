@@ -7,6 +7,9 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Knyaz.Optimus" Version="3.0.1" />
+    <PackageReference Include="Knyaz.Optimus.Scripting.Jint" Version="3.0.1" />
+    <PackageReference Include="Microsoft.Playwright" Version="1.41.2" />
     <PackageReference Include="Selenium.WebDriver" Version="4.18.1" />
   </ItemGroup>
 
