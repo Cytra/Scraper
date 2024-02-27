@@ -8,8 +8,12 @@ you can see what docker is doing on http://localhost:7900 password => secret
 
 cd C:\Users\martynas.samuilovas\source\Personal\Scraper\selenium-chart
 helm install selenium-release docker-selenium/selenium-grid -f values.yaml --namespace selenium
+helm install selenium-grid docker-selenium/selenium-grid
+helm uninstall selenium-grid
 
 # Update the deployment
 helm upgrade selenium-release docker-selenium/selenium-grid -f values.yaml --namespace selenium
 
 helm delete selenium-release --namespace selenium
+
+#
