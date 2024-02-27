@@ -12,7 +12,7 @@ helm install selenium-grid docker-selenium/selenium-grid
 
 helm upgrade selenium-release docker-selenium/selenium-grid -f values.yaml --namespace selenium
 
-helm delete selenium-release --namespace selenium
+helm delete selenium-grid
 
 # Deploy Scraper to k8s
 
