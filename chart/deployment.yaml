@@ -17,8 +17,8 @@ spec:
       containers:
       - name: scraper-container
         image: cytra/scraper:latest
+        imagePullPolicy: Always
         
-
 ---
 
 apiVersion: v1
