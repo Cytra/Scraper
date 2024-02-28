@@ -3,18 +3,18 @@ using Application.Models;
 using Application.Ports;
 using MediatR;
 
-namespace Application.Queries;
+namespace Application.Commands;
 
 public static class GetExplicitJson
 {
-    public class Query : JsonByXpathExplicit, IRequest<Response> { }
+    public class Command : JsonByXpathExplicit, IRequest<Response> { }
 
     public class Response : ErrorResponse
     {
         public Dictionary<string, object?>? Json { get; set; }
     }
 
-    public class Handler : IRequestHandler<Query, Response>
+    public class Handler : IRequestHandler<Command, Response>
     {
         private readonly IHtmlParser<ExplicitExtractRule> _htmlParser;
         private readonly IHtmlService _htmlService;
@@ -26,9 +26,9 @@ public static class GetExplicitJson
             _htmlService = htmlService;
         }
 
-        public async Task<Response> Handle(Query request, CancellationToken cancellationToken)
+        public async Task<Response> Handle(Command request, CancellationToken cancellationToken)
         {
-            var html = await _htmlService.GetData(request.Url);
+            var html = await _htmlService.GetData(request.Url, request.WaitTime);
             var json = _htmlParser.GetJson(request.ExtractRules, html);
             return new Response()
             {

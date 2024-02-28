@@ -6,7 +6,7 @@ namespace Infrastructure.Scrapers;
 
 public class PlayWrightService : IHtmlService
 {
-    public async Task<string> GetData(string url)
+    public async Task<string> GetData(string url, int? waitTime = null)
     {
         //using var playwright = await Playwright.CreateAsync();
         //var browser = await playwright.Chromium.LaunchAsync();

@@ -1,4 +1,5 @@
 ﻿using Application.Ports;
+using OpenQA.Selenium.Remote;
 
 namespace Infrastructure.Scrapers;
 
@@ -11,12 +12,31 @@ public class HtmlService : IHtmlService
         _seleniumDriverFactory = seleniumDriverFactory;
     }
 
-    public async Task<string> GetData(string url)
+    public async Task<string> GetData(string url, int? waitTime = null)
     {
-        using var driver = _seleniumDriverFactory.GetDriver();
-        driver.Url = url;
-        driver.Navigate();
-        var result = driver.PageSource;
+        string result;
+        RemoteWebDriver? driver = null;
+        try
+        {
+            driver = _seleniumDriverFactory.GetDriver();
+            if (waitTime.HasValue)
+            {
+                driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(waitTime.Value);
+            }
+            driver.Url = url;
+            driver.Navigate();
+
+            result = driver.PageSource;
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine(e);
+            throw;
+        }
+        finally
+        {
+            driver?.Dispose();
+        }
         return result;
     }
 }

@@ -11,6 +11,11 @@ using NSubstitute;
 using Xunit;
 using FluentAssertions;
 using System.Text;
+using Application.Models;
+using Scraper.Models;
+using Amazon.Runtime.Internal.Transform;
+using Newtonsoft.Json;
+using JsonSerializer = System.Text.Json.JsonSerializer;
 
 namespace ComponentTests;
 
@@ -68,15 +73,25 @@ public class GetJsonScrapingBee
     {
         await using var factory = new CustomWebApplicationFactory(ConfigureTestServices);
         var client = factory.CreateClient();
-        var extractRulesString = @"{
-  ""title"": {
-    ""selector"": {
-      ""element"": ""h1"",
-    }
-  }
-}";
 
-        var content = new StringContent(extractRulesString, Encoding.UTF8, "application/json");
+        var request = new JsonExplicitRequest()
+        {
+            Url = "http://quotes.toscrape.com",
+            ExtractRules = new Dictionary<string, ExplicitExtractRule>()
+            {
+                {
+                    "title", new ExplicitExtractRule()
+                    {
+                        Selector = new Selector()
+                        {
+                            Element = "h1"
+                        }
+                    }
+                }
+            }
+        };
+
+        var content = new StringContent(JsonSerializer.Serialize(request), Encoding.UTF8, "application/json");
 
         var response = await client.PostAsync("/api/v1/explicit-json?Url=http://quotes.toscrape.com", content);
 

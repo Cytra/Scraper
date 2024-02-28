@@ -1,6 +1,8 @@
-﻿namespace Application.Models;
+﻿using Application.Models;
 
-public class JsonByXpathExplicit
+namespace Scraper.Models;
+
+public class JsonExplicitRequest
 {
     public required string Url { get; set; }
 

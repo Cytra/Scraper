@@ -491,6 +491,8 @@ public class HtmlParserScrapingBeeTests
             },
         };
 
+        var test = JsonSerializer.Serialize(input);
+
         var result = _sut.GetJson(input, rawHtml);
 
         result.Count.Should().Be(3);

@@ -5,6 +5,7 @@ using Application.Queries;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using Scraper.Models;
+using Application.Commands;
 
 namespace Scraper.Controllers;
 
@@ -60,16 +61,15 @@ public class HtmlController : ControllerBase
 
     [HttpPost("explicit-json")]
     public async Task<ActionResult<JObject>> GetExplicitJson(
-        [FromQuery] string url,
-        [FromBody] Dictionary<string, ExplicitExtractRule> extractRules,
+        [FromBody] JsonExplicitRequest request,
         CancellationToken cancellationToken)
     {
-        //var extractRulesObject = JsonConvert.DeserializeObject<Dictionary<string, ExplicitExtractRule>>(extractRules);
         var result = await _mediator
-            .Send(new GetExplicitJson.Query()
+            .Send(new GetExplicitJson.Command()
                 {
-                    Url = url,
-                    ExtractRules = extractRules
+                    Url = request.Url,
+                    ExtractRules = request.ExtractRules,
+                    WaitTime = request.WaitTime,
             },
                 cancellationToken);
         return Ok(result.Json);
