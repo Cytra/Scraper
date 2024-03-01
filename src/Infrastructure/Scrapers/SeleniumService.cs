@@ -9,12 +9,10 @@ namespace Infrastructure.Scrapers;
 public class HtmlService : IHtmlService
 {
     private readonly ISeleniumDriverFactory _seleniumDriverFactory;
-    private readonly ISelectorService<ExplicitExtractRule> _selector;
 
-    public HtmlService(ISeleniumDriverFactory seleniumDriverFactory, ISelectorService<ExplicitExtractRule> selector)
+    public HtmlService(ISeleniumDriverFactory seleniumDriverFactory)
     {
         _seleniumDriverFactory = seleniumDriverFactory;
-        _selector = selector;
     }
 
     public async Task<string> GetData(string url, int? waitTime = null)
