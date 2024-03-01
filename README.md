@@ -4,7 +4,7 @@ docker run -d -p 4444:4444 -p 7900:7900 --shm-size="2g" selenium/standalone-chro
 
 you can see what docker is doing on http://localhost:7900 password => secret
 
-# Deploy Selenium to K8s
+# Deploy Selenium helm to K8s
 
 cd C:\Users\martynas.samuilovas\source\Personal\Scraper\selenium-chart
 helm install selenium-release docker-selenium/selenium-grid -f values.yaml --namespace selenium
@@ -13,6 +13,10 @@ helm install selenium-grid docker-selenium/selenium-grid
 helm upgrade selenium-release docker-selenium/selenium-grid -f values.yaml --namespace selenium
 
 helm delete selenium-grid
+
+# Deploy Selenium with deployment
+
+
 
 # Deploy Scraper to k8s
 

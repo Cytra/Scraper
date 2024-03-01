@@ -1,4 +1,7 @@
-﻿using Application.Ports;
+﻿using Application.Interfaces;
+using Application.Models;
+using Application.Ports;
+using OpenQA.Selenium;
 using OpenQA.Selenium.Remote;
 
 namespace Infrastructure.Scrapers;
@@ -6,10 +9,12 @@ namespace Infrastructure.Scrapers;
 public class HtmlService : IHtmlService
 {
     private readonly ISeleniumDriverFactory _seleniumDriverFactory;
+    private readonly ISelectorService<ExplicitExtractRule> _selector;
 
-    public HtmlService(ISeleniumDriverFactory seleniumDriverFactory)
+    public HtmlService(ISeleniumDriverFactory seleniumDriverFactory, ISelectorService<ExplicitExtractRule> selector)
     {
         _seleniumDriverFactory = seleniumDriverFactory;
+        _selector = selector;
     }
 
     public async Task<string> GetData(string url, int? waitTime = null)
@@ -19,12 +24,16 @@ public class HtmlService : IHtmlService
         try
         {
             driver = _seleniumDriverFactory.GetDriver();
-            if (waitTime.HasValue)
-            {
-                driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(waitTime.Value);
-            }
+
+
             driver.Url = url;
             driver.Navigate();
+
+
+            if (waitTime.HasValue)
+            {
+                await Task.Delay(TimeSpan.FromSeconds(waitTime.Value));
+            }
 
             result = driver.PageSource;
         }

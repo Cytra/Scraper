@@ -59,6 +59,11 @@ public class JsonExtractorFacade<T> : IJsonExtractorFacade<T> where T : ExtractR
 
         var listItems = new List<object>();
 
+        if (nodes is null)
+        {
+            return listItems;
+        }
+
         foreach (var node in nodes)
         {
             if (implicitExtractRule.Output != null)
@@ -156,7 +161,7 @@ public class JsonExtractorFacade<T> : IJsonExtractorFacade<T> where T : ExtractR
         return result;
     }
 
-    private HtmlNodeCollection GetNodes(HtmlNode document, T implicitExtractRule)
+    private HtmlNodeCollection? GetNodes(HtmlNode document, T implicitExtractRule)
     {
         var selector = _selectorService.GetImplicitInputSelector(implicitExtractRule);
         var nodes = document.SelectNodes(selector);
